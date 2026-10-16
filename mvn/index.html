@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music Video Night: The Music Video Party Game for iPhone</title>
+<meta name="description" content="Everyone picks a music video, watches together and votes. One person wins the Night. A party game for iPhone that plays on your TV. Free to join.">
+<meta name="theme-color" content="#FDF6EC">
+<meta name="apple-itunes-app" content="app-id=6811704618">
+<link rel="canonical" href="https://couchcoopstudios.com/mvn/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
+
+<meta property="og:site_name" content="Music Video Night">
+<meta property="og:title" content="Music Video Night: the music video party game">
+<meta property="og:description" content="Everyone picks a music video. Everyone watches together. Everyone votes. One person wins the Night.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://couchcoopstudios.com/mvn/">
+<meta property="og:image" content="https://couchcoopstudios.com/mvn/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Music Video Night — three iPhones showing the theme picker, a video playing with live chat, and the winner screen.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Music Video Night: the music video party game">
+<meta name="twitter:description" content="Everyone picks a music video. Everyone watches together. Everyone votes. One person wins the Night.">
+<meta name="twitter:image" content="https://couchcoopstudios.com/mvn/img/og-cover.jpg">
+<meta name="twitter:image:alt" content="Music Video Night — three iPhones showing the theme picker, a video playing with live chat, and the winner screen.">
+
+<!-- Structured data: what an assistant needs to answer "what is this app and
+     how does it work" without guessing. `url` is this site; `installUrl`,
+     `downloadUrl` and `sameAs` point at the App Store listing (app ID 6811704618). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Music Video Night",
+  "applicationCategory": "GameApplication",
+  "applicationSubCategory": "Party game",
+  "operatingSystem": "iOS 17 or later",
+  "url": "https://couchcoopstudios.com/mvn/",
+  "installUrl": "https://apps.apple.com/app/id6811704618",
+  "downloadUrl": "https://apps.apple.com/app/id6811704618",
+  "sameAs": ["https://apps.apple.com/app/id6811704618"],
+  "description": "A party game for iPhone. Friends in the same room each pick one YouTube music video on a theme, watch them together in sync, react and chat live, veto a pick before it plays, then vote blind for a favorite. Works peer-to-peer over WiFi and Bluetooth with no accounts and no server. Works with an Apple TV: mirror your phone for a big-screen scoreboard.",
+  "screenshot": [
+    "https://couchcoopstudios.com/mvn/img/screen-themes.webp",
+    "https://couchcoopstudios.com/mvn/img/screen-playback.webp",
+    "https://couchcoopstudios.com/mvn/img/screen-voting.webp",
+    "https://couchcoopstudios.com/mvn/img/screen-results.webp"
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Music Video Night",
+      "price": "0",
+      "priceCurrency": "USD",
+      "url": "https://apps.apple.com/app/id6811704618",
+      "description": "Free to download, free to play and always free to join a Night. Free themes: Wildcard, Guilty Pleasures, One-Hit Wonders and Thriller Night."
+    },
+    {
+      "@type": "Offer",
+      "name": "Unlock Everything",
+      "price": "4.99",
+      "priceCurrency": "USD",
+      "category": "In-app purchase",
+      "description": "One-time purchase, not a subscription. Unlocks all 26 built-in themes, custom themes you name and color, a recap video reel, the cross-Night Hall of Fame leaderboard and a VIP badge in chat when hosting. Only the host needs it."
+    }
+  ],
+  "featureList": [
+    "26 themed Nights, including a Spooky SZN row, with custom themes hosts name and color themselves",
+    "Everyone submits one YouTube music video that fits the theme",
+    "Synchronized playback for every phone in the room",
+    "Live chat and emoji reactions while the video plays",
+    "Veto a pick before it plays",
+    "Blind voting and an animated winner reveal",
+    "TV mode: Screen Mirroring to an Apple TV shows a big-screen scoreboard with chat and what's up next",
+    "A free shareable recap card of every Night, plus a recap video reel",
+    "Hall of Fame leaderboard across every Night you play",
+    "No accounts, no login, no server, no data collection — peer-to-peer over WiFi and Bluetooth"
+  ],
+  "isAccessibleForFree": true,
+  "author": { "@type": "Person", "name": "John Katez" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Music Video Night?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A party game for iPhone played by people in the same room. The host picks a theme, everyone joins with a 5-letter code, and each player submits one YouTube music video that fits. The videos play in sync for everyone while people chat and react, then everyone votes blind for a favorite and the most-voted pick wins the Night." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you need an account or an internet server to play?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There are no accounts, no login and no server. Phones talk directly to each other over WiFi and Bluetooth using Apple's MultipeerConnectivity, so nothing about your Night leaves the room and no data is collected. An internet connection is only needed to stream the videos themselves from YouTube." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many people can play?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Anyone in the room with an iPhone can join a Night with the host's 5-letter code. Everyone takes a turn picking one video, so a typical Night runs three to six people." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you play it on a TV?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Screen Mirroring from Control Center puts the Night on an Apple TV. With TV mode on the TV shows the scoreboard, the chat and what's up next; with it off the TV mirrors your phone, video and all. Either way, everyone keeps their phone for chat, reactions, vetoes and voting." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Music Video Night free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Joining a Night is always free, and the app is free to download. Four themes are free for hosts too — Wildcard, Guilty Pleasures, One-Hit Wonders and Thriller Night — along with your full Night history. One optional purchase, Unlock Everything at $4.99, adds every built-in theme, custom themes you name and color, a recap video reel and the Hall of Fame leaderboard. Every host gets a shareable recap card of the Night for free. It is a one-time purchase, not a subscription, and only the host needs it." }
+    },
+    {
+      "@type": "Question",
+      "name": "What themes are there?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Twenty-six built-in themes grouped into Spooky SZN, For the Crowd, By Era and By Vibe: Thriller Night, Villain Era, Goth Night, Witchy Women, Horror Movie Bangers, Creepy Music Videos, Gay Music Video Night, Ladies' Night, Rap Music Video Night, Guilty Pleasures, 80s Divas, 90s Hip-Hop, Y2K Pop, One-Hit Wonders, Summer Anthems, Karaoke Bangers, Sad Bangers, Dance Floor Fillers, Rock Gods, Remix Night, Cover Night, Live Not Studio, One-Take Wonders, Movie Soundtrack, Under 3 Minutes and Wildcard. Hosts who unlock everything can also invent a theme, name it and pick its color." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if a video won't play?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Some artists and labels switch off embedding, which means the video can only be watched on YouTube itself. The app says so when that happens: whoever picked it can swap it for another, the host can skip it, and anyone can open it in YouTube from the same screen." }
+    },
+    {
+      "@type": "Question",
+      "name": "What device do you need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An iPhone running iOS 17 or later, for every player. TV mode additionally needs an Apple TV to mirror to." }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --ink: #1B1033;
+    --ink-2: #5B5470;
+    --cream: #FDF6EC;
+    --cream-2: #F6ECDE;
+    --card: #FFFFFF;
+    --pink: #FF67A3;
+    --purple: #9867FF;
+    --cyan: #58E1FF;
+    --sunny: #FFD167;
+    --coral: #FF8A67;
+    --mint: #7FEB7F;
+    --link: #7B3DFF;
+    --shadow: 0 10px 30px rgba(27,16,51,.08);
+    --shadow-lift: 0 18px 44px rgba(27,16,51,.16);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font: 17px/1.6 ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; }
+  h1, h2, h3 { line-height: 1.12; letter-spacing: -.015em; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 99;
+    background: var(--ink); color: var(--cream); padding: 12px 18px; border-radius: 0 0 14px 0; font-weight: 800;
+  }
+  .skip:focus { left: 0; }
+  a:focus-visible, summary:focus-visible, button:focus-visible {
+    outline: 3px solid var(--link); outline-offset: 3px; border-radius: 6px;
+  }
+
+  .wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+  .narrow { width: min(760px, 100% - 40px); margin-inline: auto; }
+  section { padding: 56px 0; }
+
+  .eyebrow {
+    display: inline-block; font-size: 13px; font-weight: 800;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 10px;
+  }
+  h2 { font-size: clamp(28px, 5.4vw, 40px); margin: 0 0 10px; }
+  .lede { font-size: clamp(17px, 2.2vw, 19px); color: var(--ink-2); margin: 0 0 26px; max-width: 58ch; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: 40px 0 8px; text-align: center; overflow: hidden; }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; pointer-events: none;
+  }
+  .hero::before { width: 60vw; max-width: 520px; aspect-ratio: 1; background: var(--pink); opacity: .34; top: -14%; left: -14%; }
+  .hero::after  { width: 60vw; max-width: 520px; aspect-ratio: 1; background: var(--cyan); opacity: .34; top: 6%;  right: -16%; }
+  .hero > * { position: relative; z-index: 1; }
+
+  .kicker {
+    display: inline-block; padding: 8px 18px; border-radius: 999px;
+    background: var(--ink); color: var(--cream);
+    font-size: 12.5px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(42px, 11vw, 88px);
+    font-weight: 900; letter-spacing: -.03em;
+    margin: 18px 0 14px;
+    background: linear-gradient(115deg, #FF3D8A 6%, #7B3DFF 52%, #29D9FF 96%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tagline {
+    font-size: clamp(19px, 3.6vw, 25px); font-weight: 700; color: var(--ink);
+    margin: 0 auto; max-width: 20ch;
+  }
+  .hero-sub { color: var(--ink-2); margin: 14px auto 0; max-width: 46ch; font-size: 16px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; margin-top: 28px; }
+  .btn {
+    display: inline-block; padding: 15px 26px; border-radius: 20px;
+    font-weight: 800; font-size: 17px; text-decoration: none; color: var(--ink);
+    background: linear-gradient(115deg, var(--pink), var(--purple) 55%, var(--cyan));
+    box-shadow: var(--shadow-lift); transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block; padding: 15px 24px; border-radius: 20px;
+    font-weight: 800; font-size: 17px; text-decoration: none; color: var(--ink);
+    background: transparent; border: 2.5px solid rgba(27,16,51,.18);
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  /* App Store badge: Apple's official artwork (assets/app-store-badge.svg, from Apple Marketing Tools). Don't recolor, crop or add effects. Badge
+     spec: black fill, thin #A6A6A6 keyline, white Apple logo, "Download on the"
+     over "App Store" in San Francisco, sentence case. Don't recolor it, change
+     the text case or add effects. Apple asks for clear space of at least a
+     quarter of the badge height around it (56px tall → 14px, the .cta-row gap). */
+  .appstore {
+    display: inline-block; line-height: 0; border-radius: 9px; text-decoration: none;
+  }
+  .appstore .as-badge { display: block; height: 56px; width: auto; }
+  .badge-note {
+    width: 100%; text-align: center; font-size: 13.5px; color: var(--ink-2); margin: 0;
+  }
+
+  /* phone fan */
+  .fan { display: flex; justify-content: center; align-items: flex-end; margin-top: 34px; padding-bottom: 6px; }
+  .phone {
+    margin: 0; flex: none;
+    width: clamp(112px, 25vw, 214px);
+    border-radius: clamp(14px, 3vw, 26px);
+    overflow: hidden; background: #fff;
+    border: 3px solid var(--ink);
+    box-shadow: var(--shadow-lift);
+  }
+  .phone img { display: block; width: 100%; }
+  .fan .phone:nth-child(1) { transform: rotate(-8deg) translateY(10px); margin-right: -5%; z-index: 1; }
+  .fan .phone:nth-child(2) { transform: rotate(-1deg); z-index: 3; }
+  .fan .phone:nth-child(3) { transform: rotate(8deg) translateY(10px); margin-left: -5%; z-index: 2; }
+
+  /* ---------- trust strip ---------- */
+  .strip { background: var(--ink); color: var(--cream); padding: 22px 0; margin-top: 30px; }
+  .strip ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: center; margin: 0; padding: 0; }
+  .strip li { font-weight: 700; font-size: 15.5px; }
+  .strip .dot { color: var(--sunny); }
+
+  /* ---------- steps ---------- */
+  .steps { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 8px; counter-reset: step; }
+  .step {
+    background: var(--card); border-radius: 26px; padding: 18px 18px 22px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .step .shot {
+    border-radius: 18px; overflow: hidden; border: 2.5px solid var(--ink); margin: 0 0 16px;
+    background: var(--cream-2); aspect-ratio: 540 / 700;
+  }
+  .step .shot img { display: block; width: 100%; object-fit: cover; object-position: top center; height: 100%; }
+  .step h3 { font-size: 19px; margin: 0 0 6px; display: flex; align-items: baseline; gap: 9px; }
+  .step .n {
+    flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+    font-size: 13px; font-weight: 900; color: var(--ink); background: var(--sunny);
+    transform: translateY(2px);
+  }
+  .step:nth-child(2) .n { background: var(--cyan); }
+  .step:nth-child(3) .n { background: var(--pink); }
+  .step:nth-child(4) .n { background: var(--mint); }
+  .step p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* ---------- TV band ---------- */
+  .tv-band { background: var(--ink); color: var(--cream); border-radius: 0; padding: 60px 0; margin: 20px 0 0; position: relative; overflow: hidden; }
+  .tv-band::before {
+    content: ""; position: absolute; inset: auto -10% -60% -10%; height: 340px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(152,103,255,.55), transparent 70%); pointer-events: none;
+  }
+  .tv-grid { position: relative; display: grid; gap: 34px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 820px) { .tv-grid { grid-template-columns: 1.05fr .95fr; gap: 48px; } }
+  .tv-band .eyebrow { color: var(--sunny); }
+  .tv-band h2 { color: var(--cream); }
+  .tv-band p { color: #E7DFF4; }
+  .tv-steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+  .tv-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: #E7DFF4; }
+  .tv-steps b { color: var(--cream); }
+  .tv-steps .tick { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--cyan); color: var(--ink); display: grid; place-items: center; font-weight: 900; font-size: 13px; }
+  .tv-warn {
+    margin-top: 22px; padding: 14px 16px; border-radius: 16px;
+    background: rgba(255,209,103,.14); border: 2px solid rgba(255,209,103,.5);
+    font-size: 15px; color: #FFF3D8;
+  }
+  .tv-warn b { color: var(--sunny); }
+
+  /* TV illustration */
+  .tv-art { width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 40px rgba(0,0,0,.4)); }
+
+  /* ---------- themes ---------- */
+  .theme-group { margin-top: 26px; }
+  .theme-group h3 { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 15px; border-radius: 999px; font-weight: 800; font-size: 15px; color: var(--ink);
+    background: var(--card); box-shadow: var(--shadow);
+  }
+  .chip.free { background: linear-gradient(115deg, var(--sunny), var(--mint)); }
+  .chip .tag { font-size: 10.5px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; background: rgba(27,16,51,.14); padding: 3px 7px; border-radius: 999px; }
+
+  /* ---------- pricing ---------- */
+  .prices { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 8px; }
+  @media (min-width: 720px) { .prices { grid-template-columns: 1fr 1fr; } }
+  .price { background: var(--card); border-radius: 28px; padding: 26px; box-shadow: var(--shadow); border: 3px solid transparent; }
+  .price.hero-price { border-color: var(--ink); }
+  .price h3 { font-size: 22px; margin: 0 0 4px; }
+  .price .amount { font-size: 40px; font-weight: 900; letter-spacing: -.03em; margin: 8px 0 2px; }
+  .price .sub { color: var(--ink-2); font-size: 15px; margin: 0 0 16px; }
+  .price ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+  .price li { display: grid; grid-template-columns: auto 1fr; gap: 10px; font-size: 15.5px; color: var(--ink-2); }
+  .price li b { color: var(--ink); font-weight: 800; }
+  .price li::before { content: "◆"; color: var(--purple); font-size: 12px; line-height: 1.75; }
+  .price .pill { display: inline-block; padding: 6px 13px; border-radius: 999px; font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; background: var(--cyan); color: var(--ink); }
+  .price.hero-price .pill { background: var(--sunny); }
+
+  /* ---------- faq ---------- */
+  .faq { display: grid; gap: 12px; margin-top: 8px; }
+  details {
+    background: var(--card); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden;
+  }
+  summary {
+    cursor: pointer; list-style: none; padding: 18px 52px 18px 20px; position: relative;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary h3 { font-size: 17.5px; margin: 0; font-weight: 800; }
+  summary::after {
+    content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    font-size: 24px; font-weight: 700; color: var(--purple); line-height: 1;
+  }
+  details[open] summary::after { content: "–"; }
+  details .answer { padding: 0 20px 20px; margin: 0; color: var(--ink-2); font-size: 15.5px; }
+  details .answer + .answer { padding-top: 0; }
+  details .answer a { color: var(--link); font-weight: 800; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--cream-2); padding: 40px 0; margin-top: 20px; }
+  footer p { margin: 0 0 10px; font-size: 14.5px; color: var(--ink-2); }
+  footer nav a { color: var(--link); font-weight: 800; text-decoration: none; }
+  footer nav a:hover { text-decoration: underline; }
+  footer .sep { color: var(--ink-2); padding: 0 6px; }
+
+  /* ---------- hero (blind-vote demo) ---------- */
+  .mh{position:relative;background:linear-gradient(180deg,#1B1033 0%,#2A1458 100%);color:#FDF6EC;border-radius:0 0 44px 44px;margin-bottom:26px;overflow:hidden}
+  .mh-glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none}
+  .mh-glow.g1{width:520px;height:520px;background:var(--pink);left:-140px;top:-120px}
+  .mh-glow.g2{width:480px;height:480px;background:var(--purple);right:-120px;bottom:-160px;opacity:.5}
+  .mh-wrap{position:relative;max-width:1180px;margin:0 auto;padding:0 24px}
+  .mh-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .mh-brand{display:flex;align-items:center;gap:10px;color:#FDF6EC;text-decoration:none;font-weight:900;font-size:1.1rem;letter-spacing:-.02em}
+  .mh-brand img{width:34px;height:34px;border-radius:9px}
+  .mh-nav span a{color:#cfc4ee;text-decoration:none;font-weight:700;margin-left:22px;font-size:.95rem}
+  .mh-nav span a:hover{color:#fff}
+  .mh-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding:30px 0 92px}
+  .mh h1{font-size:clamp(2.7rem,6.2vw,5.4rem);line-height:.95;letter-spacing:-.045em;font-weight:900;margin:0 0 22px;text-align:left;background:none;-webkit-text-fill-color:currentColor;color:#FDF6EC}
+  .mh-sub{font-size:1.2rem;color:#cfc4ee;max-width:27em;margin:0 0 28px;text-align:left}
+  .mh-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .mh-cta .appstore{background:#fff;color:#1B1033}
+  .mh-ghost{color:#FDF6EC!important;border-color:rgba(255,255,255,.5)!important;background:transparent!important}
+  .mh-note{color:#a99fcb;font-size:.92rem;margin:14px 0 0;text-align:left}
+  .mh-card{position:relative;background:#FFFBF4;color:#1B1033;border-radius:32px;padding:22px 20px 20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.65);transform:rotate(1.5deg)}
+  .mh-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .mh-chip{background:linear-gradient(90deg,var(--purple),var(--pink));color:#fff;font-weight:900;font-size:.85rem;padding:6px 14px;border-radius:99px}
+  .mh-state{font-weight:800;font-size:.85rem;color:#5B5470}
+  .mh-q{font-size:1.6rem;line-height:1.1;letter-spacing:-.03em;margin:0 0 4px;font-weight:900}
+  .mh-hint{margin:0 0 14px;color:#5B5470;font-size:.95rem}
+  .mh-list{display:grid;gap:10px}
+  .mh-opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;border:2.5px solid transparent;border-radius:20px;padding:8px 12px 8px 8px;box-shadow:0 6px 18px rgba(27,16,51,.09);transition:transform .15s,border-color .15s,box-shadow .15s,opacity .3s}
+  .mh-opt:hover:not([disabled]){transform:translateY(-2px);box-shadow:0 12px 24px rgba(27,16,51,.16)}
+  .mh-opt:focus-visible{outline:3px solid var(--link);outline-offset:3px}
+  .mh-opt img{width:84px;height:44px;object-fit:cover;border-radius:12px;flex:none}
+  .mh-t{flex:1;min-width:0;display:grid;line-height:1.2}
+  .mh-t b{font-size:1rem;font-weight:800}.mh-t i{font-style:normal;color:#5B5470;font-size:.85rem}
+  .mh-by{font-weight:900;font-size:.8rem;color:#5B5470;opacity:0;transform:translateX(8px);transition:opacity .4s .15s,transform .4s .15s;white-space:nowrap}
+  .mh-card.done .mh-opt{opacity:.55}.mh-card.done .mh-by{opacity:1;transform:none}
+  .mh-card.done .mh-opt.pick{opacity:1;border-color:#7B3DFF;box-shadow:0 14px 28px rgba(123,61,255,.28)}
+  .mh-card.done .mh-opt.pick .mh-by{color:#7B3DFF}
+  .mh-again{all:unset;cursor:pointer;display:inline-block;margin-top:14px;color:#7B3DFF;font-weight:900;text-decoration:underline;text-underline-offset:3px}
+  .mh-again[hidden]{display:none}
+  .mh-again:focus-visible{outline:3px solid #7B3DFF;outline-offset:3px;border-radius:5px}
+  .mh-conf{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:32px}
+  .mh-conf i{position:absolute;left:50%;top:48%;width:9px;height:14px;border-radius:2px;opacity:0;animation:mhPop 1.1s cubic-bezier(.1,.8,.3,1) forwards}
+  @keyframes mhPop{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r))}}
+  @media(max-width:900px){.mh-grid{grid-template-columns:1fr;padding-bottom:64px}.mh-card{transform:none}.mh-nav span a:first-child{display:none}.mh{border-radius:0 0 30px 30px}}
+  @media(prefers-reduced-motion:reduce){.mh-conf{display:none}.mh-opt,.mh-by{transition:none}}
+</style>
+<!-- lp:head --><link rel="stylesheet" href="/assets/lp.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Couch Co-Op Studios", "item": "https://couchcoopstudios.com/"}, {"@type": "ListItem", "position": 2, "name": "Music Video Night", "item": "https://couchcoopstudios.com/mvn/"}]}</script><!-- /lp:head --></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="mh">
+  <div class="mh-glow g1" aria-hidden="true"></div><div class="mh-glow g2" aria-hidden="true"></div>
+  <div class="mh-wrap">
+    <nav class="mh-nav"><a class="mh-brand" href="./"><img src="img/icon.png" alt="" width="34" height="34">Music Video Night</a><span><a href="support.html">Support</a><a href="privacy.html">Privacy</a></span></nav>
+    <div class="mh-grid">
+      <div class="mh-copy">
+        <h1>Everyone picks.<br>Everyone votes.<br>One person wins the Night.</h1>
+        <p class="mh-sub">The music video party game. Friends in one room, one theme, one video each, watched together and voted on blind.</p>
+        <div class="mh-cta"><a class="appstore" href="https://apps.apple.com/app/id6811704618" aria-label="Download Music Video Night on the App Store"><img class="as-badge" src="/assets/app-store-badge.svg" alt="" width="168" height="56"></a><a class="btn-ghost mh-ghost" href="#how">How a Night goes</a></div>
+        <p class="mh-note">Free download. iPhone, iOS 17 or later.</p>
+      </div>
+      <div class="mh-card" id="mhCard" aria-label="Interactive demo: vote on a video, then see who picked it">
+        <div class="mh-top"><span class="mh-chip">Guilty Pleasures</span><span class="mh-state" id="mhState">Blind vote</span></div>
+        <h2 class="mh-q" id="mhQ">Which video wins tonight?</h2>
+        <p class="mh-hint" id="mhHint">No names shown. Judge the video, not the picker. Tap one.</p>
+        <div class="mh-list" id="mhList">
+          <button class="mh-opt" type="button" data-by="Priya"><img src="img/v1.jpg" alt="" width="84" height="44"><span class="mh-t"><b>Rooftop Rewind</b><i>DJ Kassette</i></span><span class="mh-by"></span></button>
+          <button class="mh-opt" type="button" data-by="Marcus"><img src="img/v2.jpg" alt="" width="84" height="44"><span class="mh-t"><b>Lasers On, Lights Off</b><i>Club Mirage</i></span><span class="mh-by"></span></button>
+          <button class="mh-opt" type="button" data-by="Dev"><img src="img/v3.jpg" alt="" width="84" height="44"><span class="mh-t"><b>Neon Heartbreak</b><i>The Velvet Hours</i></span><span class="mh-by"></span></button>
+        </div>
+        <button class="mh-again" type="button" id="mhAgain" hidden>Vote again</button>
+        <div class="mh-conf" id="mhConf" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <ul>
+      <li><span class="dot" aria-hidden="true">●</span> Free to join, always</li>
+      <li><span class="dot" aria-hidden="true">●</span> No accounts, no login</li>
+      <li><span class="dot" aria-hidden="true">●</span> No server, no data collected</li>
+      <li><span class="dot" aria-hidden="true">●</span> Plays on your TV</li>
+    </ul>
+  </div>
+</div>
+
+<main id="main">
+
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">How a Night goes</p>
+      <h2>Four screens, one winner</h2>
+      <p class="lede">A Night takes about as long as the videos do. Nobody installs anything but the app, nobody signs up for anything, and nobody has to be the DJ all evening.</p>
+
+      <div class="steps">
+        <article class="step">
+          <figure class="shot">
+            <img src="img/screen-themes.webp" width="540" height="1173" loading="lazy" decoding="async"
+                 alt="The theme picker showing theme cards grouped under For the Crowd, with a padlock on the themes that need unlocking.">
+          </figure>
+          <h3><span class="n" aria-hidden="true">1</span> Pick a theme, share the code</h3>
+          <p>The host picks tonight's theme and reads out a 5-letter code. Everyone else taps <b>Join with a Code</b> — joining is free and only the host needs anything unlocked.</p>
+        </article>
+
+        <article class="step">
+          <figure class="shot">
+            <img src="img/screen-playback.webp" width="540" height="1173" loading="lazy" decoding="async"
+                 alt="A music video playing in the app with a live chat below it and a row of emoji reaction buttons.">
+          </figure>
+          <h3><span class="n" aria-hidden="true">2</span> Everyone submits one video</h3>
+          <p>One YouTube music video each, on theme. They play in sync on every phone at once while the room chats and flings emoji at the screen.</p>
+        </article>
+
+        <article class="step">
+          <figure class="shot">
+            <img src="img/screen-voting.webp" width="540" height="1173" loading="lazy" decoding="async"
+                 alt="The blind voting screen listing five videos with thumbnails and a radio button each, and no player names attached.">
+          </figure>
+          <h3><span class="n" aria-hidden="true">3</span> Veto, then vote blind</h3>
+          <p>See something coming you can't sit through? Veto it before it plays. At the end everyone votes — no names attached, so you're judging the video, not your friend.</p>
+        </article>
+
+        <article class="step">
+          <figure class="shot">
+            <img src="img/screen-results.webp" width="540" height="1173" loading="lazy" decoding="async"
+                 alt="The winner reveal with confetti, a crown, the winning player and video, and the final standings underneath.">
+          </figure>
+          <h3><span class="n" aria-hidden="true">4</span> Crown the winner</h3>
+          <p>Confetti, a crown, and the final standings. Every Night is saved to your history, and the Hall of Fame keeps score across all of them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="tv-band">
+    <div class="wrap">
+      <div class="tv-grid">
+        <div>
+          <p class="eyebrow">TV mode</p>
+          <h2>Put it on the big screen</h2>
+          <p>Mirror the host's iPhone and the TV shows a layout built for the room — the scoreboard, the chat and what's up next — while the video plays on the host's phone. Prefer the video itself on the TV? Turn TV mode off before you mirror and the TV becomes a plain mirror of the phone. Either way, everyone keeps their own phone for picking, chatting, vetoing and voting.</p>
+
+          <ul class="tv-steps">
+            <li><span class="tick" aria-hidden="true">1</span><span>Start the Night on the host's iPhone.</span></li>
+            <li><span class="tick" aria-hidden="true">2</span><span>Open <b>Control Center</b> → <b>Screen Mirroring</b> and pick your Apple TV.</span></li>
+            <li><span class="tick" aria-hidden="true">3</span><span>Everyone keeps their phone for chat, reactions and the vote.</span></li>
+          </ul>
+
+          <p class="tv-warn"><b>One catch worth knowing:</b> it's the video <i>or</i> the scoreboard, not both. When a video goes to the TV, iOS hands the whole screen to it, so the chat and reactions can't be drawn on top. That's an Apple TV limit, not a setting you've missed.</p>
+        </div>
+
+        <div>
+          <svg class="tv-art" viewBox="0 0 420 330" role="img" aria-label="Illustration: a television showing the big-screen layout with the video, emoji reactions and a scoreboard, with two phones in front of it acting as remotes.">
+            <defs>
+              <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF67A3"/>
+                <stop offset="52%" stop-color="#9867FF"/>
+                <stop offset="100%" stop-color="#58E1FF"/>
+              </linearGradient>
+              <linearGradient id="ph" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFD167"/>
+                <stop offset="100%" stop-color="#FF8A67"/>
+              </linearGradient>
+            </defs>
+            <!-- tv body -->
+            <rect x="14" y="10" width="392" height="232" rx="22" fill="#0F0920" stroke="#FDF6EC" stroke-width="4"/>
+            <rect x="30" y="26" width="360" height="200" rx="12" fill="url(#scr)"/>
+            <!-- video panel -->
+            <rect x="44" y="40" width="228" height="128" rx="9" fill="#0F0920" opacity=".82"/>
+            <polygon points="146,86 176,104 146,122" fill="#FDF6EC"/>
+            <rect x="44" y="178" width="150" height="10" rx="5" fill="#0F0920" opacity=".5"/>
+            <rect x="44" y="196" width="106" height="10" rx="5" fill="#0F0920" opacity=".32"/>
+            <!-- scoreboard -->
+            <rect x="286" y="40" width="90" height="166" rx="11" fill="#FDF6EC" opacity=".93"/>
+            <rect x="296" y="54" width="52" height="8" rx="4" fill="#1B1033" opacity=".55"/>
+            <circle cx="304" cy="82" r="9" fill="#FF67A3"/><rect x="319" y="77" width="48" height="9" rx="4.5" fill="#1B1033" opacity=".75"/>
+            <circle cx="304" cy="110" r="9" fill="#58E1FF"/><rect x="319" y="105" width="40" height="9" rx="4.5" fill="#1B1033" opacity=".55"/>
+            <circle cx="304" cy="138" r="9" fill="#FFD167"/><rect x="319" y="133" width="44" height="9" rx="4.5" fill="#1B1033" opacity=".55"/>
+            <circle cx="304" cy="166" r="9" fill="#7FEB7F"/><rect x="319" y="161" width="34" height="9" rx="4.5" fill="#1B1033" opacity=".55"/>
+            <!-- floating reactions -->
+            <circle cx="238" cy="150" r="13" fill="#FFD167"/><circle cx="262" cy="122" r="9" fill="#FF8A67"/><circle cx="224" cy="112" r="7" fill="#7FEB7F"/>
+            <!-- stand -->
+            <rect x="192" y="242" width="36" height="20" fill="#0F0920"/>
+            <rect x="140" y="260" width="140" height="11" rx="5.5" fill="#0F0920" stroke="#FDF6EC" stroke-width="3"/>
+            <!-- phones as remotes -->
+            <g transform="rotate(-11 84 292)">
+              <rect x="58" y="254" width="54" height="76" rx="12" fill="url(#ph)" stroke="#FDF6EC" stroke-width="4"/>
+              <rect x="68" y="268" width="34" height="7" rx="3.5" fill="#1B1033" opacity=".55"/>
+              <rect x="68" y="282" width="26" height="7" rx="3.5" fill="#1B1033" opacity=".35"/>
+              <circle cx="85" cy="310" r="9" fill="#1B1033" opacity=".75"/>
+            </g>
+            <g transform="rotate(10 340 292)">
+              <rect x="312" y="254" width="54" height="76" rx="12" fill="#58E1FF" stroke="#FDF6EC" stroke-width="4"/>
+              <rect x="322" y="268" width="34" height="7" rx="3.5" fill="#1B1033" opacity=".55"/>
+              <rect x="322" y="282" width="26" height="7" rx="3.5" fill="#1B1033" opacity=".35"/>
+              <circle cx="339" cy="310" r="9" fill="#1B1033" opacity=".75"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes">
+    <div class="wrap">
+      <p class="eyebrow">Themes</p>
+      <h2>Twenty-six ways to argue about music</h2>
+      <p class="lede">The theme is the whole game — it's what makes someone dig for the perfect pick instead of playing their most-played. Four are free for hosts. Unlock Everything opens the rest, plus themes you invent, name and color yourself.</p>
+
+      <div class="theme-group">
+        <h3>Spooky SZN</h3>
+        <ul class="chips">
+          <li class="chip free"><span class="ico" aria-hidden="true">🧟</span>Thriller Night <span class="tag">Free</span></li>
+          <li class="chip"><span class="ico" aria-hidden="true">😈</span>Villain Era</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🖤</span>Goth Night</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🔮</span>Witchy Women</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🔪</span>Horror Movie Bangers</li>
+          <li class="chip"><span class="ico" aria-hidden="true">👻</span>Creepy Music Videos</li>
+        </ul>
+      </div>
+
+      <div class="theme-group">
+        <h3>For the crowd</h3>
+        <ul class="chips">
+          <li class="chip"><span class="ico" aria-hidden="true">🏳️‍🌈</span>Gay Music Video Night</li>
+          <li class="chip"><span class="ico" aria-hidden="true">💅</span>Ladies' Night</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎧</span>Rap Music Video Night</li>
+          <li class="chip free"><span class="ico" aria-hidden="true">🙈</span>Guilty Pleasures <span class="tag">Free</span></li>
+        </ul>
+      </div>
+
+      <div class="theme-group">
+        <h3>By era</h3>
+        <ul class="chips">
+          <li class="chip"><span class="ico" aria-hidden="true">💃</span>80s Divas</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎤</span>90s Hip-Hop</li>
+          <li class="chip"><span class="ico" aria-hidden="true">💿</span>Y2K Pop</li>
+          <li class="chip free"><span class="ico" aria-hidden="true">☄️</span>One-Hit Wonders <span class="tag">Free</span></li>
+        </ul>
+      </div>
+
+      <div class="theme-group">
+        <h3>By vibe</h3>
+        <ul class="chips">
+          <li class="chip"><span class="ico" aria-hidden="true">🌴</span>Summer Anthems</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎶</span>Karaoke Bangers</li>
+          <li class="chip"><span class="ico" aria-hidden="true">😭</span>Sad Bangers</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🪩</span>Dance Floor Fillers</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🤘</span>Rock Gods</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🔀</span>Remix Night</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎭</span>Cover Night</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎸</span>Live Not Studio</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🎬</span>One-Take Wonders</li>
+          <li class="chip"><span class="ico" aria-hidden="true">🍿</span>Movie Soundtrack</li>
+          <li class="chip"><span class="ico" aria-hidden="true">⏱️</span>Under 3 Minutes</li>
+          <li class="chip free"><span class="ico" aria-hidden="true">🃏</span>Wildcard <span class="tag">Free</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <p class="eyebrow">What it costs</p>
+      <h2>Free to join. One price for the host.</h2>
+      <p class="lede">No subscription, no ads, no in-game currency, nothing that phones home. If someone else is hosting, you never pay anything.</p>
+
+      <div class="prices">
+        <div class="price hero-price">
+          <span class="pill">Everyone</span>
+          <h3>Join a Night</h3>
+          <p class="amount">Free</p>
+          <p class="sub">Always. No account, no trial, no catch.</p>
+          <ul>
+            <li><span>Join any Night with a <b>5-letter code</b></span></li>
+            <li><span>Submit, chat, react, veto and vote</span></li>
+            <li><span>Host free Nights yourself on <b>Wildcard</b>, <b>Guilty Pleasures</b>, <b>One-Hit Wonders</b> and <b>Thriller Night</b></span></li>
+            <li><span>Your full <b>Night history</b>, saved on your phone</span></li>
+            <li><span>A shareable <b>recap card</b> of every Night</span></li>
+          </ul>
+        </div>
+
+        <div class="price">
+          <span class="pill">Hosts</span>
+          <h3>Unlock Everything</h3>
+          <p class="amount">$4.99</p>
+          <p class="sub">One-time purchase. Not a subscription.</p>
+          <ul>
+            <li><span>All <b>26 built-in themes</b></span></li>
+            <li><span>A gold <b>VIP badge</b> in chat when you host</span></li>
+            <li><span><b>Custom themes</b> you name and color yourself</span></li>
+                        <li><span>A <b>recap video reel</b> of the Night</span></li>
+            <li><span>The cross-Night <b>Hall of Fame</b> leaderboard</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="narrow">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions people actually ask</h2>
+
+      <div class="faq">
+        <details open>
+          <summary><h3>What is Music Video Night?</h3></summary>
+          <p class="answer">A party game for iPhone played by people in the same room. The host picks a theme, everyone joins with a 5-letter code, and each player submits one YouTube music video that fits. The videos play in sync for everyone while people chat and react, then everyone votes blind for a favorite. Most votes wins the Night.</p>
+        </details>
+
+        <details>
+          <summary><h3>Do we need accounts or wifi?</h3></summary>
+          <p class="answer">No accounts, ever — there's no login and no server of ours anywhere. Phones talk straight to each other over WiFi and Bluetooth using Apple's MultipeerConnectivity, so nothing about your Night leaves the room and nothing is collected about you. You do need an internet connection to stream the videos themselves from YouTube.</p>
+        </details>
+
+        <details>
+          <summary><h3>How many people can play?</h3></summary>
+          <p class="answer">Anyone in the room with an iPhone and the host's code. Everyone takes a turn picking one video, so most Nights run three to six people.</p>
+        </details>
+
+        <details>
+          <summary><h3>How do we get it on the TV?</h3></summary>
+          <p class="answer">Screen Mirroring from Control Center puts the Night on an Apple TV. With TV mode on the TV shows the scoreboard, the chat and what's up next; with it off the TV mirrors your phone, video and all.</p>
+          <p class="answer">There is no AirPlay button inside the video — YouTube's player doesn't offer one inside an app, so mirroring is the way.</p>
+        </details>
+
+        <details>
+          <summary><h3>Is it free?</h3></summary>
+          <p class="answer">Joining is always free, and so is the app itself. Hosts get Wildcard, Guilty Pleasures, One-Hit Wonders and Thriller Night free along with their whole Night history. One optional $4.99 purchase, Unlock Everything, adds every theme, custom themes, the recap video reel and the Hall of Fame. The recap card is free for everyone. It's one-time, not a subscription, and only the host needs it.</p>
+        </details>
+
+        <details>
+          <summary><h3>What if a video won't play?</h3></summary>
+          <p class="answer">Some artists and labels switch off embedding, so their videos can only be watched on YouTube itself. The app tells you when that happens: whoever picked it can swap it, the host can skip it, and anyone can open it in YouTube from the same screen.</p>
+        </details>
+
+        <details>
+          <summary><h3>What do we need to play?</h3></summary>
+          <p class="answer">An iPhone running iOS 17 or later, for everyone playing. TV mode also needs an Apple TV to mirror to.</p>
+        </details>
+
+        <details>
+          <summary><h3>Someone sent me a code — what do I do?</h3></summary>
+          <p class="answer"><a href="https://apps.apple.com/app/id6811704618">Get the app from the App Store</a>, open it and tap <b>Join with a Code</b>, then type the 5 letters in. There's a walkthrough on the <a href="join.html">join page</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow" style="text-align:center">
+      <h2>Ready for a Night?</h2>
+      <p class="lede" style="margin-inline:auto">Grab a theme, get everyone's phone out, and find out whose taste actually holds up.</p>
+      <div class="cta-row">
+        <a class="appstore" href="https://apps.apple.com/app/id6811704618" aria-label="Download Music Video Night on the App Store"><img class="as-badge" src="/assets/app-store-badge.svg" alt="" width="168" height="56"></a>
+        <p class="badge-note">Free download. iPhone, iOS 17 or later.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Site">
+      <p>
+        <a href="privacy.html">Privacy</a><span class="sep" aria-hidden="true">·</span>
+        <a href="support.html">Support</a><span class="sep" aria-hidden="true">·</span>
+        <a href="join.html">Join a Night</a>
+      </p>
+    </nav>
+    <p>No analytics, no trackers and no cookies on this site either — it seemed only fair.</p>
+    <p>Music Video Night is not affiliated with, endorsed by or sponsored by YouTube, Google or Apple. Videos play through YouTube's official embedded player.</p>
+  </div>
+</footer>
+<!-- lp:body --><style>:root{--lp-ink:var(--ink);--lp-muted:var(--ink-2);--lp-accent:#7B3DFF;--lp-accent-ink:#fff}</style><section class="lp"><div class="lp-in"><h2 style="font-size:24px">More small apps from the same maker</h2><div class="lp-more"><a href="/fantasyqueens/"><img src="/fantasyqueens/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Fantasy Queens</b><span>Fantasy houses for drag watch parties</span></div></a><a href="/sitout/"><img src="/sitout/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Sitout</b><span>Fair pickleball round robins</span></div></a><a href="/mackro/"><img src="/mackro/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Mackro</b><span>A macro tracker with a squirrel in it</span></div></a></div><p class="lp-fine"><a href="/">See all the apps</a></p></div></section><!-- /lp:body --><footer data-brand-footer style="max-width:680px;margin:0 auto;padding:24px 16px 40px;text-align:center;font:14px -apple-system,sans-serif;opacity:.6">© 2026 Music Video Night · <a href="mailto:support@couchcoopstudios.com" style="color:inherit">support@couchcoopstudios.com</a> · <a href="/" style="color:inherit">All apps</a></footer><!-- lp:legal --><div class="lp-legal"><p>Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div><!-- /lp:legal -->
+
+<script>
+(function(){
+  var card=document.getElementById('mhCard');if(!card)return;
+  var list=document.getElementById('mhList'),state=document.getElementById('mhState'),q=document.getElementById('mhQ'),hint=document.getElementById('mhHint'),again=document.getElementById('mhAgain'),conf=document.getElementById('mhConf');
+  var cols=['#FF67A3','#9867FF','#58E1FF','#FFD167','#7FEB7F','#FF8A67'],reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function burst(){if(reduce)return;conf.innerHTML='';for(var i=0;i<34;i++){var e=document.createElement('i'),a=Math.random()*Math.PI*2,d=90+Math.random()*190;
+    e.style.cssText='background:'+cols[i%cols.length]+';--x:'+Math.cos(a)*d+'px;--y:'+(Math.sin(a)*d-40)+'px;--r:'+(Math.random()*720-360)+'deg;animation-delay:'+Math.random()*.08+'s';conf.appendChild(e)}}
+  [].forEach.call(list.children,function(b){b.addEventListener('click',function(){
+    if(card.classList.contains('done'))return;
+    card.classList.add('done');b.classList.add('pick');
+    [].forEach.call(list.children,function(x){x.querySelector('.mh-by').textContent=(x===b?'Your vote · ':'')+'picked by '+x.dataset.by});
+    state.textContent='Revealed';q.textContent=b.dataset.by+' picked that one.';hint.textContent='Nobody knew until now. That is the whole game.';
+    again.hidden=false;burst();
+  })});
+  again.addEventListener('click',function(){
+    card.classList.remove('done');[].forEach.call(list.children,function(x){x.classList.remove('pick');x.querySelector('.mh-by').textContent=''});
+    state.textContent='Blind vote';q.textContent='Which video wins tonight?';hint.textContent='No names shown. Judge the video, not the picker. Tap one.';again.hidden=true;
+  });
+})();
+</script>
+</body>
+</html>

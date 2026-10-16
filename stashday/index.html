@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D2B22">
+<title>Stashday: Sinking Fund Planner for Every Paycheck</title>
+<meta name="description" content="Stashday turns car registration, holidays, insurance and the vet into one number: how much to set aside this paycheck. No bank login. Free for 3 funds.">
+<link rel="canonical" href="https://couchcoopstudios.com/stashday/">
+<meta property="og:title" content="Stashday: every bill covered, one paycheck at a time">
+<meta property="og:description" content="Stashday turns car registration, holidays, insurance and the vet into one number: how much to set aside this paycheck. No bank login. Free for 3 funds.">
+<meta property="og:image" content="https://couchcoopstudios.com/stashday/hero.jpg">
+<link rel="icon" href="img/icon.png">
+<style>
+:root{
+  --paper:#FBF8F3; --ink:#12201A; --muted:#5d6a63; --line:#E6E0D3;
+  --forest:#0D2B22; --green:#16805F; --mint:#34C79A;
+  --display:ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+  --num:ui-rounded,"SF Pro Rounded",system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{--paper:#0E1512;--ink:#EEF3EF;--muted:#9BABA2;--line:#243029;--green:#34C79A}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;position:relative;z-index:3}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.2rem var(--display);letter-spacing:-.02em}
+.brand img{width:36px;height:36px;border-radius:10px}
+.nav a.l{margin-left:24px;text-decoration:none;font-weight:600;color:var(--muted);font-size:.95rem}
+.nav a.l:hover{color:var(--ink)}
+.soonBtn{display:inline-block;background:var(--ink);color:var(--paper);font:700 .98rem var(--display);padding:13px 22px;border-radius:99px}
+
+/* hero: the number is the hero */
+.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:min(86vh,780px);padding:10px 0 40px}
+.hero .copy{position:relative;z-index:2}
+h1{font:800 clamp(2.9rem,6.4vw,5.6rem)/.95 var(--display);letter-spacing:-.045em;margin:0 0 6px;max-width:9em}
+.big{display:block;font:800 clamp(4.6rem,12vw,10.5rem)/.9 var(--num);letter-spacing:-.06em;font-variant-numeric:tabular-nums;color:var(--green);margin:6px 0 14px;white-space:nowrap}
+.cap{font-size:1.25rem;color:var(--muted);max-width:21em;margin:0 0 28px}
+.art{position:absolute;right:-8vw;top:50%;width:min(60vw,840px);transform:translateY(-50%);z-index:1}
+.art img{width:100%;height:auto;display:block;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 100%),linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 100%),linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect}
+@media(prefers-color-scheme:dark){.art img{border-radius:28px;-webkit-mask-image:none;mask-image:none;opacity:.96}}
+.fine{color:var(--muted);font-size:.92rem;margin-left:14px}
+
+/* the payday scene */
+.scene{position:relative;height:340vh;background:var(--forest);color:#EAF4EE}
+.sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px}
+.ledger{background:#F6F2E9;color:#12201A;border-radius:30px;padding:30px 30px 20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);max-width:520px;width:100%;justify-self:center}
+.ledger h3{margin:0 0 4px;font:700 1rem var(--body);color:#5d6a63}
+.left{font:800 clamp(3rem,6vw,4.6rem)/1 var(--num);letter-spacing:-.05em;font-variant-numeric:tabular-nums;margin:0 0 18px;transition:color .4s}
+.left.done{color:#16805F}
+.row{display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1.5px solid #E2DCCD;font-weight:700;font-size:1.08rem}
+.row .tick{flex:none;width:30px;height:30px;border-radius:50%;border:2.5px solid #BDB6A4;display:grid;place-items:center;transition:background .3s,border-color .3s,transform .4s cubic-bezier(.3,1.8,.4,1);order:-1}
+.row .tick svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .35s .1s}
+.row.on .tick{background:#16805F;border-color:#16805F;transform:scale(1.12)}
+.row.on .tick svg{stroke-dashoffset:0}
+.row .emo{font-size:1.4rem}
+.row .nm{flex:1;transition:opacity .3s;text-decoration:line-through;text-decoration-color:transparent}
+.row.on .nm{opacity:.5;text-decoration-color:currentColor}
+.row .amt{font-variant-numeric:tabular-nums;font-family:var(--num)}
+.say{position:relative;min-height:16em}
+.say .step{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s;pointer-events:none}
+.say .step.on{opacity:1;transform:none;pointer-events:auto}
+.say h2{font:800 clamp(2.4rem,5.2vw,4.4rem)/.98 var(--display);letter-spacing:-.045em;margin:0 0 16px}
+.say p{font-size:1.2rem;color:#B8CFC3;max-width:24em;margin:0}
+.dots{display:flex;gap:8px;position:absolute;left:0;bottom:0}
+.dots i{width:30px;height:5px;border-radius:9px;background:rgba(255,255,255,.18);transition:background .3s,width .3s}
+.dots i.on{background:var(--mint);width:54px}
+
+/* gallery */
+.sec{padding:120px 0}
+h2.h{font:800 clamp(2.3rem,5vw,4.2rem)/.98 var(--display);letter-spacing:-.045em;margin:0 0 16px;max-width:13em}
+.sub{font-size:1.2rem;color:var(--muted);max-width:30em;margin:0}
+.fan{position:relative;display:flex;justify-content:center;margin-top:60px;height:640px}
+.dev{position:absolute;width:270px;aspect-ratio:1320/2868;border-radius:46px;background:#0b0f0d;padding:9px;box-shadow:0 0 0 2px #26302b,0 50px 80px -30px rgba(10,40,28,.55)}
+.dev:before{content:"";position:absolute;left:50%;top:17px;width:78px;height:23px;transform:translateX(-50%);background:#000;border-radius:99px;z-index:2}
+.dev img{width:100%;height:100%;object-fit:cover;border-radius:38px;display:block}
+.fan .dev{top:0;transition:transform .5s cubic-bezier(.2,1.1,.3,1)}
+.fan .d1{transform:translateX(-340px) rotate(-8deg) translateY(40px)}
+.fan .d2{transform:translateX(-120px) rotate(-2deg);z-index:2}
+.fan .d3{transform:translateX(120px) rotate(2deg);z-index:3}
+.fan .d4{transform:translateX(340px) rotate(8deg) translateY(40px)}
+.fan .dev:hover{z-index:5}
+.fan .d1:hover{transform:translateX(-340px) rotate(-3deg) translateY(10px)}.fan .d2:hover{transform:translateX(-120px) translateY(-14px)}.fan .d3:hover{transform:translateX(120px) translateY(-14px)}.fan .d4:hover{transform:translateX(340px) rotate(3deg) translateY(10px)}
+.capline{display:flex;justify-content:center;margin-top:26px;color:var(--muted);font-weight:600;flex-wrap:wrap;column-gap:44px;row-gap:6px}
+
+/* price */
+.plans{display:grid;grid-template-columns:1fr 1fr;margin-top:46px;border-top:2px solid var(--ink)}
+.plan{padding:34px 36px 10px 0}
+.plan+.plan{padding:34px 0 10px 36px;border-left:1.5px solid var(--line)}
+.plan h3{font:800 clamp(2rem,4vw,3.2rem)/1 var(--num);letter-spacing:-.04em;margin:0 0 8px}
+.plan .what{font-weight:700;color:var(--green);margin:0 0 14px}
+.plan ul{margin:0;padding:0;list-style:none}
+.plan li{padding:9px 0;border-bottom:1.5px solid var(--line);font-weight:600}
+
+/* privacy */
+.priv{background:var(--forest);color:#EAF4EE;padding:120px 0}
+.priv h2{font:800 clamp(2.6rem,6.4vw,5.6rem)/.95 var(--display);letter-spacing:-.05em;margin:0 0 26px;max-width:11em}
+.nos{display:flex;flex-wrap:wrap;gap:12px 36px;font:700 1.25rem var(--display);color:#9CC8B6}
+.nos span:before{content:"No ";color:#EAF4EE}
+.priv .lnk{display:inline-block;margin-top:34px;font-weight:700;color:var(--mint)}
+footer{padding:44px 0 60px;text-align:center;color:var(--muted);font-size:.95rem}
+footer a{margin:0 12px;text-decoration:none;font-weight:700}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-bottom:0}
+  .art{position:relative;right:auto;top:auto;transform:none;width:118%;margin:10px -9% 0}
+  .art img{-webkit-mask-image:radial-gradient(ellipse 72% 70% at 58% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 58% 52%,#000 55%,transparent 100%);-webkit-mask-composite:source-over;mask-composite:add}
+  .fine{display:block;margin:14px 0 0}
+  .nav a.l{display:none}
+  .sticky{grid-template-columns:1fr;gap:18px;align-content:center;padding-top:14px}
+  .ledger{padding:18px 22px 10px;border-radius:24px}.left{font-size:clamp(2.6rem,12vw,3.4rem);margin-bottom:6px}.row{padding:11px 0}
+  .say{min-height:14.5em}.say h2{font-size:2.3rem}.say p{font-size:1.05rem}
+  .sec,.priv{padding:80px 0}
+  .fan{height:auto;display:flex;overflow-x:auto;gap:16px;justify-content:flex-start;padding:10px 24px 30px;scroll-snap-type:x mandatory;margin:44px -24px 0}
+  .fan .dev{position:relative;flex:none;width:230px;transform:none!important;scroll-snap-align:center}
+  .capline{display:none}.plans{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1.5px solid var(--line);padding-left:0;margin-top:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .scene{height:auto}.sticky{position:static;height:auto;padding:80px 24px}
+  .say{min-height:0}.say .step{position:static;opacity:1;transform:none;margin-bottom:22px}.dots{display:none}
+  .row .tick,.row .tick svg,.left,.fan .dev{transition:none}
+}
+
+/* ---- v3 stage ---- */
+.stage{position:relative;background:radial-gradient(90% 80% at 75% 35%,#1C5A45 0,#0F3328 55%,#0A241C 100%);color:#EAF4EE;overflow:hidden}
+.stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,#0D2B22)}
+.stage .nav a.l{color:#A9C9BB}.stage .nav a.l:hover{color:#fff}
+.stage .brand{color:#EAF4EE}
+.stage .hero{min-height:min(88vh,800px);grid-template-columns:1.05fr .95fr;padding-bottom:70px;position:relative;z-index:1}
+.stage h1{color:#EAF4EE}
+.stage .big{color:#5BE0B0;text-shadow:0 0 60px rgba(52,199,154,.35)}
+.stage .cap{color:#A9C9BB}
+.stage .fine{color:#7FA897}
+.soonBtn.light{background:#EAF4EE;color:#0D2B22}
+.rings{position:relative;height:620px;max-width:560px;width:100%;justify-self:end}
+.rg{position:absolute;width:230px;text-align:center}
+.rg svg{width:100%;transform:rotate(-90deg);overflow:visible}
+.rg circle{fill:none;stroke-width:13;stroke:rgba(255,255,255,.09)}
+.rg circle.f{stroke:var(--c);stroke-linecap:round;stroke-dasharray:314.2;stroke-dashoffset:314.2;filter:drop-shadow(0 0 14px var(--c));animation:fill 1.6s .3s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes fill{to{stroke-dashoffset:calc(314.2 * (1 - var(--p)))}}
+.rg .e{position:absolute;left:0;right:0;top:0;height:230px;display:grid;place-items:center;font-size:4.4rem}
+.rg b{display:block;margin-top:10px;font:800 1.08rem var(--display)}
+.rg small{color:#A9C9BB;font-weight:600}
+.r1{left:0;top:0}.r2{right:0;top:70px;width:250px}.r2 .e{height:250px}.r3{left:40px;top:360px;width:200px}.r3 .e{height:200px;font-size:3.6rem}
+.r1,.r2,.r3{animation:bob 7s ease-in-out infinite}.r2{animation-delay:-2s}.r3{animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@media(max-width:900px){
+  .stage .hero{grid-template-columns:1fr;min-height:0;padding-bottom:40px}
+  .rings{height:auto;display:flex;justify-content:center;gap:10px;margin-top:34px}
+  .rg,.r2,.r3{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:31%}
+  .r2 .e,.r3 .e,.rg .e{height:auto;aspect-ratio:1;font-size:2rem}
+  .rg b{font-size:.82rem}.rg small{font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){.rg circle.f{animation:none;stroke-dashoffset:calc(314.2 * (1 - var(--p)))}.r1,.r2,.r3{animation:none}}
+/* scene + gallery tweaks for phones */
+@media(max-width:900px){
+  .sticky{align-content:start;padding-top:9vh}
+  .fan{scroll-padding:0 24px}.fan .dev{scroll-snap-align:start}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stashday">
+<meta property="og:url" content="https://couchcoopstudios.com/stashday/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stashday: every bill covered, one paycheck at a time"><meta name="twitter:description" content="Stashday turns car registration, holidays, insurance and the vet into one number: how much to set aside this paycheck. No bank login. Free for 3 funds."><!-- lp:head --><link rel="stylesheet" href="/assets/lp.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Stashday", "applicationCategory": "FinanceApplication", "operatingSystem": "iOS", "url": "https://couchcoopstudios.com/stashday/", "description": "Stashday turns car registration, holidays, insurance and the vet into one number: how much to set aside this paycheck. No bank login. Free for 3 funds.", "image": "https://couchcoopstudios.com/stashday/img/icon.png", "publisher": {"@type": "Person", "name": "John Katez", "url": "https://johnkatez.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "applicationSubCategory": "Sinking fund planner"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a sinking fund?", "acceptedAnswer": {"@type": "Answer", "text": "Money you set aside a little at a time for a bill you know is coming but don't pay every month, like car registration, holidays, insurance or the vet. When the bill arrives, the money is already there."}}, {"@type": "Question", "name": "How does Stashday work out how much to set aside?", "acceptedAnswer": {"@type": "Answer", "text": "You tell it when you get paid and add your bills with their amounts and due dates. Stashday works out how much each fund needs from every paycheck between now and the due date, and adds them into one number."}}, {"@type": "Question", "name": "Does Stashday connect to my bank?", "acceptedAnswer": {"@type": "Answer", "text": "No, on purpose. You type in your bills once and Stashday does the math. Nothing about your bank ever touches the app."}}, {"@type": "Question", "name": "Which pay schedules does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Weekly, every two weeks, twice a month and monthly."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for up to 3 funds, with the payday checklist, reminders and a shareable summary. Stashday Pro is $14.99 a year with a 7-day free trial, or $29.99 once, and adds unlimited funds, Home and Lock Screen widgets and CSV export."}}, {"@type": "Question", "name": "Can I use it with YNAB or my budget app?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Your budget app runs everything. Stashday does one job: the bills that don't come every month. Many people keep both."}}, {"@type": "Question", "name": "Does Stashday collect my data?", "acceptedAnswer": {"@type": "Answer", "text": "No. Your funds stay on your iPhone. The App Store privacy label is Data Not Collected."}}, {"@type": "Question", "name": "Is this financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. Stashday does the arithmetic for the bills you enter. For advice about your situation, talk to a financial professional."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Couch Co-Op Studios", "item": "https://couchcoopstudios.com/"}, {"@type": "ListItem", "position": 2, "name": "Stashday", "item": "https://couchcoopstudios.com/stashday/"}]}</script><!-- /lp:head --></head>
+<body>
+<div class="stage">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="./"><img src="img/icon.png" alt="" width="36" height="36">Stashday</a>
+      <div><a class="l" href="#plans">Pricing</a><a class="l" href="support.html">Support</a><a class="l" href="privacy.html">Privacy</a> <span class="soonBtn light" style="margin-left:18px">Coming soon</span></div>
+    </nav>
+    <header class="hero">
+      <div class="copy">
+        <h1>Payday has one number.</h1>
+        <span class="big" id="big" aria-label="299 dollars and 36 cents">$299.36</span>
+        <p class="cap">Set that aside and car registration, holidays, insurance and the vet are covered. Stashday does the math every payday.</p>
+        <span class="soonBtn light">Coming soon to the App Store</span><span class="fine">iPhone, no account</span>
+      </div>
+      <div class="rings" aria-hidden="true">
+        <div class="rg r1" style="--c:#34C79A;--p:.25"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"/><circle class="f" cx="60" cy="60" r="50"/></svg><span class="e">🎁</span><b>Holidays</b><small>$200 of $800</small></div>
+        <div class="rg r2" style="--c:#F2683C;--p:.62"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"/><circle class="f" cx="60" cy="60" r="50"/></svg><span class="e">🚗</span><b>Car registration</b><small>$93 of $150</small></div>
+        <div class="rg r3" style="--c:#F6B93B;--p:.41"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"/><circle class="f" cx="60" cy="60" r="50"/></svg><span class="e">🛡️</span><b>Car insurance</b><small>$246 of $600</small></div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<section class="scene" id="scene" aria-label="How a payday works">
+  <div class="sticky">
+    <div class="ledger" role="img" aria-label="Payday checklist: three funds ticked off one at a time until the amount left reaches zero">
+      <h3>Left to set aside</h3>
+      <p class="left" id="left">$299.36</p>
+      <div class="row" data-v="13.64"><span class="emo">🚗</span><span class="nm">Car registration</span><span class="amt">$13.64</span><span class="tick"><svg viewBox="0 0 16 16"><path d="M2 8.5 6 12.5 14 3.5"/></svg></span></div>
+      <div class="row" data-v="200"><span class="emo">🎁</span><span class="nm">Holidays</span><span class="amt">$200.00</span><span class="tick"><svg viewBox="0 0 16 16"><path d="M2 8.5 6 12.5 14 3.5"/></svg></span></div>
+      <div class="row" data-v="85.72"><span class="emo">🛡️</span><span class="nm">Car insurance</span><span class="amt">$85.72</span><span class="tick"><svg viewBox="0 0 16 16"><path d="M2 8.5 6 12.5 14 3.5"/></svg></span></div>
+    </div>
+    <div class="say" id="say">
+      <div class="step on"><h2>It's payday.</h2><p>Tell Stashday how often you get paid and what's coming up. It works out each fund's share of this check.</p></div>
+      <div class="step"><h2>Move the money.</h2><p>Set each fund's amount aside, in your own bank, however you like. Stashday never touches it.</p></div>
+      <div class="step"><h2>Tick it off.</h2><p>Check each fund as you go. The number left to set aside counts down with you.</p></div>
+      <div class="step"><h2>Covered.</h2><p>Zero left. When a bill finally arrives, tap Paid it and Stashday starts saving for the next one.</p></div>
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h">Every bill gets its own ring.</h2>
+    <p class="sub">Big friendly numbers, one color per fund, and a clear answer to "am I on track?"</p>
+    <div class="fan">
+      <div class="dev d1"><img src="img/number.jpg" alt="Your number: the amount to set aside" width="640" height="1391" loading="lazy"></div>
+      <div class="dev d2"><img src="img/checklist.jpg" alt="The payday checklist" width="640" height="1391" loading="lazy"></div>
+      <div class="dev d3"><img src="img/fund.jpg" alt="A fund's detail screen" width="640" height="1391" loading="lazy"></div>
+      <div class="dev d4"><img src="img/share.jpg" alt="A summary card you can share" width="640" height="1391" loading="lazy"></div>
+    </div>
+    <div class="capline"><span>Your number</span><span>The payday checklist</span><span>Every fund, on track</span><span>A summary to share</span></div>
+  </div>
+</section>
+
+<section class="sec" id="plans" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="h">Free for good. Pro when you outgrow it.</h2>
+    <div class="plans">
+      <div class="plan"><h3>Free</h3><p class="what">Everything you need to start</p>
+        <ul><li>3 funds</li><li>The payday checklist</li><li>Reminders and Siri</li><li>A shareable summary</li></ul></div>
+      <div class="plan"><h3>$14.99/yr</h3><p class="what">Or $29.99 once. 7-day free trial on the yearly plan.</p>
+        <ul><li>Unlimited funds</li><li>Home and Lock Screen widgets with check-off</li><li>CSV export</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- lp:body --><style>:root{--lp-ink:var(--ink);--lp-muted:var(--muted);--lp-line:var(--line);--lp-card:rgba(127,127,127,.09);--lp-accent:var(--green);--lp-accent-ink:#fff;--lp-display:var(--display);--lp-font:var(--body)}</style><section class="lp"><div class="lp-in"><div style="display:grid;gap:44px"><ul class="lp-trust" aria-label="At a glance"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>No bank login</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Data Not Collected</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/></svg>No ads</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Weekly, every 2 weeks, twice a month or monthly pay</li></ul></div></div></section><section class="lp"><div class="lp-in"><h2>Who it's for</h2><div class="lp-who"><div><b>Every-other-Friday earners</b><p>Paid every two weeks and tired of guessing what to keep back each time.</p></div><div><b>Annual-bill victims</b><p>Car registration, insurance and property tax all landing at once. Stashday spreads them out.</p></div><div><b>Cash stuffers going digital</b><p>The same envelope idea, with the math done for you and no cash to carry.</p></div></div></div></section><section class="lp" id="faq"><div class="lp-in"><h2>Questions people ask</h2><div class="lp-faq"><details><summary>What is a sinking fund?</summary><div class="a"><p>Money you set aside a little at a time for a bill you know is coming but don&#x27;t pay every month, like car registration, holidays, insurance or the vet. When the bill arrives, the money is already there.</p></div></details><details><summary>How does Stashday work out how much to set aside?</summary><div class="a"><p>You tell it when you get paid and add your bills with their amounts and due dates. Stashday works out how much each fund needs from every paycheck between now and the due date, and adds them into one number.</p></div></details><details><summary>Does Stashday connect to my bank?</summary><div class="a"><p>No, on purpose. You type in your bills once and Stashday does the math. Nothing about your bank ever touches the app.</p></div></details><details><summary>Which pay schedules does it support?</summary><div class="a"><p>Weekly, every two weeks, twice a month and monthly.</p></div></details><details><summary>Is it free?</summary><div class="a"><p>Yes, for up to 3 funds, with the payday checklist, reminders and a shareable summary. Stashday Pro is $14.99 a year with a 7-day free trial, or $29.99 once, and adds unlimited funds, Home and Lock Screen widgets and CSV export.</p></div></details><details><summary>Can I use it with YNAB or my budget app?</summary><div class="a"><p>Yes. Your budget app runs everything. Stashday does one job: the bills that don&#x27;t come every month. Many people keep both.</p></div></details><details><summary>Does Stashday collect my data?</summary><div class="a"><p>No. Your funds stay on your iPhone. The App Store privacy label is Data Not Collected.</p></div></details><details><summary>Is this financial advice?</summary><div class="a"><p>No. Stashday does the arithmetic for the bills you enter. For advice about your situation, talk to a financial professional.</p></div></details></div><p class="lp-fine" style="font-size:15.5px">Guide: <a href="guide/sinking-funds-biweekly-paycheck.html">How to plan sinking funds on a biweekly paycheck</a></p></div></section><section class="lp"><div class="lp-in"><h2 style="font-size:24px">More small apps from the same maker</h2><div class="lp-more"><a href="/statecount/"><img src="/statecount/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Statecount</b><span>A private 183-day residency tracker</span></div></a><a href="/mackro/"><img src="/mackro/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Mackro</b><span>A macro tracker with a squirrel in it</span></div></a><a href="/sitout/"><img src="/sitout/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Sitout</b><span>Fair pickleball round robins</span></div></a><a href="/tanklog/"><img src="/tanklog/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>TankLog: Aquascape</b><span>A free, offline journal for planted tanks and shrimp</span></div></a></div><p class="lp-fine"><a href="/">See all the apps</a></p></div></section><!-- /lp:body --><section class="priv">
+  <div class="wrap">
+    <h2>Your money stays on your phone.</h2>
+    <div class="nos"><span>accounts</span><span>bank links</span><span>ads</span><span>analytics</span></div>
+    <a class="lnk" href="privacy.html">Read the privacy policy</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="/">All apps</a>
+  <p>© 2026 Stashday · <a href="mailto:support@couchcoopstudios.com" style="margin:0">support@couchcoopstudios.com</a></p>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var money=function(v){return '$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',')};
+  var T=299.36,big=document.getElementById('big');
+  var scene=document.getElementById('scene'),rows=[].slice.call(scene.querySelectorAll('.row')),
+      steps=[].slice.call(scene.querySelectorAll('.step')),dots=[].slice.call(scene.querySelectorAll('.dots i')),
+      left=document.getElementById('left');
+  if(reduce){left.textContent='$0.00';left.classList.add('done');rows.forEach(function(r){r.classList.add('on')});return;}
+  /* the hero number rolls up once on load */
+  big.textContent='$0.00';
+  var t0=null;
+  requestAnimationFrame(function f(ts){
+    if(!t0)t0=ts;var p=Math.min((ts-t0)/1500,1),e=p===1?1:1-Math.pow(2,-10*p);
+    big.textContent=money(T*e);if(p<1)requestAnimationFrame(f);
+  });
+  /* the payday scene follows scroll */
+  var cur=-1,queued=false;
+  function update(){
+    queued=false;
+    var r=scene.getBoundingClientRect(),h=scene.offsetHeight-innerHeight,p=Math.max(0,Math.min(1,-r.top/h));
+    var s=p<.2?0:p<.45?1:p<.72?2:3;
+    var n=p<.3?0:p>=.72?3:Math.min(3,1+Math.floor((p-.3)/.14));
+    var sum=0;
+    rows.forEach(function(row,i){var on=i<n;row.classList.toggle('on',on);if(on)sum+=+row.dataset.v});
+    left.textContent=money(Math.max(0,T-sum));left.classList.toggle('done',n===3);
+    if(s!==cur){cur=s;steps.forEach(function(x,i){x.classList.toggle('on',i===s)});dots.forEach(function(x,i){x.classList.toggle('on',i===s)})}
+  }
+  function req(){if(!queued){queued=true;requestAnimationFrame(update)}}
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);update();
+})();
+</script>
+<!-- lp:legal --><div class="lp-legal"><p>Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div><!-- /lp:legal --></body>
+</html>
