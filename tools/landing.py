@@ -16,7 +16,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://couchcoopstudios.com"
 HOUSE_LINE = "Small apps that each do one job well. No ads, fair prices, and only the data the app needs."
 APPLE_CREDIT = "Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc."
-PUBLISHER = {"@type": "Person", "name": "John Katez", "url": "https://johnkatez.com/"}
+PUBLISHER = {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}
 
 SVG = {
  "check": '<path d="m5 12.5 4.2 4.2L19 7"/>',
@@ -92,7 +92,7 @@ C["mackro"] = dict(
       ("Does Mackro work with Apple Health and Apple Watch?", "With Mackro Pro, Mackro can write calories, macros, water and weight to Apple Health, and you can log a meal by dictating on Apple Watch. Health data never leaves your phone."),
       ("What data does Mackro collect?", "Anonymous product analytics that never include your food, health or weight data. If you use AI logging, only the description or photo you submit is sent to estimate macros. No ads and no data sales. Details are in the privacy policy."),
       ("Is Mackro medical or diet advice?", "No. Targets are estimates from what you enter. For medical or diet guidance, talk to a doctor or a registered dietitian."),
-      ("Who makes Mackro?", "John Katez, an independent developer who also makes Stashday, Statecount and other small iPhone apps.")],
+      ("Who makes Mackro?", "Couch Co-Op Studios, the small independent studio that also makes Stashday, Statecount and other iPhone apps.")],
  more=["stashday", "statecount", "sitout", "tanklog"],
 )
 
@@ -238,7 +238,7 @@ C["tanklog"] = dict(
       ("How many tanks can I track?", "Up to three, each with its own parameters, schedules and history."),
       ("Can I export my data?", "Yes. Export your full history as a file you control and import it on a new device. You can also delete your data any time."),
       ("Does it run on iPad?", "Yes. TankLog runs on iPhone and iPad."),
-      ("Who makes TankLog?", "TankLog is built by an aquascaper, for aquascapers, and is published here alongside the other apps from John Katez.")],
+      ("Who makes TankLog?", "TankLog is built by an aquascaper, for aquascapers, and is published here alongside the other apps from Couch Co-Op Studios.")],
  more=["stashday", "mackro", "statecount"],
 )
 
@@ -262,7 +262,7 @@ C[""] = dict(
  og_image="https://couchcoopstudios.com/img/og-hub.jpg",
  anchor="<footer",
  vars="--lp-ink:#F2F2F7;--lp-muted:#A1A1A6;--lp-card:rgba(255,255,255,.06);--lp-line:rgba(255,255,255,.12);--lp-accent:#9867FF;--lp-accent-ink:#fff;--lp-font:var(--font);--lp-display:var(--round)",
- faq=[("Who makes these apps?", "John Katez, an independent iPhone developer. TankLog was built by an aquascaper and is published here too. Each app does one job and has its own support and privacy page."),
+ faq=[("Who makes these apps?", "Couch Co-Op Studios, a small independent iPhone app studio. TankLog was built by an aquascaper and is published here too. Each app does one job and has its own support and privacy page."),
       ("Do the apps have ads?", "No. None of the apps show ads."),
       ("What data do the apps collect?", "Each app's privacy page says exactly. Stashday, Statecount, Sitout, Tabbed Electrician, Tabbed Plumber and TankLog collect no data. Music Video Night has no accounts, analytics or servers. Mackro uses anonymous analytics and sends only what you submit for AI logging. Fantasy Queens collects only what a house needs to work."),
       ("How much do they cost?", "Every app is free to download. Some offer an optional upgrade, one-time or yearly, with the price shown in the app before you buy."),

@@ -3,7 +3,7 @@
 
 Run from the repo root:  python3 tools/hub.py
 Edit APPS below and re-run. The whole file is rewritten, so don't hand-edit index.html.
-App copy matches each app's own page and the apps.johnkatez.com hub. No em dashes (house style).
+App copy matches each app's own page and the original apps hub. No em dashes (house style).
 """
 import html, json, pathlib
 
@@ -163,6 +163,7 @@ h1{font:800 clamp(2.6rem,5.4vw,4.6rem)/.98 var(--disp);letter-spacing:-.045em;ma
 .pick a:hover img{transform:rotate(-5deg) scale(1.06)}
 
 /* app rows */
+.app:last-child{border-bottom:0}
 .app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;padding:84px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px}
 .app.flip .info{order:2}
 .head{display:flex;align-items:center;gap:18px}
@@ -186,6 +187,16 @@ h2{font:800 clamp(1.9rem,3.6vw,2.7rem)/1.02 var(--disp);letter-spacing:-.04em;ma
 .app.in .shots .ph+.ph{transition-delay:.12s}
 
 /* house rules: three cushions */
+.studio{background:var(--cobalt);color:#fff;padding:110px 0;margin-top:0;position:relative;overflow:hidden}
+.studio:before{content:"";position:absolute;right:-12%;top:-30%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.16),transparent);pointer-events:none}
+.studio h2{font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:.98;letter-spacing:-.045em;max-width:12em;margin:0 0 48px;text-wrap:balance}
+.cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:start}
+.say p{font-size:1.22rem;line-height:1.55;margin:0 0 18px;max-width:32em;color:rgba(255,255,255,.9)}
+.facts{margin:0;display:grid;gap:0}
+.facts div{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:baseline;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.22)}
+.facts div:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.facts dt{font:800 3.4rem/1 var(--disp);letter-spacing:-.05em}
+.facts dd{margin:0;font-size:1.05rem;color:rgba(255,255,255,.85)}
 .rules{padding:96px 0 40px;text-align:center}
 .rules h2{margin-bottom:12px}
 .rules>p{color:var(--soft);font-size:1.15rem;max-width:32em;margin:0 auto 40px}
@@ -212,6 +223,8 @@ footer nav a:hover{color:var(--cobalt)}
   .app.flip .info{order:0}
   .cush{grid-template-columns:minmax(0,1fr);border-radius:36px}
   .help{grid-template-columns:minmax(0,1fr)}
+  .cols{grid-template-columns:minmax(0,1fr);gap:36px}
+  .studio{padding:80px 0}
 }
 @media(max-width:560px){
   .wrap{padding:0 16px}
@@ -262,7 +275,7 @@ def build():
     ld = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "Couch Co-Op Studios", "url": f"{SITE}/",
          "description": "Small, useful iPhone apps with fair prices, clear privacy and real support.",
-         "publisher": {"@type": "Person", "name": "John Katez", "url": "https://johnkatez.com/"}},
+         "publisher": {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}},
         {"@context": "https://schema.org", "@type": "ItemList", "name": "iPhone apps from Couch Co-Op Studios",
          "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": a["name"], "url": f"{SITE}/{a['slug']}/"} for i, a in enumerate(APPS)]},
     ]
@@ -290,39 +303,61 @@ def build():
 </head>
 <body>
 <a class="skip" href="#apps">Skip to the apps</a>
+<main>
 <div class="wrap">
-  <nav class="bar" aria-label="Site"><a href="#apps">Apps</a><a href="#rules">House rules</a><a href="mailto:{SUPPORT}">Support</a></nav>
+  <nav class="bar" aria-label="Site"><a href="#apps">Our apps</a><a href="#studio">Studio</a><a href="#rules">House rules</a><a href="mailto:{SUPPORT}">Contact</a></nav>
   <header class="hero">
     <div>
       <img class="logo" src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="607" height="380">
       <h1>Small apps, made together.</h1>
-      <p class="lede">Useful little iPhone apps for game night, everyday life and the oddly specific problem you wish somebody would just solve.</p>
-      <div class="cta"><a class="btn" href="#apps">Meet the apps</a><a class="btn alt" href="mailto:{SUPPORT}">Email support</a></div>
+      <p class="lede">We're an independent iPhone studio. Our team designs, builds and supports small apps for game night, everyday life and the oddly specific problem you wish somebody would just solve.</p>
+      <div class="cta"><a class="btn" href="#apps">See our apps</a><a class="btn alt" href="mailto:hello@couchcoopstudios.com">Say hello</a></div>
     </div>
     <div class="couch" aria-hidden="true">{COUCH_BACK}{couch}{COUCH_FRONT}</div>
   </header>
   <nav class="pick" id="apps" aria-label="Jump to an app">{picker}</nav>
-  <main>{rows}
+  <div class="rows">{rows}
+  </div>
+</div>
+<section class="studio" id="studio" aria-labelledby="studio-h">
+  <div class="wrap">
+    <h2 id="studio-h">A small studio with a big couch.</h2>
+    <div class="cols">
+      <div class="say">
+        <p>Couch Co-Op Studios started the way most good ideas do: a couple of people on a couch, wishing an app worked a little better. So we made it ourselves.</p>
+        <p>Our team does everything in-house. We design every screen, write every line, and answer every support email. If an app has our name on it, we use it too.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>9</dt><dd>iPhone apps, out now or on the way</dd></div>
+        <div><dt>0</dt><dd>ads in any of them</dd></div>
+        <div><dt>1</dt><dd>inbox, read by the people who built the app</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+<div class="wrap">
+  <div class="tail">
     <section class="rules" id="rules" aria-labelledby="rules-h">
       <h2 id="rules-h">House rules</h2>
-      <p>Every app looks different. These three things are the same in all of them.</p>
+      <p>Every app looks different. Our house rules don't change.</p>
       <div class="cush">
         <div><h3>No ads</h3><p>The app solves its problem. It doesn't rent your attention to anybody else.</p></div>
         <div><h3>Plain privacy</h3><p>Each app's privacy page says what it uses, what leaves your phone and why.</p></div>
         <div><h3>Fair prices</h3><p>Free to download. Any upgrade shows its price before you buy, with no surprise subscriptions.</p></div>
       </div>
       <div class="help">
-        <div><h3>Need a hand?</h3><p>A real person reads support. Tell us the app, your device and what happened.</p></div>
+        <div><h3>Need a hand?</h3><p>Our team reads every message. Tell us the app, your device and what happened.</p></div>
         <a class="btn" href="mailto:{SUPPORT}">Email {SUPPORT}</a>
       </div>
     </section>
-  </main>
+  </div>
   <footer>
     <nav aria-label="Apps">{"".join(f'<a href="/{a["slug"]}/">{e(a["name"])}</a>' for a in APPS)}</nav>
-    <p>&copy; 2026 John Katez. Couch Co-Op Studios is a brand of John Katez.</p>
+    <p>&copy; 2026 Couch Co-Op Studios.</p>
     <p class="fine">Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p>
   </footer>
 </div>
+</main>
 <script>{JS}</script>
 </body>
 </html>

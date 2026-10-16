@@ -6,7 +6,7 @@ import html, json, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://couchcoopstudios.com"
-PUB = {"@type": "Person", "name": "John Katez", "url": "https://johnkatez.com/"}
+PUB = {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}
 CREDIT = "Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc."
 HOUSE = "Small apps that each do one job well. No ads, fair prices, and only the data the app needs."
 e = lambda s: html.escape(s, quote=True)
