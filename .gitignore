@@ -1,3 +1,4 @@
 _src/
 .DS_Store
 docs/
+__pycache__/

@@ -400,9 +400,15 @@ def patch(slug, c):
     print("patched", slug)
 
 
+REBUILT = {"mvn", "mackro", "stashday", "statecount", "tabbed", "tabbed-plumber", "fantasyqueens", "sitout"}
+
+
 if __name__ == "__main__":
     for s, c in C.items():
         # The studio hub is hand-built in index.html; this generator owns only app pages.
         if not s:
+            continue
+        # These pages are now built whole by tools/apppage.py; only TankLog is still patched here.
+        if s in REBUILT:
             continue
         patch(s, c)

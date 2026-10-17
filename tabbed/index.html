@@ -2,291 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0B1220">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF3FF">
 <title>Tabbed: Journeyman Electrician Exam Prep for iPhone</title>
 <meta name="description" content="Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state&#x27;s format. Pay once.">
 <link rel="canonical" href="https://couchcoopstudios.com/tabbed/">
 <meta property="og:title" content="Tabbed Electrician: know the answer, know where it lives">
 <meta property="og:description" content="Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state&#x27;s format. Pay once.">
 <meta property="og:image" content="https://couchcoopstudios.com/tabbed/og-image.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="img/icon.png">
-<style>
-:root{
-  --blue:#0064D2; --g1:#1878EC; --g2:#0046A0; --yellow:#FFC400; --orange:#FF7A1A; --green:#28CD78; --red:#FF4F4F;
-  --page:#ECE6D6; --card:#F6F4EE; --ink:#14181F; --muted:#59616d; --rule:#D8D0BB; --navy:#0B1220;
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-}
-@media(prefers-color-scheme:dark){:root{--page:#0B1220;--card:#131D31;--ink:#EEF2F8;--muted:#9AA7BB;--rule:#243350}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--page);color:var(--ink);font:17px/1.6 var(--font);-webkit-font-smoothing:antialiased;overflow-x:clip}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
-
-/* hero */
-.hero{background:linear-gradient(180deg,var(--g1),var(--g2));color:#fff;position:relative;overflow:hidden}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:850;font-size:1.2rem;letter-spacing:-.02em}
-.brand img{width:36px;height:36px;border-radius:10px}
-.nav a.l{margin-left:24px;color:#dcebff;text-decoration:none;font-weight:600;font-size:.95rem}
-.hgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:28px 0 96px}
-h1{font-weight:850;font-size:clamp(2.8rem,6.2vw,5.4rem);line-height:.96;letter-spacing:-.045em;margin:0 0 20px}
-h1 span{display:block}
-.lede{font-size:1.22rem;color:#dcebff;max-width:27em;margin:0 0 28px}
-.soon{display:inline-block;background:var(--yellow);color:#14181F;font-weight:800;padding:15px 24px;border-radius:14px}
-.fine{font-size:.92rem}
-.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(90deg,var(--yellow) 0 25%,var(--orange) 25% 50%,var(--green) 50% 75%,var(--red) 75%)}
-
-/* live drill */
-.drill{background:#fff;color:#14181F;border-radius:26px;padding:22px 22px 18px;box-shadow:0 40px 70px -30px rgba(0,25,80,.7);position:relative}
-.dTop{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.9rem;color:#59616d;margin-bottom:12px}
-.dTimer{font:800 1.5rem var(--mono);color:#14181F;font-variant-numeric:tabular-nums}
-.dBar{height:6px;border-radius:9px;background:#E5EAF1;margin-bottom:16px;overflow:hidden}
-.dBar i{display:block;height:100%;width:100%;background:var(--blue);transform-origin:left;transition:background .3s}
-.dQ{font-weight:700;font-size:1.12rem;line-height:1.4;margin:0 0 14px}
-.opts{display:grid;gap:9px}
-.opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;background:#F1F4F8;border:2px solid transparent;border-radius:14px;padding:12px 14px;font-weight:700;transition:background .15s,border-color .15s,transform .1s}
-.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:.85rem;color:#59616d}
-.opt:hover:not([disabled]){background:#E6EEF9;transform:translateX(3px)}
-.opt:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.opt.ok{background:#E3F6EA;border-color:#28A863}.opt.ok b{background:#28A863;color:#fff}
-.opt.no{background:#FDE9E9;border-color:#E14B4B}.opt.no b{background:#E14B4B;color:#fff}
-.reveal{display:none;margin-top:14px;padding-top:14px;border-top:1.5px solid #E5EAF1;font-size:.96rem}
-.reveal.on{display:block;animation:pop .35s cubic-bezier(.2,1.2,.3,1)}
-@keyframes pop{from{opacity:0;transform:translateY(8px)}}
-.reveal strong{display:block;margin-bottom:4px}
-.chip{display:inline-block;font:700 .9rem var(--mono);background:#D6E6FB;color:#0b4fa8;border:1px solid #A9C9F2;border-radius:99px;padding:3px 12px;margin:2px 0 8px}
-.find{color:#59616d;margin:0 0 10px}.find b{color:#14181F}
-.again{all:unset;cursor:pointer;color:var(--blue);font-weight:800;text-decoration:underline;text-underline-offset:3px}
-.again:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:5px}
-.dNote{font-size:.78rem;color:#7a8594;margin:10px 0 0}
-
-/* fore-edge tabs */
-.tabs{position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:20}
-.tabs a{writing-mode:vertical-rl;text-orientation:mixed;padding:14px 8px;font-weight:800;font-size:.85rem;color:#14181F;text-decoration:none;border-radius:10px 0 0 10px;transform:translateX(10px);transition:transform .25s cubic-bezier(.3,1.4,.4,1),padding .25s;box-shadow:-3px 3px 10px rgba(0,0,0,.18)}
-.tabs a:hover,.tabs a.on{transform:translateX(0);padding-right:12px}
-.t1{background:var(--yellow)}.t2{background:var(--orange)}.t3{background:var(--green)}.t4{background:var(--red);color:#fff!important}
-
-/* chapters */
-.ch{padding:110px 0 30px;position:relative}
-.chTag{display:inline-block;height:12px;width:64px;border-radius:5px;margin-bottom:18px}
-h2{font-weight:850;font-size:clamp(2.2rem,5vw,4rem);line-height:.98;letter-spacing:-.045em;margin:0 0 16px;max-width:12em}
-.sub{font-size:1.18rem;color:var(--muted);max-width:28em;margin:0}
-.dev{position:relative;width:290px;aspect-ratio:1320/2868;border-radius:46px;background:#090d14;padding:9px;box-shadow:0 0 0 2px #1f2b40,0 50px 80px -30px rgba(0,30,90,.55)}
-.dev:before{content:"";position:absolute;left:50%;top:17px;width:80px;height:24px;transform:translateX(-50%);background:#000;border-radius:99px;z-index:2}
-.dev img{width:100%;height:100%;object-fit:cover;border-radius:38px;display:block}
-
-/* chapter 1: annotated */
-.anno{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;margin-top:56px}
-.anno .col{position:relative;height:100%;min-height:600px}
-.call{position:absolute;display:flex;align-items:center;gap:0;font-weight:800;font-size:.98rem;max-width:230px}
-.call p{margin:0;line-height:1.3}
-.call small{display:block;font-weight:600;color:var(--muted);font-size:.86rem;margin-top:2px}
-.call:after{content:"";display:block;height:2px;background:var(--ink);flex:none}
-.cl{right:0;flex-direction:row;text-align:right}.cl:after{width:60px;margin-left:12px}
-.cr{left:0}.cr:before{content:"";display:block;width:60px;height:2px;background:var(--ink);margin-right:12px;flex:none}.cr:after{display:none}
-.call i{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--ink)}
-.cl i{right:-5px}.cr i{left:-5px}
-
-/* chapter 2: the clock */
-.navy{background:var(--navy);color:#EEF2F8;margin-top:110px;padding:110px 0}
-.navy .sub{color:#9fb0c9}
-.clock{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-.bigclock{font:850 clamp(5rem,15vw,12rem)/.85 var(--mono);letter-spacing:-.06em;color:var(--orange);font-variant-numeric:tabular-nums;margin:24px 0 8px}
-.navy .dev{box-shadow:0 0 0 2px #2a3a57,0 50px 80px -20px rgba(0,0,0,.7)}
-
-/* chapter 3: calcs */
-.calcgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;margin-top:50px}
-.work{background:var(--card);border-radius:24px;padding:28px 30px;font-family:var(--mono);font-size:1rem;line-height:1.9;box-shadow:0 30px 50px -30px rgba(0,30,90,.35)}
-.work .ln{display:flex;gap:14px;border-bottom:1.5px dashed var(--rule);padding:6px 0}
-.work .ln:last-child{border:0;font-weight:800;color:var(--green)}
-.work .k{flex:none;width:6.2em;color:var(--muted);font-family:var(--font);font-weight:700;font-size:.85rem;padding-top:.2em}
-
-/* chapter 4: exam */
-.exam{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;margin-top:30px}
-.ex{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:360px;margin-top:26px}
-.ex span{aspect-ratio:1;border-radius:12px;display:grid;place-items:center;font-weight:800;background:var(--card);border:2px solid var(--rule)}
-.ex .a{background:var(--blue);color:#fff;border-color:var(--blue)}.ex .f{box-shadow:inset 0 -5px 0 var(--orange)}.ex .c{outline:3px solid var(--ink);outline-offset:2px}
-
-/* price */
-.pay{background:var(--blue);color:#fff;padding:110px 0;margin-top:120px;position:relative}
-.pay:before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:linear-gradient(90deg,var(--yellow) 0 25%,var(--orange) 25% 50%,var(--green) 50% 75%,var(--red) 75%)}
-.pay h2{font-size:clamp(2.6rem,6vw,5.2rem);max-width:10em}
-.nos{display:flex;flex-wrap:wrap;gap:10px 34px;font-weight:800;font-size:1.2rem;color:#cfe3ff;margin-top:22px}
-.pay .progress{margin-top:44px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.disc{color:var(--muted);font-size:.84rem;max-width:760px;margin:44px auto 0;text-align:center;padding:0 28px}
-footer{padding:36px 0 56px;text-align:center;color:var(--muted);font-size:.95rem}
-footer a{margin:0 12px;text-decoration:none;font-weight:700}
-
-@media(max-width:900px){
-  .hgrid,.clock,.calcgrid,.exam{grid-template-columns:1fr}.hgrid{padding-bottom:70px;gap:32px}
-  .nav a.l{display:none}.tabs{display:none}
-  .anno{grid-template-columns:1fr;gap:26px;justify-items:center}.anno .col{min-height:0;display:grid;gap:16px;width:100%}
-  .call{position:static;max-width:none;text-align:left;flex-direction:row}.call:after,.call:before,.call i{display:none}
-  .call{background:var(--card);border-radius:14px;padding:12px 16px}
-  .cl{order:0}.anno>.dev{order:-1}
-  .ch{padding-top:80px}.navy,.pay{padding:80px 0}.navy{margin-top:80px}.pay{margin-top:80px}
-  .exam .dev,.clock .dev{justify-self:center}
-}
-@media(prefers-reduced-motion:reduce){.reveal.on{animation:none}.tabs a,.opt,.dBar i{transition:none}}
-
-/* ---- v3 after-hours hero ---- */
-.hero{background:radial-gradient(70% 70% at 70% 30%,#14306b 0,#0B1220 70%);}
-.bp{position:absolute;inset:0;background-image:linear-gradient(rgba(90,150,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(90,150,255,.09) 1px,transparent 1px),linear-gradient(rgba(90,150,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(90,150,255,.05) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;-webkit-mask-image:radial-gradient(80% 80% at 60% 40%,#000 30%,transparent 100%);mask-image:radial-gradient(80% 80% at 60% 40%,#000 30%,transparent 100%)}
-.hero .wrap{position:relative;z-index:1}
-.hero h1 span:last-child{color:#9cc6ff}
-.lede{color:#b9c9e6}
-.fine{display:block;margin:14px 0 0;color:#8ea3c7}
-.deck{position:relative;padding:150px 0 20px}
-.book{position:absolute;right:-60px;top:0;width:300px;height:390px;background:#ECE6D6;border-radius:10px 18px 18px 10px;border-left:30px solid #0064D2;transform:rotate(7deg);box-shadow:0 40px 60px -20px rgba(0,0,0,.6),inset -6px 0 0 #d9d1bd;z-index:0}
-.book .bolt{position:absolute;width:96px;left:50%;top:21%;transform:translate(-50%,-50%)}
-.book .tb{position:absolute;right:-26px;width:30px;height:48px;border-radius:0 8px 8px 0;animation:tabOut .7s cubic-bezier(.3,1.5,.4,1) both}
-.tb.y{top:40px;background:#FFC400;animation-delay:.3s}.tb.o{top:100px;background:#FF7A1A;animation-delay:.42s}.tb.g{top:160px;background:#28CD78;animation-delay:.54s}.tb.r{top:220px;background:#FF4F4F;animation-delay:.66s}
-@keyframes tabOut{from{transform:translateX(-30px);opacity:0}}
-.drill{z-index:1;transform:rotate(1.5deg)}
-@media(max-width:900px){.deck{padding:118px 0 0 0}.book{right:-14px;width:220px;height:290px;border-left-width:22px}.book .bolt{width:66px;top:20%}.book .tb{right:-22px;width:24px;height:34px}.tb.y{top:24px}.tb.o{top:64px}.tb.g{top:104px}.tb.r{top:144px}.drill{transform:none}}
-@media(prefers-reduced-motion:reduce){.book .tb{animation:none}}
-</style>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tabbed">
 <meta property="og:url" content="https://couchcoopstudios.com/tabbed/">
-<meta name="twitter:title" content="Tabbed Electrician: know the answer, know where it lives"><meta name="twitter:description" content="Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state&#x27;s format. Pay once."><!-- lp:head --><link rel="stylesheet" href="/assets/lp.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Tabbed: Journeyman Electrician", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "url": "https://couchcoopstudios.com/tabbed/", "description": "Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state's format. Pay once.", "image": "https://couchcoopstudios.com/tabbed/img/icon.png", "publisher": {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "applicationSubCategory": "Exam prep"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which code editions does Tabbed Electrician cover?", "acceptedAnswer": {"@type": "Answer", "text": "The 2023 and 2026 editions of the National Electrical Code. Your state licensing board tells you which edition your exam uses."}}, {"@type": "Question", "name": "Does it match my state's exam?", "acceptedAnswer": {"@type": "Answer", "text": "You set up Tabbed Electrician for your state, and practice exams run in that state's format. Texas, for example, runs as two separately scored parts."}}, {"@type": "Question", "name": "How do you know the answers are right?", "acceptedAnswer": {"@type": "Answer", "text": "Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates and the release notes list them."}}, {"@type": "Question", "name": "Do I need my own code book?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most journeyman exams are open book, and Tabbed Electrician's lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn't reproduce code text."}}, {"@type": "Question", "name": "Does Tabbed Electrician work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Everything works without a connection, on the job site or in the truck."}}, {"@type": "Question", "name": "How much is it?", "acceptedAnswer": {"@type": "Answer", "text": "Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription."}}, {"@type": "Question", "name": "Can Tabbed Electrician guarantee I pass?", "acceptedAnswer": {"@type": "Answer", "text": "No study tool can. Passing depends on your own preparation. Tabbed Electrician shows a readiness estimate so you can see where to focus."}}, {"@type": "Question", "name": "Is Tabbed Electrician affiliated with NFPA?", "acceptedAnswer": {"@type": "Answer", "text": "No. Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Couch Co-Op Studios", "item": "https://couchcoopstudios.com/"}, {"@type": "ListItem", "position": 2, "name": "Tabbed Electrician", "item": "https://couchcoopstudios.com/tabbed/"}]}</script><!-- /lp:head --></head>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tabbed Electrician: know the answer, know where it lives">
+<meta name="twitter:description" content="Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state&#x27;s format. Pay once.">
+<link rel="icon" type="image/png" href="/tabbed/img/icon.png">
+<link rel="apple-touch-icon" href="/tabbed/img/icon.png">
+<link rel="stylesheet" href="/assets/app.css">
+<style>:root{--bg:#EEF3FF;--bg2:#DEEBFF;--a:#0A84FF;--af:#0A73E2;--ai:#FFFFFF;--a2:#FFC233;--a3:#FF6B4A;--band:#0B1F44;}
+.dplay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:center}
+.drill{background:#fff;border-radius:30px;padding:26px;box-shadow:0 0 0 1px var(--line),0 50px 90px -46px rgba(11,31,68,.55)}
+.dTop{display:flex;justify-content:space-between;font-weight:700;color:var(--soft);font-size:.9rem}
+.dTimer{font-variant-numeric:tabular-nums;color:var(--ink)}
+.dBar{height:7px;border-radius:99px;background:var(--bg2);margin:12px 0 18px;overflow:hidden}
+.dBar i{display:block;height:100%;background:var(--a2);transform-origin:left}
+.dQ{font:700 1.18rem/1.45 var(--body);margin:0 0 16px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;border:2px solid var(--line);background:#fff;font:600 1rem var(--body);color:var(--ink);cursor:pointer;text-align:left;transition:border-color .2s,transform .2s cubic-bezier(.3,1.6,.4,1)}
+.opt b{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--bg2);flex:none}
+.opt:hover:not(:disabled){border-color:var(--a);transform:translateY(-2px)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:#1A8F52;background:#E3F7EC}.opt.ok b{background:#1A8F52;color:#fff}
+.opt.no{border-color:#D63E2F;background:#FDE8E5}.opt.no b{background:#D63E2F;color:#fff}
+.reveal{display:none;margin-top:16px;padding:16px 18px;border-radius:18px;background:var(--bg)}
+.reveal.on{display:block;animation:rin .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes rin{from{opacity:0;transform:translateY(10px)}}
+.reveal strong{display:block;margin-bottom:10px}
+.reveal .chip{display:inline-block;font:800 .95rem var(--disp);padding:5px 12px;border-radius:9px;background:var(--a2);color:#0B1A4A}
+.find{margin:10px 0 12px;color:var(--soft)}
+.again{border:0;border-radius:99px;padding:10px 18px;background:var(--af);color:var(--ai);font:700 .92rem var(--body);cursor:pointer}
+.dNote{font-size:.82rem;color:var(--soft);margin:14px 0 0}
+.clock{display:inline-flex;align-items:center;gap:16px;margin-top:8px;padding:14px 20px 14px 14px;border-radius:22px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.clock b{font:800 2.4rem/1 var(--disp);letter-spacing:-.04em;padding:10px 14px;border-radius:14px;background:var(--a2);color:#0B1A4A;font-variant-numeric:tabular-nums}
+.calc{display:grid;gap:8px;margin-top:8px;max-width:30em}
+.calc div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;align-items:baseline;padding:12px 16px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.calc span{font-size:.82rem;font-weight:700;color:var(--soft)}
+.calc b{font-variant-numeric:tabular-nums}
+.calc div:nth-last-child(-n+2){background:color-mix(in srgb,var(--a) 14%,#fff)}
+.g18{display:grid;grid-template-columns:repeat(6,44px);gap:8px;margin:8px 0 14px}
+.g18 i{display:grid;place-items:center;height:44px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px var(--line);font-style:normal;font-weight:700;font-size:.9rem}
+.g18 i.ans{background:var(--af);color:var(--ai);box-shadow:none}
+.g18 i.flag{box-shadow:inset 0 0 0 3px #FF8A1F}
+.g18 i.cur{outline:2.5px solid var(--ink);outline-offset:2px}
+@media(max-width:960px){.dplay{grid-template-columns:minmax(0,1fr);gap:36px}}
+@media(max-width:560px){.opts{grid-template-columns:1fr}.g18{grid-template-columns:repeat(6,1fr)}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Tabbed: Journeyman Electrician", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "url": "https://couchcoopstudios.com/tabbed/", "description": "Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state's format. Pay once.", "image": "https://couchcoopstudios.com/tabbed/img/icon.png", "publisher": {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "applicationSubCategory": "Exam prep"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which code editions does Tabbed Electrician cover?", "acceptedAnswer": {"@type": "Answer", "text": "The 2023 and 2026 editions of the National Electrical Code. Your state licensing board tells you which edition your exam uses."}}, {"@type": "Question", "name": "Does it match my state's exam?", "acceptedAnswer": {"@type": "Answer", "text": "You set up Tabbed Electrician for your state, and practice exams run in that state's format. Texas, for example, runs as two separately scored parts."}}, {"@type": "Question", "name": "How do you know the answers are right?", "acceptedAnswer": {"@type": "Answer", "text": "Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates and the release notes list them."}}, {"@type": "Question", "name": "Do I need my own code book?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Most journeyman exams are open book, and Tabbed Electrician's lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn't reproduce code text."}}, {"@type": "Question", "name": "Does Tabbed Electrician work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Everything works without a connection, on the job site or in the truck."}}, {"@type": "Question", "name": "How much is it?", "acceptedAnswer": {"@type": "Answer", "text": "Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription."}}, {"@type": "Question", "name": "Can Tabbed Electrician guarantee I pass?", "acceptedAnswer": {"@type": "Answer", "text": "No study tool can. Passing depends on your own preparation. Tabbed Electrician shows a readiness estimate so you can see where to focus."}}, {"@type": "Question", "name": "Is Tabbed Electrician affiliated with NFPA?", "acceptedAnswer": {"@type": "Answer", "text": "No. Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Couch Co-Op Studios", "item": "https://couchcoopstudios.com/"}, {"@type": "ListItem", "position": 2, "name": "Tabbed Electrician", "item": "https://couchcoopstudios.com/tabbed/"}]}</script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
 <body>
-<nav class="tabs" aria-label="Sections">
-  <a class="t1" href="#answers">Answers</a><a class="t2" href="#find">Find it</a><a class="t3" href="#calcs">Calcs</a><a class="t4" href="#exam">Exam</a>
-</nav>
-
-<header class="hero">
-  <div class="bp" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="nav">
-      <a class="brand" href="./"><img src="img/icon.png" alt="" width="36" height="36">Tabbed Electrician</a>
-      <div><a class="l" href="support.html">Support</a><a class="l" href="privacy.html">Privacy</a></div>
-    </div>
-    <div class="hgrid">
-      <div>
-        <h1><span>Know the answer.</span><span>Know where it lives.</span></h1>
-        <p class="lede">Journeyman electrician exam prep where every explanation cites the code section. Drill the lookups, work the calcs, sit the timed exam. All offline.</p>
-        <span class="soon">Coming soon to the App Store</span>
-        <p class="fine">iPhone. Pay once, no subscription.</p>
-      </div>
-      <div class="deck">
-        <div class="book" aria-hidden="true">
-          <span class="tb y"></span><span class="tb o"></span><span class="tb g"></span><span class="tb r"></span>
-          <svg class="bolt" viewBox="0 0 64 96"><path d="M40 2 6 54h22l-6 40 36-56H34z" fill="#FFC400" stroke="#0064D2" stroke-width="5" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="drill" id="drill">
-        <div class="dTop"><span>Lookup drill, question 3 of 10</span><span class="dTimer" id="timer">0:00</span></div>
-        <div class="dBar"><i id="bar"></i></div>
-        <p class="dQ">A 120/240 V service drop crosses a house driveway. What's the minimum clearance above the driveway?</p>
-        <div class="opts" id="opts">
-          <button class="opt" type="button" data-k="a"><b>A</b>18 ft</button>
-          <button class="opt" type="button" data-k="b"><b>B</b>15 ft</button>
-          <button class="opt" type="button" data-k="c"><b>C</b>12 ft</button>
-          <button class="opt" type="button" data-k="d"><b>D</b>10 ft</button>
-        </div>
-        <div class="reveal" id="reveal" aria-live="polite">
-          <strong id="verdict"></strong>
-          <span class="chip">230.24(B)(2)</span>
-          <p class="find"><b>Find it:</b> index under Clearances, overhead service conductors.</p>
-          <button class="again" type="button" id="again">Try another look</button>
-        </div>
-        <p class="dNote">A sample question. Tabbed Electrician's bank cites the section for every answer.</p>
-      </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="ch" id="answers">
-  <div class="wrap">
-    <span class="chTag" style="background:var(--yellow)"></span>
-    <h2>Answers you can check.</h2>
-    <p class="sub">Every explanation names the section it came from, so you learn where the answer lives instead of memorizing a letter.</p>
-    <div class="anno">
-      <div class="col">
-        <div class="call cl" style="top:11%"><div><p>Your answer, marked</p><small>Right or wrong, you see why</small></div><i></i></div>
-        <div class="call cl" style="top:61%"><div><p>Find it</p><small>Exactly where to look in your book</small></div><i></i></div>
-      </div>
-      <div class="dev"><img src="img/answer.jpg" alt="Practice question with the explanation, the code section it cites and a Find it hint" width="640" height="1391" loading="lazy"></div>
-      <div class="col">
-        <div class="call cr" style="top:50%"><i></i><div><p>The code section</p><small>Cited on every answer</small></div></div>
-        <div class="call cr" style="top:71%"><i></i><div><p>Report a problem</p><small>Flag a question from the answer screen</small></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="navy ch" id="find" style="padding-top:110px">
-  <div class="wrap clock">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><nav class="bar" aria-label="Tabbed Electrician"><a class="home" href="#main"><img src="/tabbed/img/icon.png" alt="" width="30" height="30">Tabbed Electrician</a><a class="hide-s" href="#try">Try it</a><a class="hide-s" href="#faq">FAQ</a><a class="c" href="#faq">Coming soon</a></nav></header>
+<main id="main">
+<div class="sky" aria-hidden="true"><div class="sh" data-speed=".35" data-depth="14" style="left:2%;top:260px;width:70px;height:70px"><svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="29" fill="none" stroke="var(--a)" stroke-width="10"/></svg></div><div class="sh" data-speed="-.18" data-depth="-7" style="left:44%;top:300px;width:84px;height:84px"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="var(--a2)"/></svg></div><div class="sh" data-speed=".3" data-depth="12" style="right:3%;top:250px;width:150px;height:58px"><svg viewBox="0 0 150 58"><rect width="150" height="58" rx="29" fill="var(--a3)" transform="rotate(-18 75 29)"/></svg></div><div class="sh" data-speed=".45" data-depth="18" style="left:47%;top:760px;width:64px;height:64px"><svg viewBox="0 0 70 70"><path d="M35 0C38 22 48 32 70 35C48 38 38 48 35 70C32 48 22 38 0 35C22 32 32 22 35 0Z" fill="var(--a2)"/></svg></div><div class="sh" data-speed=".22" data-depth="9" style="right:6%;top:850px;width:170px;height:50px"><svg viewBox="0 0 170 50"><path d="M6 30C26 4 42 4 58 26S92 48 108 24S144 2 164 22" fill="none" stroke="var(--a)" stroke-width="11" stroke-linecap="round"/></svg></div><div class="sh" data-speed=".4" data-depth="16" style="left:8%;top:900px;width:52px;height:52px"><svg viewBox="0 0 58 58"><rect x="6" y="6" width="46" height="46" rx="12" fill="var(--a3)" transform="rotate(16 29 29)"/></svg></div></div>
+<div class="wrap">
+  <section class="hero" aria-labelledby="h1">
     <div>
-      <span class="chTag" style="background:var(--orange)"></span>
-      <h2>Find it in the book, fast.</h2>
-      <p class="sub">The exam is open book. Timed lookup drills train your own tabbed code book, so the index feels like muscle memory.</p>
-      <div class="bigclock" aria-hidden="true">0:41</div>
-      <p class="sub">That's how long you get. Beat it.</p>
+      <img class="hicon" src="/tabbed/img/icon.png" alt="" width="96" height="96">
+      <span class="status">Coming soon</span>
+      <h1 id="h1"><span>Know the answer.</span><span>Know where it lives.</span></h1>
+      
+      <p class="lede">Journeyman electrician exam prep where every explanation cites the code section. Drill the lookups, work the calcs, sit the timed exam. All offline.</p>
+      <div class="cta"><span class="soon">Coming soon to the App Store</span><a class="btn alt" href="#try">Try a lookup</a></div>
+      <p class="note">iPhone. Pay once, no subscription.</p>
     </div>
-    <div style="display:flex;justify-content:center"><div class="dev"><img src="img/lookup.jpg" alt="A timed lookup drill with a countdown" width="640" height="1391" loading="lazy"></div></div>
-  </div>
-</section>
-
-<section class="ch" id="calcs">
+    <div class="hfan" aria-hidden="true"><div class="fp f0" data-speed=".03"><div class="rise"><div class="iph" data-delay="0" aria-hidden="true"><div class="scr"><img class="on" src="/tabbed/img/lookup.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/calc.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/exam.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/progress.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/answer.jpg" alt="" width="640" height="1390"></div></div></div></div><div class="fp f1" data-speed="-.04"><div class="rise"><div class="iph" data-delay="1100" aria-hidden="true"><div class="scr"><img class="on" src="/tabbed/img/answer.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/lookup.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/calc.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/exam.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/progress.jpg" alt="" width="640" height="1390"></div></div></div></div><div class="fp f2" data-speed=".06"><div class="rise"><div class="iph" data-delay="2200" aria-hidden="true"><div class="scr"><img class="on" src="/tabbed/img/calc.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/exam.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/progress.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/answer.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/lookup.jpg" alt="" width="640" height="1390"></div></div></div></div></div>
+  </section>
+  <ul class="trust" aria-label="At a glance"><li>Every answer cites the code section</li><li>A separate blind check on every answer</li><li>Works offline</li><li>Pay once, no subscription</li></ul>
+</div>
+<section class="sec demo" id="try"><div class="wrap"><div class="dplay">
+<div><h2>Try a lookup.</h2><p class="sub">A timed lookup drill, the way the app runs them. Pick an answer and see where it lives in the book.</p></div>
+<div class="drill" id="drill">
+  <div class="dTop"><span>Lookup drill, question 3 of 10</span><span class="dTimer" id="timer">0:00</span></div>
+  <div class="dBar"><i id="bar"></i></div>
+  <p class="dQ">A 120/240 V service drop crosses a house driveway. What's the minimum clearance above the driveway?</p>
+  <div class="opts" id="opts"><button class="opt" type="button" data-k="a"><b>A</b>18 ft</button><button class="opt" type="button" data-k="b"><b>B</b>15 ft</button><button class="opt" type="button" data-k="c"><b>C</b>12 ft</button><button class="opt" type="button" data-k="d"><b>D</b>10 ft</button></div>
+  <div class="reveal" id="reveal" aria-live="polite"><strong id="verdict"></strong><span class="chip">230.24(B)(2)</span><p class="find"><b>Find it:</b> index under Clearances, overhead service conductors.</p><button class="again" type="button" id="again">Try another look</button></div>
+  <p class="dNote">A sample question. Tabbed Electrician's bank cites the section for every answer.</p>
+</div></div></div></section><section class="sec"><div class="wrap"><div class="story" id="answers"><div class="txt"><h2>Answers you can check.</h2><p>Every explanation names the section it came from, so you learn where the answer lives instead of memorizing a letter.</p><ul><li><b>Your answer, marked.</b> Right or wrong, you see why.</li><li><b>Find it.</b> Exactly where to look in your book.</li><li><b>The code section.</b> Cited on every answer.</li><li><b>Report a problem.</b> Flag a question from the answer screen.</li></ul></div><div class="vis"><div class="iph" data-delay="0" role="img" aria-label="Practice question with the explanation, the code section it cites and a Find it hint" data-speed="-.04"><div class="scr"><img class="on" src="/tabbed/img/answer.jpg" alt="" width="640" height="1390"></div></div></div></div><div class="story flip" id="find"><div class="txt"><h2>Find it in the book, fast.</h2><p>The exam is open book. Timed lookup drills train your own tabbed code book, so the index feels like muscle memory.</p><div class="clock"><b>0:41</b><span>That's how long you get. Beat it.</span></div></div><div class="vis"><div class="iph" data-delay="600" role="img" aria-label="A timed lookup drill with a countdown" data-speed="-.04"><div class="scr"><img class="on" src="/tabbed/img/lookup.jpg" alt="" width="640" height="1390"></div></div></div></div><div class="story" id="calcs"><div class="txt"><h2>Calcs, one step at a time.</h2><p>The full working is shown on every problem. Answers come from tested code, never typed by hand.</p><div class="calc"><div><span>Given</span><b>3-phase, 127 A, 300 ft run</b></div><div><span>Formula</span><b>VD = 1.732 × K × I × L ÷ CM</b></div><div><span>Plug in</span><b>1.732 × 12.9 × 127 × 300 ÷ 83,690</b></div><div><span>Volts</span><b>VD ≈ 10.2 V</b></div><div><span>Percent</span><b>10.2 ÷ 480 ≈ 2.1%</b></div></div></div><div class="vis"><div class="iph" data-delay="1200" role="img" aria-label="A calculation question with the full working shown" data-speed="-.04"><div class="scr"><img class="on" src="/tabbed/img/calc.jpg" alt="" width="640" height="1390"></div></div></div></div><div class="story flip" id="exam"><div class="txt"><h2>Your exam, your format.</h2><p>Timed full-length practice in your state's format. Flag what you're unsure about, review, then submit, just like test day.</p><div class="g18" aria-hidden="true"><i class="ans">1</i><i class="ans">2</i><i class="ans">3</i><i class="flag">4</i><i class="ans">5</i><i class="ans">6</i><i class="ans">7</i><i class="ans">8</i><i class="ans">9</i><i class="ans">10</i><i class="flag">11</i><i class="cur">12</i><i class="">13</i><i class="">14</i><i class="">15</i><i class="">16</i><i class="">17</i><i class="">18</i></div><p style="font-size:.95rem">Blue is answered. The orange edge is flagged. The outline is where you are.</p><p style="font-size:.95rem">A readiness estimate by topic shows your weak spots. It's an estimate from your practice, not a prediction of your result.</p></div><div class="vis"><div class="iph" data-delay="1800" role="img" aria-label="Timed practice exam with a question navigator" data-speed="-.04"><div class="scr"><img class="on" src="/tabbed/img/exam.jpg" alt="" width="640" height="1390"><img src="/tabbed/img/progress.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div></div></div></section><section class="sec"><div class="wrap"><h2>Who it is for</h2><div class="who"><div><h3>Apprentices with a test date</h3><p>3rd to 5th year apprentices getting ready for the journeyman exam, studying on breaks and at night.</p></div><div><h3>Texas candidates</h3><p>Practice exams in Texas&#x27;s real format, run as two separately scored parts.</p></div><div><h3>Instructors</h3><p>Point your class at questions they can check against the book.</p></div></div></div></section><section class="band" style="--band:#0B1F44"><div class="blob b1" data-speed=".12" aria-hidden="true"></div><div class="blob b2" data-speed="-.1" aria-hidden="true"></div><div class="blob b3" data-speed=".08" aria-hidden="true"></div><div class="wrap"><h2>Pay once. Study anywhere.</h2><p class="sub">Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription.</p><ul class="nos"><li>No account</li><li>No ads</li><li>No subscription</li><li>No data collected</li></ul></div></section><section class="sec alt" id="faq"><div class="wrap center"><h2>Questions people ask</h2><div class="faq"><details><summary>Which code editions does Tabbed Electrician cover?</summary><div class="a"><p>The 2023 and 2026 editions of the National Electrical Code. Your state licensing board tells you which edition your exam uses.</p></div></details><details><summary>Does it match my state&#x27;s exam?</summary><div class="a"><p>You set up Tabbed Electrician for your state, and practice exams run in that state&#x27;s format. Texas, for example, runs as two separately scored parts.</p></div></details><details><summary>How do you know the answers are right?</summary><div class="a"><p>Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates and the release notes list them.</p></div></details><details><summary>Do I need my own code book?</summary><div class="a"><p>Yes. Most journeyman exams are open book, and Tabbed Electrician&#x27;s lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn&#x27;t reproduce code text.</p></div></details><details><summary>Does Tabbed Electrician work offline?</summary><div class="a"><p>Yes. Everything works without a connection, on the job site or in the truck.</p></div></details><details><summary>How much is it?</summary><div class="a"><p>Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription.</p></div></details><details><summary>Can Tabbed Electrician guarantee I pass?</summary><div class="a"><p>No study tool can. Passing depends on your own preparation. Tabbed Electrician shows a readiness estimate so you can see where to focus.</p></div></details><details><summary>Is Tabbed Electrician affiliated with NFPA?</summary><div class="a"><p>No. Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board.</p></div></details></div><p class="fine" style="margin:26px auto 0">Guide: <a href="guide/find-answers-fast-open-book-electrical-exam.html">How to find answers fast in an open-book electrical exam</a></p></div></section><section class="sec"><div class="wrap"><h2>More from our studio</h2><p class="sub">Small apps that each do one job well.</p><div class="more"><a href="/stashday/"><img src="/stashday/img/icon.png" alt="" width="56" height="56" loading="lazy"><div><b>Stashday</b><span>One number to set aside each payday</span></div></a><a href="/sitout/"><img src="/sitout/img/icon.png" alt="" width="56" height="56" loading="lazy"><div><b>Sitout</b><span>Fair pickleball round robins</span></div></a><a href="/statecount/"><img src="/statecount/img/icon.png" alt="" width="56" height="56" loading="lazy"><div><b>Statecount</b><span>A private 183-day residency tracker</span></div></a></div></div></section>
+<section class="finale">
   <div class="wrap">
-    <span class="chTag" style="background:var(--green)"></span>
-    <h2>Calcs, one step at a time.</h2>
-    <p class="sub">The full working is shown on every problem. Answers come from tested code, never typed by hand.</p>
-    <div class="calcgrid">
-      <div class="work" aria-label="Worked voltage drop example">
-        <div class="ln"><span class="k">Given</span><span>3-phase, 127 A, 300 ft run</span></div>
-        <div class="ln"><span class="k">Formula</span><span>VD = 1.732 × K × I × L ÷ CM</span></div>
-        <div class="ln"><span class="k">Plug in</span><span>1.732 × 12.9 × 127 × 300 ÷ 83,690</span></div>
-        <div class="ln"><span class="k">Volts</span><span>VD ≈ 10.2 V</span></div>
-        <div class="ln"><span class="k">Percent</span><span>10.2 ÷ 480 ≈ 2.1%</span></div>
-      </div>
-      <div style="display:flex;justify-content:center"><div class="dev"><img src="img/calc.jpg" alt="A calculation question with the full working shown" width="640" height="1391" loading="lazy"></div></div>
-    </div>
+    <img class="hicon" src="/tabbed/img/icon.png" alt="" width="110" height="110" loading="lazy">
+    <h2>Know where it lives.</h2>
+    <p class="sub">Coming soon to the App Store. Free to start, pay once for the Exam Pass.</p>
+    <div class="cta"><span class="soon">Coming soon to the App Store</span></div>
   </div>
 </section>
-
-<section class="ch" id="exam">
-  <div class="wrap">
-    <span class="chTag" style="background:var(--red)"></span>
-    <h2>Your exam, your format.</h2>
-    <p class="sub">Timed full-length practice in your state's format. Flag what you're unsure about, review, then submit, just like test day.</p>
-    <div class="exam">
-      <div>
-        <div class="ex" aria-label="Question navigator with answered, flagged and current questions">
-          <span class="a">1</span><span class="a f">2</span><span class="a">3</span><span class="a">4</span><span class="a f">5</span><span class="a">6</span>
-          <span class="a">7</span><span class="c">8</span><span>9</span><span>10</span><span>11</span><span>12</span>
-          <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-        </div>
-        <p class="sub" style="margin-top:26px;font-size:1rem">Blue is answered. The orange edge is flagged. The outline is where you are.</p>
-        <p class="sub" style="margin-top:30px">A readiness estimate by topic shows your weak spots. It's an estimate from your practice, not a prediction of your result.</p>
-      </div>
-      <div class="dev"><img src="img/exam.jpg" alt="Timed practice exam with a question navigator" width="640" height="1391" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<!-- lp:body --><style>:root{--lp-ink:var(--ink);--lp-muted:var(--muted);--lp-card:var(--card);--lp-line:var(--rule);--lp-accent:var(--blue);--lp-accent-ink:#fff;--lp-font:var(--font);--lp-display:var(--font);--lp-paper:var(--page)}</style><section class="lp"><div class="lp-in"><div style="display:grid;gap:44px"><ul class="lp-trust" aria-label="At a glance"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>Every answer cites the code section</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>A separate blind check on every answer</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="m3 3 18 18"/></svg>Works offline</li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Pay once, no subscription</li></ul></div></div></section><section class="lp"><div class="lp-in"><h2>Who it's for</h2><div class="lp-who"><div><b>Apprentices with a test date</b><p>3rd to 5th year apprentices getting ready for the journeyman exam, studying on breaks and at night.</p></div><div><b>Texas candidates</b><p>Practice exams in Texas&#x27;s real format, run as two separately scored parts.</p></div><div><b>Instructors</b><p>Point your class at questions they can check against the book.</p></div></div></div></section><section class="lp" id="faq"><div class="lp-in"><h2>Questions people ask</h2><div class="lp-faq"><details><summary>Which code editions does Tabbed Electrician cover?</summary><div class="a"><p>The 2023 and 2026 editions of the National Electrical Code. Your state licensing board tells you which edition your exam uses.</p></div></details><details><summary>Does it match my state&#x27;s exam?</summary><div class="a"><p>You set up Tabbed Electrician for your state, and practice exams run in that state&#x27;s format. Texas, for example, runs as two separately scored parts.</p></div></details><details><summary>How do you know the answers are right?</summary><div class="a"><p>Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates and the release notes list them.</p></div></details><details><summary>Do I need my own code book?</summary><div class="a"><p>Yes. Most journeyman exams are open book, and Tabbed Electrician&#x27;s lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn&#x27;t reproduce code text.</p></div></details><details><summary>Does Tabbed Electrician work offline?</summary><div class="a"><p>Yes. Everything works without a connection, on the job site or in the truck.</p></div></details><details><summary>How much is it?</summary><div class="a"><p>Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription.</p></div></details><details><summary>Can Tabbed Electrician guarantee I pass?</summary><div class="a"><p>No study tool can. Passing depends on your own preparation. Tabbed Electrician shows a readiness estimate so you can see where to focus.</p></div></details><details><summary>Is Tabbed Electrician affiliated with NFPA?</summary><div class="a"><p>No. Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board.</p></div></details></div><p class="lp-fine" style="font-size:15.5px">Guide: <a href="guide/find-answers-fast-open-book-electrical-exam.html">How to find answers fast in an open-book electrical exam</a></p></div></section><section class="lp"><div class="lp-in"><h2 style="font-size:24px">More small apps from the same maker</h2><div class="lp-more"><a href="/stashday/"><img src="/stashday/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Stashday</b><span>One number to set aside each payday</span></div></a><a href="/sitout/"><img src="/sitout/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Sitout</b><span>Fair pickleball round robins</span></div></a><a href="/statecount/"><img src="/statecount/img/icon.png" alt="" width="52" height="52" loading="lazy"><div><b>Statecount</b><span>A private 183-day residency tracker</span></div></a></div><p class="lp-fine"><a href="/">See all the apps</a></p></div></section><!-- /lp:body --><section class="pay">
-  <div class="wrap">
-    <h2>Pay once. Study anywhere.</h2>
-    <div class="nos"><span>No account</span><span>No ads</span><span>No subscription</span><span>No data collected</span></div>
-    <div class="progress"><span class="soon">Coming soon to the App Store</span></div>
-  </div>
-</section>
-
-<p class="disc">Tabbed Electrician is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NFPA, IBEW, NECA, PSI, Prometric, Pearson VUE, ICC, TDLR, or any state licensing board, and not reviewed or approved by NFPA. NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Passing your exam depends on your own preparation; no study tool can guarantee a result.</p>
+</main>
 <footer>
-  <a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="/">All apps</a>
-  <p>© 2026 Tabbed Electrician · <a href="mailto:support@couchcoopstudios.com" style="margin:0">support@couchcoopstudios.com</a></p>
+  <div class="wrap">
+    <div class="foot">
+      <a class="studio" href="/"><img src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="54" height="34"></a>
+      <nav aria-label="Pages"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="guide/find-answers-fast-open-book-electrical-exam.html">Open-book guide</a><a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a><a href="/">All apps</a></nav>
+    </div>
+    <div class="legal"><p>Tabbed Electrician is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NFPA, IBEW, NECA, PSI, Prometric, Pearson VUE, ICC, TDLR, or any state licensing board, and not reviewed or approved by NFPA. NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Passing your exam depends on your own preparation; no study tool can guarantee a result.</p><p>&copy; 2026 Couch Co-Op Studios. Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div>
+  </div>
 </footer>
-
+<script src="/assets/app.js" defer></script>
 <script>
 (function(){
   var $=function(i){return document.getElementById(i)},opts=$('opts'),reveal=$('reveal'),verdict=$('verdict'),timer=$('timer'),bar=$('bar');
@@ -315,5 +139,5 @@ footer a{margin:0 12px;text-decoration:none;font-weight:700}
   }
 })();
 </script>
-<!-- lp:legal --><div class="lp-legal"><p>Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div><!-- /lp:legal --></body>
+</body>
 </html>
