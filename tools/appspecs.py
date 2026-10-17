@@ -147,7 +147,7 @@ MACKRO_CSS = r'''
 .macks figure:hover{transform:translateY(-6px) rotate(-1.5deg)}
 .macks img{width:100%;height:auto;aspect-ratio:1}
 .macks figcaption{font-weight:700;font-size:.95rem;line-height:1.3}
-@media(max-width:960px){.kplay{grid-template-columns:minmax(0,1fr);gap:36px}.macks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:960px){.kplay{grid-template-columns:minmax(0,1fr);gap:36px}.macks{grid-template-columns:repeat(2,minmax(0,1fr))}.mackhero{left:-2%;bottom:-2%;width:30%}}
 @media(max-width:560px){.stats{grid-template-columns:110px minmax(0,1fr)}.ring{width:110px;height:110px}}
 '''
 

@@ -296,7 +296,7 @@ SITOUT = dict(
  note="For iPhone and iPad. Any single night is free.", cta2=("Try the sit-out rule", "#try"),
  screens=["live.jpg", "score.jpg", "standings.jpg", "season.jpg"],
  trust=["Players never pay", "No accounts", "No server", "Any single night is free"],
- css=SITOUT_CSS, scripts=["/sitout/demo.js"],
+ css=SITOUT_CSS, scripts=["/sitout/demo.js"], ld_marker=True,
  blocks=[
   ("raw", SITOUT_BOARD),
   ("steps", dict(id="how", h="From the first serve to the final standings, on one phone.", items=[

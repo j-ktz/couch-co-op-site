@@ -45,6 +45,11 @@ def legacy(slug):
     return data[slug]
 
 
+def ver(p):
+    import hashlib
+    return hashlib.sha1((ROOT / p).read_bytes()).hexdigest()[:8]
+
+
 # ------------------------------------------------------------ pieces
 def fill(g, ink):
     toward = NAVY if ink == WHITE else WHITE
@@ -127,7 +132,8 @@ def block(slug, b, s):
             if st.get("bullets"):
                 body += "<ul>" + "".join(f"<li>{x}</li>" for x in st["bullets"]) + "</ul>"
             rid = f' id="{st["id"]}"' if st.get("id") else ""
-            rows.append(f'<div class="story{" flip" if i % 2 else ""}"{rid}><div class="txt"><h2>{st["h"]}</h2>{body}</div>{vis}</div>')
+            hd = f'<h3 class="sth">{st["h"]}</h3>' if d.get("h") else f'<h2>{st["h"]}</h2>'
+            rows.append(f'<div class="story{" flip" if i % 2 else ""}"{rid}><div class="txt">{hd}{body}</div>{vis}</div>')
         head = (f'<h2>{d["h"]}</h2>' if d.get("h") else "") + (f'<p class="sub">{e(d["sub"])}</p>' if d.get("sub") else "")
         return f'<section class="sec"{sid}><div class="wrap">{head}{"".join(rows)}</div></section>'
     if kind == "steps":
@@ -205,9 +211,9 @@ def page(slug, s):
 {meta}
 <link rel="icon" type="image/png" href="/{slug}/img/icon.png">
 <link rel="apple-touch-icon" href="/{slug}/img/icon.png">
-<link rel="stylesheet" href="/assets/app.css">
+<link rel="stylesheet" href="/assets/app.css?v={ver("assets/app.css")}">
 <style>:root{{{vars_}}}{s.get("css", "")}</style>
-{"".join(L["ld"])}
+{(f"<!--gen:jsonld-->{''.join(L['ld'])}<!--/gen:jsonld-->" if s.get("ld_marker") else "".join(L["ld"]))}
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -249,7 +255,7 @@ def page(slug, s):
     <div class="legal">{legal}<p>&copy; 2026 Couch Co-Op Studios. {e(landing.HOUSE_LINE)}</p><p>{e(landing.APPLE_CREDIT)}</p></div>
   </div>
 </footer>
-<script src="/assets/app.js" defer></script>
+<script src="/assets/app.js?v={ver("assets/app.js")}" defer></script>
 {js}
 </body>
 </html>

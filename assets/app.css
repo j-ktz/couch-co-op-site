@@ -13,7 +13,7 @@ html.dark{--ink:#F7F4FF;--soft:#CEC6E8;--card:rgba(255,255,255,.07);--line:rgba(
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
-img{max-width:100%}
+img{max-width:100%;height:auto}
 :focus-visible{outline:3px solid var(--a);outline-offset:3px;border-radius:10px}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:12px;z-index:40;background:#fff;color:#0B1A4A;padding:8px 14px;border-radius:10px}
@@ -121,6 +121,7 @@ h3{font:800 1.3rem/1.2 var(--disp);letter-spacing:-.025em;margin:0 0 8px}
 .steps li:nth-child(4n+2):before{background:var(--a2);color:#0B1A4A}.steps li:nth-child(4n+3):before{background:var(--a3);color:#0B1A4A}
 .steps p{margin:0;color:var(--soft)}
 .steps .iph{width:72%;margin:0 auto 20px}
+.story h3.sth{font:800 clamp(1.6rem,3vw,2.3rem)/1.05 var(--disp);letter-spacing:-.035em;margin:0 0 14px}
 
 /* features grid */
 .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -128,6 +129,9 @@ h3{font:800 1.3rem/1.2 var(--disp);letter-spacing:-.025em;margin:0 0 8px}
 .feats>div:hover{transform:translateY(-4px)}
 .feats .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:color-mix(in srgb,var(--a) 18%,transparent);color:var(--ink);margin-bottom:16px}
 .feats>div:nth-child(3n+2) .ic{background:color-mix(in srgb,var(--a2) 22%,transparent)}.feats>div:nth-child(3n) .ic{background:color-mix(in srgb,var(--a3) 24%,transparent)}
+html.dark .feats .ic{background:color-mix(in srgb,var(--a) 34%,transparent);color:#fff}
+html.dark .feats>div:nth-child(3n+2) .ic{background:color-mix(in srgb,var(--a2) 34%,transparent)}
+html.dark .feats>div:nth-child(3n) .ic{background:color-mix(in srgb,var(--a3) 36%,transparent)}
 .feats .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .feats p{margin:0;color:var(--soft)}
 
@@ -245,6 +249,8 @@ footer{position:relative;z-index:1;padding:56px 0 56px;color:var(--soft);font-si
   .hero{padding-top:44px}
   .sh{display:none}
   .stage{padding:18px;border-radius:26px}
+  .steps .iph{width:54%}
+  .steps{grid-template-columns:minmax(0,1fr)}
   .foot{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){
