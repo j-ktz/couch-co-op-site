@@ -54,7 +54,7 @@ APPS = [
       screens=[("home.jpg", "Days used and days left for New York and Florida (example data)"), ("calendar.jpg", "Calendar month colored by state (example data)")]),
 ]
 BY = {a["slug"]: a for a in APPS}
-# The three phones on the hero couch, each cycling through a few apps.
+# The three fanned hero phones, each cycling through a few apps.
 COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "tabbed-plumber"]]
 
 e = lambda s: html.escape(s, quote=True)
@@ -97,10 +97,10 @@ def phone(screens, delay=0, label=None, lazy=True):
     return f'<div class="ph" data-delay="{delay}"{aria}><div class="scr">{imgs}</div></div>'
 
 
-def couch_phone(i, slugs):
+def fan_phone(i, slugs):
     screens = [(s, BY[s]["screens"][0][0], "") for s in slugs]
     chips = "".join(f'<span class="chip{" on" if j == 0 else ""}" data-slug="{s}" style="--g:{BY[s]["g"]}"><img src="/{s}/img/icon.png" alt="" width="22" height="22">{e(BY[s]["name"])}</span>' for j, s in enumerate(slugs))
-    return (f'<a class="seat s{i}" href="#{slugs[0]}" tabindex="-1"><div class="drop">'
+    return (f'<a class="fp f{i}" href="#{slugs[0]}" tabindex="-1" data-speed="{(".03", "-.04", ".06")[i]}"><div class="rise">'
             f'<div class="chips">{chips}</div>{phone(screens, delay=i * 1100, lazy=False)}</div></a>')
 
 
@@ -158,29 +158,22 @@ h1{font:800 clamp(2.6rem,5.4vw,4.6rem)/.98 var(--disp);letter-spacing:-.045em;ma
 .btn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px rgba(11,26,74,.22)}
 .btn.alt:hover{background:var(--mist)}
 
-/* the couch: our logo's couch, in layers, so phones sink into the cushions */
-.couch{position:relative;aspect-ratio:1600/908;width:100%;margin-top:110px}
-.couch>img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}
-.couch .back{z-index:1}.couch .cl,.couch .cr{z-index:3}.couch .arms{z-index:4}
-.couch .cl{transform-origin:30.7% 93%}.couch .cr{transform-origin:69.4% 93%}
-.couch:after{content:"";position:absolute;left:4%;right:4%;bottom:-3%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,26,74,.18),transparent);z-index:0}
-.seat{position:absolute;bottom:38%;width:17%;z-index:2;display:block;text-decoration:none;cursor:pointer}
-.seat.s0{left:21.5%;rotate:-5deg}
-.seat.s1{left:41.5%;bottom:35%}
-.seat.s2{left:61.5%;rotate:5deg}
-.seat .ph{animation:bob 6s ease-in-out infinite}
-.seat.s0 .ph{animation-delay:-2s}.seat.s1 .ph{animation-delay:-4s}
-.drop{animation:drop .95s cubic-bezier(.3,.6,.4,1) both;animation-delay:var(--d,0s)}
-.s0 .drop{--d:.25s}.s1 .drop{--d:.55s}.s2 .drop{--d:.85s}
-.drop.hop{animation:hop .75s cubic-bezier(.3,.6,.4,1)}
-.squish{animation:squish .7s cubic-bezier(.3,.6,.4,1)}
-@keyframes drop{0%{transform:translateY(-150%);opacity:0}35%{opacity:1}66%{transform:translateY(7%)}84%{transform:translateY(-3%)}100%{transform:none}}
-@keyframes hop{0%{transform:none}38%{transform:translateY(-11%)}72%{transform:translateY(3%)}100%{transform:none}}
-@keyframes squish{0%{transform:none}32%{transform:scale(1.02,.93)}64%{transform:scale(.99,1.025)}100%{transform:none}}
-@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -6px}}
-.seat:hover .ph{animation-play-state:paused;translate:0 -10px;transition:translate .3s}
+/* three phones, fanned at different depths */
+.fan{position:relative;height:640px;margin-top:20px;transform:perspective(1400px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fan:before{content:"";position:absolute;left:12%;right:12%;bottom:4%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,26,74,.22),transparent);filter:blur(6px)}
+.fp{position:absolute;display:block;text-decoration:none;will-change:translate}
+.fp.f0{left:4%;top:92px;width:30%;rotate:-9deg;z-index:1}
+.fp.f1{left:33%;top:24px;width:34%;z-index:3}
+.fp.f2{right:3%;top:104px;width:30%;rotate:8deg;z-index:2}
+.fp .ph{animation:bob 7s ease-in-out infinite}
+.fp.f0 .ph{animation-delay:-2.5s}.fp.f2 .ph{animation-delay:-5s}
+.rise{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.f0 .rise{animation-delay:.15s}.f1 .rise{animation-delay:.3s}.f2 .rise{animation-delay:.45s}
+@keyframes rise{0%{transform:translateY(80px) scale(.94);opacity:0}100%{transform:none;opacity:1}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.fp:hover .ph{animation-play-state:paused}
 .chips{position:absolute;left:50%;top:-14px;translate:-50% -100%;height:34px;width:0;z-index:5}
-.s1 .chips{top:-50px}
+.f1 .chips{top:-18px}
 .chip{position:absolute;left:50%;top:0;translate:-50% 0;width:max-content;display:flex;align-items:center;gap:7px;white-space:nowrap;padding:5px 13px 5px 6px;border-radius:99px;background:#fff;color:var(--ink);font:700 .8rem var(--body);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--g) 70%,transparent),0 10px 22px -12px var(--g);opacity:0;transition:opacity .6s}
 .chip.on{opacity:1}
 .chip img{width:22px;height:22px;border-radius:6px}
@@ -195,7 +188,6 @@ main{position:relative}
 .sh:nth-child(3n) svg{animation-duration:13s}
 @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(8deg)}}
 .hero,.pick,.rows{position:relative;z-index:1}
-.couch{will-change:translate}
 .shots{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .shots .ph{will-change:translate}
 
@@ -281,7 +273,7 @@ footer nav a:hover{color:var(--cobalt)}
   .hero .logo{margin:0 auto 26px;width:min(300px,76%)}
   .lede{margin-left:auto;margin-right:auto}
   .cta{justify-content:center}
-  .couch{max-width:620px;margin:96px auto 0}
+  .fan{max-width:560px;height:560px;margin:56px auto 0}
   .app{grid-template-columns:minmax(0,1fr);gap:40px;padding:64px 0}
   .app.flip .info{order:0}
   .cush{grid-template-columns:minmax(0,1fr);border-radius:36px}
@@ -296,8 +288,8 @@ footer nav a:hover{color:var(--cobalt)}
   h1{font-size:2.5rem}
   .lede{font-size:1.08rem}
   .chip{font-size:.7rem;padding:4px 10px 4px 5px;gap:5px}.chip img{width:18px;height:18px}
-  .chips{top:-8px}.s1 .chips{top:-38px}
-  .couch{margin-top:72px}
+  .chips{top:-8px}.f1 .chips{top:-10px}
+  .fan{height:min(110vw,470px);margin-top:48px}
   .pick a{width:84px;font-size:.76rem}.pick img{width:58px;height:58px}
   .shots{gap:14px}.shots .ph+.ph{margin-top:36px}
   .sh{display:none}
@@ -307,7 +299,8 @@ footer nav a:hover{color:var(--cobalt)}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .drop,.seat .ph,.squish,.drop.hop,.sh svg{animation:none}
+  .rise,.fp .ph,.sh svg{animation:none}
+  .fan{transform:none}
   .shots{transform:none}
   .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph{transform:none;opacity:1}
   .scr img,.chip,.pick a,.pick img{transition:none}
@@ -361,19 +354,12 @@ JS = r'''
   if (matchMedia('(pointer: fine)').matches) {
     addEventListener('pointermove', function(ev){ px = ev.clientX / innerWidth - .5; py = ev.clientY / innerHeight - .5; request(); }, {passive:true});
     // Tilt each pair of phones toward the pointer.
-    document.querySelectorAll('.shots').forEach(function(s){
+    document.querySelectorAll('.shots,.fan').forEach(function(s){
       s.addEventListener('pointermove', function(ev){ var r = s.getBoundingClientRect(); s.style.setProperty('--ry', (((ev.clientX - r.left) / r.width - .5) * 14).toFixed(2) + 'deg'); s.style.setProperty('--rx', (-((ev.clientY - r.top) / r.height - .5) * 10).toFixed(2) + 'deg'); });
       s.addEventListener('pointerleave', function(){ s.style.setProperty('--ry', '0deg'); s.style.setProperty('--rx', '0deg'); });
     });
   }
   request();
-
-  var cl = document.querySelector('.couch .cl'), cr = document.querySelector('.couch .cr');
-  function squish(el){ if (!el) return; el.classList.remove('squish'); void el.offsetWidth; el.classList.add('squish'); }
-  // Which cushion each seat sits on: left, both (the middle seam), right.
-  var under = [[cl], [cl, cr], [cr]];
-  function land(i){ under[i].forEach(squish); }
-  [0, 1, 2].forEach(function(i){ setTimeout(function(){ land(i); }, [870, 1170, 1470][i]); });
 
   // Cycle each phone's screens, only while it is on screen.
   var phones = [].slice.call(document.querySelectorAll('.ph')).filter(function(p){ return p.querySelectorAll('.scr img').length > 1; });
@@ -384,34 +370,19 @@ JS = r'''
     if (!seen.has(p) || document.hidden) return;
     var imgs = p.querySelectorAll('.scr img'), i = [].findIndex.call(imgs, function(x){ return x.classList.contains('on'); });
     var n = (i + 1) % imgs.length;
-    var seat = p.closest('.seat');
-    if (seat) {
-      // A new app sits down: the phone hops, the screen and chip swap mid-air, the cushion gives.
-      var drop = seat.querySelector('.drop');
-      drop.classList.remove('hop'); void drop.offsetWidth; drop.classList.add('hop');
-      setTimeout(function(){
-        imgs[i].classList.remove('on'); imgs[n].classList.add('on');
-        var chips = seat.querySelectorAll('.chip');
-        chips[i].classList.remove('on'); chips[n].classList.add('on');
-        seat.setAttribute('href', '#' + chips[n].dataset.slug);
-      }, 220);
-      setTimeout(function(){ land(+seat.className.match(/s(\d)/)[1]); }, 480);
-      return;
-    }
     imgs[i].classList.remove('on'); imgs[n].classList.add('on');
+    var fp = p.closest('.fp');
+    if (fp) {
+      var chips = fp.querySelectorAll('.chip');
+      chips[i].classList.remove('on'); chips[n].classList.add('on');
+      fp.setAttribute('href', '#' + chips[n].dataset.slug);
+    }
   }
   phones.forEach(function(p){
     setTimeout(function(){ step(p); setInterval(function(){ step(p); }, 3800); }, 2600 + (+p.dataset.delay || 0));
   });
 })();
 '''
-
-COUCH_IMGS = lambda: (
-    '<img class="back" src="/assets/brand/couch-back.png" alt="" width="1600" height="908">',
-    '<img class="cl" src="/assets/brand/couch-cushion-l.png" alt="" width="1600" height="908">'
-    '<img class="cr" src="/assets/brand/couch-cushion-r.png" alt="" width="1600" height="908">'
-    '<img class="arms" src="/assets/brand/couch-arms.png" alt="" width="1600" height="908">',
-)
 
 
 SKY = (
@@ -427,9 +398,8 @@ SKY = (
 
 
 def build():
-    back, front = COUCH_IMGS()
     sky = "".join(f'<div class="sh {c}" data-speed="{sp}" data-depth="{float(sp) * 40:.0f}" style="{st}">{svg}</div>' for st, sp, c, svg in SKY)
-    couch = back + "".join(couch_phone(i, s) for i, s in enumerate(COUCH)) + front
+    fan = "".join(fan_phone(i, s) for i, s in enumerate(COUCH))
     picker = "".join(f'<a href="#{a["slug"]}"><img src="/{a["slug"]}/img/icon.png" alt="" width="68" height="68">{e(a["name"])}</a>' for a in APPS)
     rows = "".join(section(a, i % 2 == 1) for i, a in enumerate(APPS))
     ld = [
@@ -474,7 +444,7 @@ def build():
       <p class="lede">We're an independent iPhone studio. Our team designs, builds and supports small apps for game night, everyday life and the oddly specific problem you wish somebody would just solve.</p>
       <div class="cta"><a class="btn" href="#apps">See our apps</a><a class="btn alt" href="mailto:hello@couchcoopstudios.com">Say hello</a></div>
     </div>
-    <div class="couch" data-speed=".06" aria-hidden="true">{couch}</div>
+    <div class="fan" aria-hidden="true">{fan}</div>
   </section>
   <nav class="pick" id="apps" aria-label="Jump to an app">{picker}</nav>
   <div class="rows">{rows}
