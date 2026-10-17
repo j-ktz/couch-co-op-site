@@ -67,12 +67,12 @@ def iph(slug, files, delay=0, label=None, lazy=True, attrs=""):
 
 
 SHAPES = (
- ('left:2%;top:260px;width:70px;height:70px', '.35', '<svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="29" fill="none" stroke="var(--a)" stroke-width="10"/></svg>'),
- ('left:44%;top:300px;width:84px;height:84px', '-.18', '<svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="var(--a2)"/></svg>'),
+ ('right:25%;top:200px;width:62px;height:62px', '.35', '<svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="29" fill="none" stroke="var(--a2)" stroke-width="10"/></svg>'),
+ ('left:48%;top:300px;width:84px;height:84px', '-.18', '<svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="var(--a2)"/></svg>'),
  ('right:3%;top:250px;width:150px;height:58px', '.3', '<svg viewBox="0 0 150 58"><rect width="150" height="58" rx="29" fill="var(--a3)" transform="rotate(-18 75 29)"/></svg>'),
- ('left:47%;top:760px;width:64px;height:64px', '.45', '<svg viewBox="0 0 70 70"><path d="M35 0C38 22 48 32 70 35C48 38 38 48 35 70C32 48 22 38 0 35C22 32 32 22 35 0Z" fill="var(--a2)"/></svg>'),
- ('right:6%;top:850px;width:170px;height:50px', '.22', '<svg viewBox="0 0 170 50"><path d="M6 30C26 4 42 4 58 26S92 48 108 24S144 2 164 22" fill="none" stroke="var(--a)" stroke-width="11" stroke-linecap="round"/></svg>'),
- ('left:8%;top:900px;width:52px;height:52px', '.4', '<svg viewBox="0 0 58 58"><rect x="6" y="6" width="46" height="46" rx="12" fill="var(--a3)" transform="rotate(16 29 29)"/></svg>'),
+ ('right:38%;top:830px;width:60px;height:60px', '.45', '<svg viewBox="0 0 70 70"><path d="M35 0C38 22 48 32 70 35C48 38 38 48 35 70C32 48 22 38 0 35C22 32 32 22 35 0Z" fill="var(--a2)"/></svg>'),
+ ('right:6%;top:860px;width:170px;height:50px', '.22', '<svg viewBox="0 0 170 50"><path d="M6 30C26 4 42 4 58 26S92 48 108 24S144 2 164 22" fill="none" stroke="var(--a)" stroke-width="11" stroke-linecap="round"/></svg>'),
+ ('right:2%;top:560px;width:50px;height:50px', '.4', '<svg viewBox="0 0 58 58"><rect x="6" y="6" width="46" height="46" rx="12" fill="var(--a3)" transform="rotate(16 29 29)"/></svg>'),
 )
 
 

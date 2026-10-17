@@ -406,7 +406,7 @@ JS = r'''
 
 
 SKY = (
- ('left:3%;top:150px;width:74px;height:74px', '.35', '', '<svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="30" fill="none" stroke="#1857E1" stroke-width="10"/></svg>'),
+ ('left:46%;top:650px;width:74px;height:74px', '.35', '', '<svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="30" fill="none" stroke="#FF7A59" stroke-width="10"/></svg>'),
  ('left:41%;top:170px;width:96px;height:96px', '-.18', 'm-hide', '<svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#FF7A59"/></svg>'),
  ('right:3%;top:190px;width:150px;height:58px', '.3', '', '<svg viewBox="0 0 150 58"><rect width="150" height="58" rx="29" fill="#3DDBB0" transform="rotate(-18 75 29)"/></svg>'),
  ('right:31%;top:120px;width:22px;height:22px', '.55', 'm-hide', '<svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#FFC83D"/></svg>'),
