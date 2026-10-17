@@ -132,7 +132,7 @@ CSS = r'''
 :root{--paper:#EEF1FB;--ink:#0B1A4A;--soft:#3D4A75;--cobalt:#1857E1;--deep:#0F3BB0;--mist:#DCE4FB;--coral:#FF7A59;--mint:#3DDBB0;--sun:#FFC83D;--lav:#A98BFF;--pink:#FF6FB5;--line:rgba(11,26,74,.12);
   --body:"DM Sans",system-ui,-apple-system,sans-serif;--disp:"Manrope",system-ui,-apple-system,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;background:var(--tint,var(--paper));transition:background-color .9s ease;color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
 img{max-width:100%}
@@ -239,14 +239,29 @@ h2{font:800 clamp(1.9rem,3.6vw,2.7rem)/1.02 var(--disp);letter-spacing:-.04em;ma
 .blob.b3{width:300px;height:300px;background:var(--lav);right:-80px;bottom:-120px;opacity:.6}
 .studio:before{content:"";position:absolute;right:-12%;top:-30%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.14),transparent);pointer-events:none}
 .studio h2{font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:.98;letter-spacing:-.045em;max-width:12em;margin:0 0 48px;text-wrap:balance}
-.cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:start}
-.say p{font-size:1.22rem;line-height:1.55;margin:0 0 18px;max-width:32em;color:#fff}
-.facts{margin:0}
-.facts div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.35)}
-.facts div:last-child{border-bottom:1px solid rgba(255,255,255,.35)}
-.facts dt{font:800 3.4rem/1 var(--disp);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
-.facts div:nth-child(1) dt{color:#FFD45E}.facts div:nth-child(2) dt{color:#8FF0D2}.facts div:nth-child(3) dt{color:#FFC6E2}
-.facts dd{margin:0;font-size:1.05rem;color:#fff}
+.say{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.say p{font-size:1.18rem;line-height:1.6;margin:0;color:#fff}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
+.fact{display:flex;flex-direction:column;border-radius:30px;padding:26px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.24);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.fact .fv{height:150px;display:grid;place-items:center;margin-bottom:14px;border-radius:22px;background:rgba(11,26,74,.22)}
+.fnum{font:800 4.2rem/1 var(--disp);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.fact:nth-child(1) .fnum{color:#FFD45E}.fact:nth-child(2) .fnum{color:#8FF0D2}.fact:nth-child(3) .fnum{color:#FFC6E2}
+.fact p{margin:6px 0 0;font-size:1.06rem;color:#fff}
+.fact small{display:block;margin-top:auto;padding-top:14px;font-size:.9rem;color:#fff}
+.fact small a{color:#fff;font-weight:700}
+.igrid{display:grid;grid-template-columns:repeat(3,40px);gap:10px}
+.igrid i{position:relative;display:block}
+.igrid img{display:block;width:40px;height:40px;border-radius:10px;box-shadow:0 8px 16px -8px rgba(0,0,0,.55);transform:scale(.3);opacity:0;transition:transform .55s cubic-bezier(.3,1.6,.4,1),opacity .4s;transition-delay:calc(var(--i) * 70ms)}
+.igrid i.soon:after{content:"";position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:#FFD45E;box-shadow:0 0 0 2px #1857E1;opacity:0;transition:opacity .3s .8s}
+.in .igrid img{transform:none;opacity:1}.in .igrid i.soon img{opacity:.62;filter:saturate(.6)}.in .igrid i.soon:after{opacity:1}
+.noad svg,.inbox svg{width:150px;height:auto;overflow:visible}
+.noad .slash{stroke-dasharray:170;stroke-dashoffset:170;transition:stroke-dashoffset .7s cubic-bezier(.6,0,.2,1) .35s}
+.noad .badge{transform-origin:80px 55px;transition:transform .5s cubic-bezier(.3,1.6,.4,1) .9s}
+.in .noad .slash{stroke-dashoffset:0}.in .noad .badge{transform:rotate(-4deg) scale(.96)}
+.inbox .env{animation:hover 5s ease-in-out infinite}
+.inbox .tick{transform-origin:126px 26px;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.4,1) .5s}
+.in .inbox .tick{transform:none}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
 /* house rules: three cushions */
 .rules{padding:96px 0 40px;text-align:center}
@@ -273,12 +288,13 @@ footer nav a:hover{color:var(--cobalt)}
   .hero .logo{margin:0 auto 26px;width:min(300px,76%)}
   .lede{margin-left:auto;margin-right:auto}
   .cta{justify-content:center}
-  .fan{max-width:560px;height:560px;margin:56px auto 0}
+  .fan{width:100%;max-width:560px;height:560px;margin:56px auto 0}
   .app{grid-template-columns:minmax(0,1fr);gap:40px;padding:64px 0}
   .app.flip .info{order:0}
   .cush{grid-template-columns:minmax(0,1fr);border-radius:36px}
   .help{grid-template-columns:minmax(0,1fr)}
-  .cols{grid-template-columns:minmax(0,1fr);gap:36px}
+  .say{grid-template-columns:minmax(0,1fr);gap:16px}
+  .facts{grid-template-columns:minmax(0,1fr);margin-top:40px}
   .studio{padding:80px 0}
 }
 @media(max-width:560px){
@@ -289,17 +305,19 @@ footer nav a:hover{color:var(--cobalt)}
   .lede{font-size:1.08rem}
   .chip{font-size:.7rem;padding:4px 10px 4px 5px;gap:5px}.chip img{width:18px;height:18px}
   .chips{top:-8px}.f1 .chips{top:-10px}
+  .f0 .chip{translate:-30% 0}.f2 .chip{translate:-74% 0}
   .fan{height:min(110vw,470px);margin-top:48px}
   .pick a{width:84px;font-size:.76rem}.pick img{width:58px;height:58px}
   .shots{gap:14px}.shots .ph+.ph{margin-top:36px}
   .sh{display:none}
   .sky{height:900px}
-  .facts dt{font-size:2.6rem}.facts div{grid-template-columns:70px minmax(0,1fr)}
+  .fnum{font-size:3.4rem}.fact .fv{height:130px}
   .help{padding:28px 24px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rise,.fp .ph,.sh svg{animation:none}
+  .rise,.fp .ph,.sh svg,.inbox .env{animation:none}
+  .igrid img,.noad .slash,.noad .badge,.inbox .tick{transition:none}
   .fan{transform:none}
   .shots{transform:none}
   .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph{transform:none;opacity:1}
@@ -311,7 +329,7 @@ JS = r'''
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var rows = document.querySelectorAll('.app');
-  if (!('IntersectionObserver' in window)) { rows.forEach(function(r){ r.classList.add('in'); }); return; }
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.app,.fact').forEach(function(r){ r.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, {threshold:.18});
   rows.forEach(function(r){ io.observe(r); });
   // The page takes on a soft tint of whichever app you're looking at.
@@ -330,6 +348,8 @@ JS = r'''
     (function tick(t){ var k = Math.min(1, (t - t0) / 900); dt.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); })(t0);
   }); }, {threshold:.6});
   document.querySelectorAll('[data-count]').forEach(function(d){ cio.observe(d); });
+  var fio = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); fio.unobserve(en.target); } }); }, {threshold:.35});
+  document.querySelectorAll('.fact').forEach(function(f){ reduce ? f.classList.add('in') : fio.observe(f); });
 
   if (reduce) return;
 
@@ -400,6 +420,13 @@ SKY = (
 def build():
     sky = "".join(f'<div class="sh {c}" data-speed="{sp}" data-depth="{float(sp) * 40:.0f}" style="{st}">{svg}</div>' for st, sp, c, svg in SKY)
     fan = "".join(fan_phone(i, s) for i, s in enumerate(COUCH))
+    live = sum(1 for a in APPS if a["live"])
+    grid = "".join(f'<i class="{"" if a["live"] else "soon"}" style="--i:{k}"><img src="/{a["slug"]}/img/icon.png" alt="" width="40" height="40" loading="lazy"></i>' for k, a in enumerate(APPS))
+    facts = f'''<div class="facts">
+      <div class="fact"><div class="fv" aria-hidden="true"><div class="igrid">{grid}</div></div><div class="fnum" data-count="{len(APPS)}">{len(APPS)}</div><p>iPhone apps, out now or on the way</p><small>{live} on the App Store, {len(APPS) - live} on the way (the ones with a dot).</small></div>
+      <div class="fact"><div class="fv noad" aria-hidden="true"><svg viewBox="0 0 160 110"><g class="badge"><rect x="12" y="18" width="136" height="74" rx="18" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="4"/><text x="80" y="70" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="44" fill="#fff">AD</text></g><path class="slash" d="M22 100 138 10" stroke="#8FF0D2" stroke-width="11" stroke-linecap="round" fill="none"/></svg></div><div class="fnum">0</div><p>ads in any of them</p><small>No ad networks, no trackers selling your attention.</small></div>
+      <div class="fact"><div class="fv inbox" aria-hidden="true"><svg viewBox="0 0 160 110"><g class="env"><rect x="16" y="24" width="120" height="78" rx="14" fill="#fff"/><path d="M20 32 76 72l56-40" fill="none" stroke="#1857E1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tick"><circle cx="126" cy="26" r="20" fill="#FFC6E2"/><path d="m116 26 7 7 13-14" fill="none" stroke="#1857E1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><div class="fnum" data-count="1">1</div><p>inbox, read by the people who built the app</p><small><a href="mailto:{SUPPORT}">{SUPPORT}</a></small></div>
+    </div>'''
     picker = "".join(f'<a href="#{a["slug"]}"><img src="/{a["slug"]}/img/icon.png" alt="" width="68" height="68">{e(a["name"])}</a>' for a in APPS)
     rows = "".join(section(a, i % 2 == 1) for i, a in enumerate(APPS))
     ld = [
@@ -454,17 +481,11 @@ def build():
   <div class="blob b1" data-speed=".12" aria-hidden="true"></div><div class="blob b2" data-speed="-.1" aria-hidden="true"></div><div class="blob b3" data-speed=".08" aria-hidden="true"></div>
   <div class="wrap">
     <h2 id="studio-h">A small studio with a big couch.</h2>
-    <div class="cols">
-      <div class="say">
-        <p>Couch Co-Op Studios started the way most good ideas do: a couple of people on a couch, wishing an app worked a little better. So we made it ourselves.</p>
-        <p>Our team does everything in-house. We design every screen, write every line, and answer every support email. If an app has our name on it, we use it too.</p>
-      </div>
-      <dl class="facts">
-        <div><dt data-count="9">9</dt><dd>iPhone apps, out now or on the way</dd></div>
-        <div><dt>0</dt><dd>ads in any of them</dd></div>
-        <div><dt data-count="1">1</dt><dd>inbox, read by the people who built the app</dd></div>
-      </dl>
+    <div class="say">
+      <p>Couch Co-Op Studios started the way most good ideas do: a couple of people on a couch, wishing an app worked a little better. So we made it ourselves.</p>
+      <p>Our team does everything in-house. We design every screen, write every line, and answer every support email. If an app has our name on it, we use it too.</p>
     </div>
+    {facts}
   </div>
 </section>
 <div class="wrap">
