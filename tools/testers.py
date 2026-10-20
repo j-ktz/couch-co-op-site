@@ -3,8 +3,8 @@
 
 Run from the repo root:  python3 tools/testers.py
 Edit TESTERS below and re-run. The whole file is rewritten, so don't hand-edit testers/index.html.
-When an app's public TestFlight link is turned on, paste it into that app's "link" and re-run;
-until then the card says the link is coming soon. Uses the hub's styles and app colors (tools/hub.py).
+Testing is invite-only for now (no public TestFlight links while App Review is strict), so every "link" is None
+and each card asks people to email for an invite. To show a public link later, paste it into that app's "link" and re-run. Uses the hub's styles and app colors (tools/hub.py).
 No em dashes (house style). No personal names.
 """
 import json, pathlib, sys, urllib.parse
@@ -34,7 +34,7 @@ TESTERS = [
       what="Exam prep for the journeyman electrician license: daily questions with explanations, calculation and code lookup drills, and timed practice exams.",
       who="Apprentices getting ready for the journeyman exam, and the journeymen and instructors who help them.",
       ask=["Any answer you think is wrong (tell us the code section)", "Any explanation that didn't help", "Anything that slowed your studying down"]),
- dict(slug="fantasyqueens", link="https://testflight.apple.com/join/YkyW74g7",
+ dict(slug="fantasyqueens", link=None,
       what="Fantasy leagues for a Drag Race watch party: pick your queens, vote on the rules, call the lip sync and see who leads after every episode.",
       who="Watch-party groups of three or more friends who already gather for each episode.",
       ask=["What made episode night more fun?", "What slowed the group down or needed explaining?", "Did the TV view work on your setup?"]),
@@ -59,7 +59,6 @@ CSS = r'''
 .card li:before{content:"";position:absolute;left:0;top:.42em;width:13px;height:13px;border-radius:4px;background:var(--g);box-shadow:inset 0 0 0 1px rgba(11,26,74,.2)}
 .join{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:28px}
 .join .go{margin:0}
-.join .soon{display:inline-block;font-weight:700;padding:13px 22px;border-radius:99px;background:var(--mist);color:var(--ink)}
 .join .more{font-weight:700;color:var(--ink)}
 .card .ph{width:100%;max-width:220px;justify-self:center}
 .steps{counter-reset:s}
@@ -89,10 +88,10 @@ def card(t):
         join = (f'<a class="go" href="{e(t["link"])}">Join the {e(a["name"])} beta</a>'
                 f'<a class="more" href="/{s}/">About {e(a["name"])}</a>')
     else:
-        tag = '<span class="tag">Link coming soon</span>'
-        subject = f"Tell me when the {a['name']} beta opens"
-        join = (f'<span class="soon">TestFlight link coming soon</span>'
-                f'<a class="more" href="mailto:{HELLO}?subject={urllib.parse.quote(subject)}">Email us to hear when it opens</a>')
+        tag = '<span class="tag">Invite only</span>'
+        subject = f"Invite me to test {a['name']}"
+        join = (f'<a class="go" href="mailto:{HELLO}?subject={urllib.parse.quote(subject)}">Ask for a {e(a["name"])} invite</a>'
+                f'<a class="more" href="/{s}/">About {e(a["name"])}</a>')
     ask = "".join(f"<li>{e(x)}</li>" for x in t["ask"])
     shot = phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen")
     return f'''
@@ -143,7 +142,7 @@ def build():
   <section class="thero" aria-labelledby="hero-h">
     <a href="/"><img class="logo" src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="607" height="380"></a>
     <h1 id="hero-h">Help us test our apps.</h1>
-    <p class="lede">We're looking for people who will use one of our iPhone apps for real, before it reaches the App Store, and tell us what's confusing, broken or missing. It's free, you can stop any time, and our team reads every note.</p>
+    <p class="lede">We're looking for people who will use one of our iPhone apps for real, before it reaches the App Store, and tell us what's confusing, broken or missing. Testing is free and invite-only for now: ask for an invite to the app you'd use, and we'll email you when there's a spot.</p>
     <div class="cta"><a class="btn" href="#apps">Pick an app</a><a class="btn alt" href="#how">How testing works</a></div>
   </section>
   <div class="cards" id="apps">{cards}
@@ -152,8 +151,8 @@ def build():
     <h2 id="how-h">How testing works</h2>
     <p>Testing runs through TestFlight, Apple's free app for trying apps before they launch.</p>
     <div class="cush steps">
-      <div><h3>Get TestFlight</h3><p>Install <a href="{TESTFLIGHT_APP}">TestFlight</a> from the App Store on your iPhone.</p></div>
-      <div><h3>Open the link</h3><p>Tap an app's TestFlight link on your iPhone, then Accept and Install.</p></div>
+      <div><h3>Ask for an invite</h3><p>Email us which app you'd use and how. We send invites in small batches.</p></div>
+      <div><h3>Accept it on your iPhone</h3><p>Install <a href="{TESTFLIGHT_APP}">TestFlight</a> from the App Store, then open our invite on your iPhone and tap Accept and Install.</p></div>
       <div><h3>Use it, then tell us</h3><p>Use it the way you normally would. Take a screenshot in the app to send feedback, or email us.</p></div>
     </div>
     <div class="know">
@@ -163,7 +162,7 @@ def build():
       <p><strong>What we do with it.</strong> We fix what you find, and we keep a dated log of what testers told us and what changed.</p>
     </div>
     <div class="help">
-      <div><h3>Questions about testing?</h3><p>Tell us which app you'd like to try and we'll help you get set up.</p></div>
+      <div><h3>Want an invite?</h3><p>Tell us which app you'd like to try and a little about how you'd use it.</p></div>
       <a class="btn" href="mailto:{HELLO}">Email {HELLO}</a>
     </div>
   </section>
