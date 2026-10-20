@@ -135,7 +135,9 @@ def block(slug, b, s):
             hd = f'<h3 class="sth">{st["h"]}</h3>' if d.get("h") else f'<h2>{st["h"]}</h2>'
             rows.append(f'<div class="story{" flip" if i % 2 else ""}"{rid}><div class="txt">{hd}{body}</div>{vis}</div>')
         head = (f'<h2>{d["h"]}</h2>' if d.get("h") else "") + (f'<p class="sub">{e(d["sub"])}</p>' if d.get("sub") else "")
-        return f'<section class="sec"{sid}><div class="wrap">{head}{"".join(rows)}</div></section>'
+        cls = f' {d["cls"]}' if d.get("cls") else ""
+        st = f' style="{d["style"]}"' if d.get("style") else ""
+        return f'<section class="sec{cls}"{sid}{st}><div class="wrap">{head}{"".join(rows)}</div></section>'
     if kind == "steps":
         items = "".join(
             f'<li>{iph(slug, [it[2]], k * 500) if len(it) > 2 and it[2] else ""}<h3>{e(it[0])}</h3><p>{it[1]}</p></li>'
@@ -183,7 +185,9 @@ def block(slug, b, s):
 
 
 def page(slug, s):
-    L = legacy(slug)
+    # A spec can bring its own head (title, share tags, structured data) when the page itself changes,
+    # as Tabbed did when the two trades merged. Otherwise the saved legacy head is kept.
+    L = s.get("head") or legacy(slug)
     ink = s["ink"]
     af = fill(s["a"], ink)
     vars_ = (f'--bg:{s["bg"]};--bg2:{s.get("bg2", _mix(s["bg"], s["a"], .07))};--a:{s["a"]};--af:{af};--ai:{ink};'

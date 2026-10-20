@@ -12,7 +12,7 @@ import json, pathlib, sys, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 import hub  # noqa: E402
-from hub import BY, SITE, SUPPORT, e, fill, phone  # noqa: E402
+from hub import BY, SITE, SUPPORT, e, fill, kick, phone  # noqa: E402
 
 HELLO = "hello@couchcoopstudios.com"
 TESTFLIGHT_APP = "https://apps.apple.com/app/testflight/id899247664"
@@ -31,8 +31,8 @@ TESTERS = [
       who="Snowbirds, remote workers and second-home owners who split the year between places and need to count the days.",
       ask=["Did it log the right place each day?", "Did battery use look normal over a week?", "Was anything about permissions, limits or the report unclear?"]),
  dict(slug="tabbed", link=None,
-      what="Exam prep for the journeyman electrician license: daily questions with explanations, calculation and code lookup drills, and timed practice exams.",
-      who="Apprentices getting ready for the journeyman exam, and the journeymen and instructors who help them.",
+      what="Exam prep for the journeyman electrician or plumber license. Pick your trade at setup, then get daily questions with explanations, calculation and code lookup drills, and timed practice exams.",
+      who="Electrical and plumbing apprentices getting ready for the journeyman exam, and the journeymen and instructors who help them. Tell us which trade you're studying.",
       ask=["Any answer you think is wrong (tell us the code section)", "Any explanation that didn't help", "Anything that slowed your studying down"]),
  dict(slug="fantasyqueens", link=None,
       what="Fantasy leagues for a Drag Race watch party: pick your queens, vote on the rules, call the lip sync and see who leads after every episode.",
@@ -102,7 +102,7 @@ def card(t):
     return f'''
     <article class="card" id="{s}" style="--g:{a["g"]};--gf:{fill(a["g"], a["ink"])};--gi:{a["ink"]}" aria-labelledby="{s}-h">
       <div>
-        <div class="head"><img src="/{s}/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="{s}-h">{e(a["name"])}</h2>{tag}</div></div>
+        <div class="head"><img src="/{s}/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="{s}-h">{e(a["name"])}</h2>{tag}{kick(a)}</div></div>
         <dl>
           <div><dt>What it is</dt><dd>{e(t["what"])}</dd></div>
           <div><dt>Who we're looking for</dt><dd>{e(t["who"])}</dd></div>

@@ -141,14 +141,14 @@ tb_body = f"""
 <p>Divide your exam's time limit by its number of questions. That's your average time per question. Practice lookups until most take less than that, and skip anything that's eating your time. You can come back to it at the end.</p>
 <h2>5. For calculations, write the reference first</h2>
 <p>Before doing the math, note the section or table you're using. It keeps you from mixing up tables, and it lets you check your work quickly if time allows.</p>
-{cta("tabbed", "Tabbed: Journeyman Electrician", "Timed lookup drills for your own tabbed code book, practice questions that cite the code section, and exams in your state's format.")}
+{cta("tabbed", "Tabbed", "Journeyman exam prep for electricians and plumbers. Timed lookup drills for your own tabbed code book, practice questions that cite the code section, and exams in your state's format.")}
 """
 tb_faq = [("Are journeyman electrician exams open book?", "Many are, but not all, and the rules on tabs and notes vary. Check your state's candidate handbook."),
           ("What should I tab in the NEC?", "Most people tab the articles they use most (definitions, branch circuits and load calculations, services, overcurrent protection, grounding and bonding, wiring methods and conductors, motors, transformers) plus the Chapter 9 tables and Annex C."),
           ("How do I get faster at looking things up?", "Practice with a timer, start from the index with the most specific word in the question, and skip anything that runs long.")]
-write("tabbed", "find-answers-fast-open-book-electrical-exam.html", page("tabbed", "find-answers-fast-open-book-electrical-exam.html", "Tabbed Electrician",
+write("tabbed", "find-answers-fast-open-book-electrical-exam.html", page("tabbed", "find-answers-fast-open-book-electrical-exam.html", "Tabbed",
       ("#ECE6D6", "#14181F", "#59616d", "#F6F4EE", "#D8D0BB", "#0064D2"),
       "How to Find Answers Fast in an Open-Book Electrical Exam", "Tab your code book before exam day, start from the index, and practice lookups against a clock. A practical guide for journeyman electrician candidates.",
       "How to find answers fast in an open-book electrical exam",
       "<p><b>Tab your code book before exam day, start every lookup from the index, and practice against a clock.</b> Most journeyman electrician exams are open book with a time limit, so the skill that matters is finding the right section quickly, not memorizing it.</p>",
-      tb_body, tb_faq, [], "Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board. NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Check your own exam's rules."))
+      tb_body, tb_faq, [], "Tabbed is an independent study aid, not affiliated with or approved by NFPA or any licensing board. NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Check your own exam's rules."))

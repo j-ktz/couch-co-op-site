@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Write sitemap.xml for couchcoopstudios.com. Run from the repo root: python3 tools/sitemap.py
-Lists every public page. Skips drafts and private paths (pocketarr until launch, join links, 404, sources)."""
+Lists every public page. Skips drafts and private paths (pocketarr until launch, join links, 404, sources)
+and forward-only folders (music-video-night, tabbed-plumber)."""
 import pathlib, datetime
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://couchcoopstudios.com"
-SKIP_DIRS = {"pocketarr", "join", "_src", "docs", "fonts", "assets", "img", "tools", "music-video-night", ".git", ".github"}
+SKIP_DIRS = {"pocketarr", "join", "_src", "docs", "fonts", "assets", "img", "tools", "music-video-night", "tabbed-plumber", ".git", ".github"}
 SKIP_FILES = {"404.html", "mvn/join.html", "og-cover.source.html"}
 # pages other sessions publish separately (listed with their OK)
 EXTRA = ["sitout/how-to/pickleball-round-robin-10-players.html", "sitout/how-to/pickleball-round-robin-12-players.html",

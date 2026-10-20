@@ -1,7 +1,7 @@
 """Per-app content and styling for tools/apppage.py. Copy comes from each app's
 previous page and tools/landing.py, unchanged in substance. No em dashes."""
 import landing
-from appspecs2 import TABBED, TABBED_PLUMBER, FANTASYQUEENS, SITOUT
+from appspecs2 import TABBED, FANTASYQUEENS, SITOUT
 
 C = landing.C
 NAVY, WHITE = "#0B1A4A", "#FFFFFF"
@@ -382,4 +382,4 @@ STATECOUNT = dict(
 )
 
 SPECS = {"mvn": MVN, "mackro": MACKRO, "stashday": STASHDAY, "statecount": STATECOUNT,
-         "tabbed": TABBED, "tabbed-plumber": TABBED_PLUMBER, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT}
+         "tabbed": TABBED, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT}

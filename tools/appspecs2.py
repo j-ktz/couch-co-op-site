@@ -1,5 +1,7 @@
-"""App specs, part two: Tabbed Electrician, Tabbed Plumber, Fantasy Queens, Sitout."""
+"""App specs, part two: Tabbed (electrician and plumber, one app), Fantasy Queens, Sitout."""
+import re
 import landing
+from hub import fill
 
 C = landing.C
 NAVY, WHITE = "#0B1A4A", "#FFFFFF"
@@ -9,7 +11,7 @@ def faq(slug):
     return [(q, landing.esc(a)) for q, a in C[slug]["faq"]]
 
 
-# ---------------------------------------------------------------- Tabbed (both trades)
+# ---------------------------------------------------------------- Tabbed (one app, two trades)
 TABBED_CSS = r'''
 .dplay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:center}
 .drill{background:#fff;border-radius:30px;padding:26px;box-shadow:0 0 0 1px var(--line),0 50px 90px -46px rgba(11,31,68,.55)}
@@ -50,7 +52,32 @@ TABBED_CSS = r'''
 '''
 
 
-def _g18():
+TABBED_CSS += r"""
+.trades{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+.trade{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);padding:8px 18px 8px 8px;border-radius:99px;background:var(--card);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--t) 60%,transparent),0 14px 28px -18px var(--t);font-weight:800;transition:transform .2s cubic-bezier(.3,1.6,.4,1)}
+.trade i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--t);color:#fff;flex:none}
+.trade small{font-weight:600;color:var(--soft);font-size:.85rem}
+.trade:hover{transform:translateY(-2px)}
+.thead{max-width:44em}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:800 .78rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:8px 13px 8px 9px;border-radius:99px;background:var(--af);color:var(--ai);margin:0 0 18px}
+.kicker svg{width:16px;height:16px}
+.trade-sec{background:var(--bg)}
+.trade-sec+.trade-sec{border-top:0;padding-top:0}
+.trade-sec .dplay{margin-top:40px}
+.dplay .sth{font:800 clamp(1.6rem,3vw,2.3rem)/1.05 var(--disp);letter-spacing:-.035em;margin:0 0 14px}
+@media(max-width:960px){.trades{justify-content:center}.thead{margin:0 auto;text-align:center}}
+"""
+
+BOLT = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg>'
+DROP = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6.5 6.6 6.5 11.2a6.5 6.5 0 0 1-13 0C5.5 9.6 12 3 12 3z"/></svg>'
+
+# Electrician keeps Tabbed blue (the page's own accent). Plumber gets the copper from the plumber
+# brand (PlumberPrep branch claude/copper-accent, AccentColor 0x9A5B26) on a warm tint.
+EL_A, PL_A = "#0A84FF", "#9A5B26"
+PL_VARS = f"--a:{PL_A};--af:{fill(PL_A, WHITE)};--ai:{WHITE};--a2:#FFC233;--a3:#3E7BFA;--bg:#F8F0E8;--bg2:#F0E1D2"
+
+
+def _g18(word):
     out = ""
     for n in range(1, 19):
         cls = "ans" if n in (1, 2, 3, 5, 6, 7, 8, 9, 10) else ""
@@ -59,84 +86,154 @@ def _g18():
         if n == 12:
             cls = "cur"
         out += f'<i class="{cls}">{n}</i>'
-    return f'<div class="g18" aria-hidden="true">{out}</div>'
+    return (f'<div class="g18" aria-hidden="true">{out}</div>'
+            f'<p style="font-size:.95rem">{word} is answered. The orange edge is flagged. The outline is where you are.</p>')
 
 
-def tabbed_spec(t):
-    drill = f'''<section class="sec demo" id="try"><div class="wrap"><div class="dplay">
-<div><h2>Try a lookup.</h2><p class="sub">A timed lookup drill, the way the app runs them. Pick an answer and see where it lives in the book.</p></div>
-<div class="drill" id="drill">
-  <div class="dTop"><span>Lookup drill, question 3 of 10</span><span class="dTimer" id="timer">0:00</span></div>
-  <div class="dBar"><i id="bar"></i></div>
-  <p class="dQ">{t["q"]}</p>
-  <div class="opts" id="opts">{"".join(f'<button class="opt" type="button" data-k="{k}"><b>{k.upper()}</b>{v}</button>' for k, v in zip("abcd", t["opts"]))}</div>
-  <div class="reveal" id="reveal" aria-live="polite"><strong id="verdict"></strong><span class="chip">{t["sec"]}</span><p class="find"><b>Find it:</b> {t["find"]}</p><button class="again" type="button" id="again">Try another look</button></div>
-  <p class="dNote">A sample question. {t["name"]}'s bank cites the section for every answer.</p>
-</div></div></div></section>'''
+def trade(t):
+    """One trade's part of the Tabbed page: a heading, a lookup drill and four stories."""
+    k = t["key"]
+    style = f' style="{t["vars"]}"' if t.get("vars") else ""
+    opts = "".join(f'<button class="opt" type="button" data-k="{x}"><b>{x.upper()}</b>{v}</button>' for x, v in zip("abcd", t["opts"]))
+    intro = (f'<section class="sec trade-sec" id="{t["id"]}"{style}><div class="wrap">'
+             f'<div class="thead"><span class="kicker">{t["icon"]}{t["label"]}</span><h2>{t["h"]}</h2><p class="sub" style="margin-bottom:0">{t["sub"]}</p></div>'
+             '<div class="dplay">'
+             '<div><h3 class="sth">Try a lookup.</h3><p class="sub" style="margin:0">A timed lookup drill, the way the app runs them. Pick an answer and see where it lives in the book.</p></div>'
+             f'<div class="drill" data-ok="{t["ok"]}" data-good="{landing.esc(t["good"])}" data-bad="{landing.esc(t["bad"])}">'
+             '<div class="dTop"><span>Lookup drill, question 3 of 10</span><span class="dTimer">0:00</span></div>'
+             '<div class="dBar"><i></i></div>'
+             f'<p class="dQ">{t["q"]}</p><div class="opts">{opts}</div>'
+             f'<div class="reveal" aria-live="polite"><strong class="verdict"></strong><span class="chip">{t["sec"]}</span><p class="find"><b>Find it:</b> {t["find"]}</p><button class="again" type="button">Try another look</button></div>'
+             f'<p class="dNote">A sample question. Tabbed\'s {t["bank"]} bank cites the section for every answer.</p>'
+             '</div></div></div></section>')
     calc = '<div class="calc">' + "".join(f"<div><span>{a}</span><b>{b}</b></div>" for a, b in t["calc"]) + "</div>"
-    return dict(
-     name=t["name"], navname=t["name"], live=False,
-     bg=t["bg"], a=t["a"], ink=t["ink"], a2=t["a2"], a3=t["a3"], band=t["band"],
-     nav=[("Try it", "#try"), ("FAQ", "#faq")],
-     status="Coming soon",
-     h1=["Know the answer.", "Know where it lives."],
-     lede=t["lede"],
-     note="iPhone. Pay once, no subscription.", cta2=("Try a lookup", "#try"),
-     screens=t["screens"],
-     trust=["Every answer cites the code section", "A separate blind check on every answer", "Works offline", "Pay once, no subscription"],
-     css=TABBED_CSS, keep_js="legacy",
-     blocks=[
-      ("raw", drill),
-      ("stories", dict(items=[
-       dict(id="answers", h="Answers you can check.", p=["Every explanation names the section it came from, so you learn where the answer lives instead of memorizing a letter."],
+    img = lambda f: f'{t["img"]}{f}'
+    stories = ("stories", dict(cls="trade-sec", style=t.get("vars"), items=[
+       dict(id=f"{k}-answers", h="Answers you can check.", p=[t["answers_p"]],
             bullets=["<b>Your answer, marked.</b> Right or wrong, you see why.", "<b>Find it.</b> Exactly where to look in your book.", "<b>The code section.</b> Cited on every answer.", "<b>Report a problem.</b> Flag a question from the answer screen."],
-            screens=["answer.jpg"], alt="Practice question with the explanation, the code section it cites and a Find it hint"),
-       dict(id="find", h="Find it in the book, fast.", html=f'<p>{t["find_p"]}</p><div class="clock"><b>0:41</b><span>That\'s how long you get. Beat it.</span></div>',
-            screens=["lookup.jpg"], alt="A timed lookup drill with a countdown"),
-       dict(id="calcs", h="Calcs, one step at a time.", html=f'<p>{t["calc_p"]}</p>{calc}', screens=["calc.jpg"], alt="A calculation question with the full working shown"),
-       dict(id="exam", h="Your exam, your format.", html=f'<p>{t["exam_p"]}</p>{_g18()}<p style="font-size:.95rem">Blue is answered. The orange edge is flagged. The outline is where you are.</p><p style="font-size:.95rem">A readiness estimate by topic shows your weak spots. It\'s an estimate from your practice, not a prediction of your result.</p>',
-            screens=t["exam_screens"], alt="Timed practice exam with a question navigator"),
-      ])),
-      ("who", dict(items=C[t["slug"]]["who"])),
-      ("band", dict(h="Pay once. Study anywhere.", bg=t["band"], sub=t["price"], nos=["No account", "No ads", "No subscription", "No data collected"])),
-      ("faq", dict(items=faq(t["slug"]), after=t.get("guide", ""))),
-      ("more", C[t["slug"]]["more"]),
-     ],
-     finale=("Know where it lives.", "Coming soon to the App Store. Free to start, pay once for the Exam Pass."),
-     links=[("Support", "support.html"), ("Privacy", "privacy.html")] + t.get("links", []),
-     legal=[t["legal"]],
-    )
+            screens=[img("answer.jpg")], alt=f"{t['label']} practice question with the explanation, the code section it cites and a Find it hint"),
+       dict(id=f"{k}-find", h="Find it in the book, fast.", html=f'<p>{t["find_p"]}</p><div class="clock"><b>0:41</b><span>That\'s how long you get. Beat it.</span></div>',
+            screens=[img("lookup.jpg")], alt=f"A timed {t['bank']} lookup drill with a countdown"),
+       dict(id=f"{k}-calcs", h="Calcs, one step at a time.", html=f'<p>{t["calc_p"]}</p>{calc}', screens=[img("calc.jpg")], alt=f"A {t['bank']} calculation with the full working shown"),
+       dict(id=f"{k}-exam", h="Your exam, your format.", html=f'<p>{t["exam_p"]}</p>{_g18(t["answered"])}<p style="font-size:.95rem">A readiness estimate by topic shows your weak spots. It\'s an estimate from your practice, not a prediction of your result.</p>',
+            screens=[img(f) for f in t["exam_screens"]], alt=f"Timed {t['bank']} practice exam with a question navigator"),
+    ]))
+    return [("raw", intro), stories]
 
 
-TABBED = tabbed_spec(dict(
- slug="tabbed", name="Tabbed Electrician", bg="#EEF3FF", a="#0A84FF", ink=WHITE, a2="#FFC233", a3="#FF6B4A", band="#0B1F44",
- lede="Journeyman electrician exam prep where every explanation cites the code section. Drill the lookups, work the calcs, sit the timed exam. All offline.",
- screens=["answer.jpg", "lookup.jpg", "calc.jpg", "exam.jpg", "progress.jpg"], exam_screens=["exam.jpg", "progress.jpg"],
+ELECTRICIAN = dict(
+ key="el", id="electrician", label="Electrician", icon=BOLT, bank="electrical", img="", answered="Blue",
+ h="For electricians.", sub="The National Electrical Code, 2023 and 2026 editions. Set up for your state, and practice exams run in its format. Texas runs as two separately scored parts.",
  q="A 120/240 V service drop crosses a house driveway. What's the minimum clearance above the driveway?",
- opts=["18 ft", "15 ft", "12 ft", "10 ft"], sec="230.24(B)(2)", find="index under Clearances, overhead service conductors.",
+ opts=["18 ft", "15 ft", "12 ft", "10 ft"], ok="c", sec="230.24(B)(2)", find="index under Clearances, overhead service conductors.",
+ good="Correct. Twelve feet over a driveway, in {t}.", bad="Not quite. It's 12 ft. 10 ft is the tempting pick, but that lower clearance doesn't apply over a driveway.",
+ answers_p="Every explanation names the NEC section it came from, so you learn where the answer lives instead of memorizing a letter.",
  find_p="The exam is open book. Timed lookup drills train your own tabbed code book, so the index feels like muscle memory.",
  calc_p="The full working is shown on every problem. Answers come from tested code, never typed by hand.",
  calc=[("Given", "3-phase, 127 A, 300 ft run"), ("Formula", "VD = 1.732 × K × I × L ÷ CM"), ("Plug in", "1.732 × 12.9 × 127 × 300 ÷ 83,690"), ("Volts", "VD ≈ 10.2 V"), ("Percent", "10.2 ÷ 480 ≈ 2.1%")],
  exam_p="Timed full-length practice in your state's format. Flag what you're unsure about, review, then submit, just like test day.",
- price="Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription.",
- guide='<p class="fine" style="margin:26px auto 0">Guide: <a href="guide/find-answers-fast-open-book-electrical-exam.html">How to find answers fast in an open-book electrical exam</a></p>',
- links=[("Open-book guide", "guide/find-answers-fast-open-book-electrical-exam.html")],
- legal="Tabbed Electrician is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NFPA, IBEW, NECA, PSI, Prometric, Pearson VUE, ICC, TDLR, or any state licensing board, and not reviewed or approved by NFPA. NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Passing your exam depends on your own preparation; no study tool can guarantee a result.",
-))
+ exam_screens=["exam.jpg", "progress.jpg"],
+)
 
-TABBED_PLUMBER = tabbed_spec(dict(
- slug="tabbed-plumber", name="Tabbed Plumber", bg="#EAF6FA", a="#1FA2C8", ink=NAVY, a2="#FFC233", a3="#3E7BFA", band="#0A2F3D",
- lede="Journeyman plumber exam prep where every explanation cites the code section. Drill the lookups, work the calcs, sit the timed exam. UPC and IPC. All offline.",
- screens=["answer.jpg", "lookup.jpg", "calc.jpg", "exam.jpg"], exam_screens=["exam.jpg"],
+PLUMBER = dict(
+ key="pl", id="plumber", label="Plumber", icon=DROP, bank="plumbing", img="plumber/", answered="Copper", vars=PL_VARS,
+ h="For plumbers.", sub="The Uniform Plumbing Code (2021) and the International Plumbing Code (2018), with fuel gas questions from the International Fuel Gas Code. Pick the exam you're taking, and practice runs in its format.",
  q="Under the 2018 IPC, what is the minimum diameter of a water service pipe?",
- opts=["1/2 inch", "3/4 inch", "1 inch", "1 1/4 inches"], sec="IPC 603.1", find="Chapter 6, water service, size of water service pipe.",
+ opts=["1/2 inch", "3/4 inch", "1 inch", "1 1/4 inches"], ok="b", sec="IPC 603.1", find="Chapter 6, water service, size of water service pipe.",
+ good="Correct. Three-quarters of an inch, in {t}.", bad="Not quite. It's 3/4 inch. The water service pipe is never smaller than that.",
+ answers_p="Every explanation names the UPC or IPC section it came from, so you learn where the answer lives instead of memorizing a letter.",
  find_p="Most journeyman exams are open book. Timed lookup drills train your own tabbed code book, so the index feels like muscle memory.",
  calc_p="The full working is shown on every problem, from offsets to pressure and head to water heating. Answers come from tested code, never typed by hand.",
  calc=[("Given", "Two 22½° fittings, 27 in offset"), ("Formula", "run = offset × run multiplier"), ("Plug in", "27 × 2.414"), ("Run", "run ≈ 65.18 in"), ("Travel", "27 × 2.613 ≈ 70.55 in")],
- exam_p="Timed full-length practice in the format of the exam you pick: the ICC national exam, Kansas, Maryland, Montana, Nebraska, Washington and more. Flag what you're unsure about, review, then submit, just like test day.",
- price="Free to start: 10 questions a day with explanations, plus free calc practice. The Exam Pass is $24.99, a one-time purchase that unlocks everything for both codes. No subscription.",
- legal="Independent study aid. Not affiliated with, endorsed by, or sponsored by IAPMO, the International Code Council (ICC), PSI, Prometric, Pearson VUE, or any state licensing board, and not reviewed or approved by them. Uniform Plumbing Code is a trademark of IAPMO, and International Plumbing Code and International Fuel Gas Code are trademarks of the International Code Council, used here only to describe the codes covered. No code text or tables are reproduced. Passing your exam is not guaranteed.",
-))
+ exam_p="Timed full-length practice in the format of the exam you pick: the ICC national exams, Kansas, Maryland, Montana, Nebraska, Washington and a UPC exam in the IAPMO format. Flag what you're unsure about, review, then submit, just like test day.",
+ exam_screens=["exam.jpg"],
+)
+
+TABBED_JS = r"""
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+  [].forEach.call(document.querySelectorAll('.drill'),function(d){
+    var q=function(c){return d.querySelector(c)},opts=q('.opts'),reveal=q('.reveal'),verdict=q('.verdict'),timer=q('.dTimer'),bar=q('.dBar i');
+    var key=d.dataset.ok,t=0,done=false,iv;
+    function run(){clearInterval(iv);t=0;timer.textContent='0:00';bar.style.transition='none';bar.style.transform='scaleX(1)';
+      if(!reduce){void bar.offsetWidth;bar.style.transition='transform 41s linear';bar.style.transform='scaleX(0)';}
+      iv=setInterval(function(){if(!done){t++;timer.textContent=fmt(t);if(t>=41)clearInterval(iv)}},1000);}
+    function reset(){done=false;reveal.classList.remove('on');[].forEach.call(opts.children,function(b){b.disabled=false;b.classList.remove('ok','no')});run();}
+    opts.addEventListener('click',function(e){
+      var b=e.target.closest('.opt');if(!b||done)return;done=true;clearInterval(iv);
+      var good=b.dataset.k===key,ok=opts.querySelector('[data-k="'+key+'"]');
+      [].forEach.call(opts.children,function(x){x.disabled=true});
+      ok.classList.add('ok');if(!good)b.classList.add('no');
+      bar.style.transition='none';
+      verdict.textContent=good?d.dataset.good.replace('{t}',fmt(t)):d.dataset.bad;
+      reveal.classList.add('on');
+    });
+    q('.again').addEventListener('click',reset);
+    // Each drill's clock starts when it scrolls into view.
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();run();}},{threshold:.4});io.observe(d);}else run();
+  });
+})();
+"""
+
+
+def _plan(name, price, per, items, hl=False, style=""):
+    st = f' style="{style}"' if style else ""
+    return (f'<div class="plan{" hl" if hl else ""}"{st}><h3>{name}</h3><div class="price">{price}</div><div class="per">{per}</div><ul>'
+            + "".join(f"<li>{x}</li>" for x in items) + "</ul></div>")
+
+
+TABBED_PRICING = ('<section class="sec" id="pricing"><div class="wrap center"><h2>Free to start. Pay once.</h2>'
+ '<p class="sub">The free tier is the same for both trades. When you are ready, buy the Exam Pass for your trade, once.</p><div class="plans" style="max-width:1040px">'
+ + _plan("Free", "$0", "Electrician or plumber", ["10 questions a day with explanations", "The drills", "A 25-question diagnostic", "A 10-question sample exam"])
+ + _plan("Electrician Exam Pass", "$29.99", "One time, per NEC edition (2023 or 2026)", ["Unlocks everything for that edition", "Full practice exams", "No subscription"], hl=True)
+ + _plan("Plumber Exam Pass", "$29.99", "One time, covers both the UPC and the IPC", ["Unlocks everything for both codes", "Full practice exams", "No subscription"], hl=True, style=PL_VARS)
+ + '</div><p class="fine" style="margin:26px auto 0">Coming soon to the App Store. Exam Passes are one-time in-app purchases through Apple. Prices in US dollars.</p></div></section>')
+
+
+def _head():
+    c = C["tabbed"]
+    url, img = f"{landing.SITE}/tabbed/", f"{landing.SITE}/tabbed/og-image.png"
+    E = landing.esc
+    meta = [f'<meta name="description" content="{E(c["desc"])}">', f'<link rel="canonical" href="{url}">',
+            f'<meta property="og:title" content="{E(c["og_title"])}">', f'<meta property="og:description" content="{E(c["desc"])}">',
+            f'<meta property="og:image" content="{img}">', '<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
+            '<meta property="og:type" content="website">', '<meta property="og:site_name" content="Tabbed">', f'<meta property="og:url" content="{url}">',
+            '<meta name="twitter:card" content="summary_large_image">', f'<meta name="twitter:title" content="{E(c["og_title"])}">',
+            f'<meta name="twitter:description" content="{E(c["desc"])}">']
+    ld = re.findall(r'<script type="application/ld\+json">.*?</script>', landing.jsonld("tabbed", c), re.S)
+    return dict(title=E(c["title"]), meta=meta, ld=ld, js=[])
+
+
+TRADES = ('<div class="trades" aria-label="Pick your trade">'
+          f'<a class="trade" href="#electrician" style="--t:{EL_A}"><i>{BOLT}</i><span>Electrician <small>NEC 2023 and 2026</small></span></a>'
+          f'<a class="trade" href="#plumber" style="--t:{PL_A}"><i>{DROP}</i><span>Plumber <small>UPC and IPC</small></span></a></div>')
+
+TABBED = dict(
+ name="Tabbed", navname="Tabbed", live=False, head=_head(),
+ bg="#EEF3FF", a=EL_A, ink=WHITE, a2="#FFC233", a3="#FF6B4A", band="#0B1F44",
+ nav=[("Electrician", "#electrician"), ("Plumber", "#plumber"), ("Pricing", "#pricing"), ("FAQ", "#faq")],
+ status="Coming soon",
+ h1=["Exam prep for journeyman", "electricians and plumbers."],
+ hero_extra=TRADES,
+ lede="Every answer cites the code section. Pick your trade at setup, then drill the lookups, work the calcs and sit the timed exam. All offline.",
+ note="iPhone. Free to start. Pay once for your trade's Exam Pass, no subscription.", cta2=("See pricing", "#pricing"),
+ screens=["answer.jpg", "plumber/answer.jpg", "lookup.jpg", "plumber/calc.jpg", "exam.jpg", "plumber/exam.jpg"],
+ trust=["Every answer cites the code section", "A separate blind check on every answer", "Works offline", "Pay once, no subscription"],
+ css=TABBED_CSS, js=TABBED_JS,
+ blocks=trade(ELECTRICIAN) + trade(PLUMBER) + [
+  ("raw", TABBED_PRICING),
+  ("who", dict(items=C["tabbed"]["who"])),
+  ("band", dict(h="Pay once. Study anywhere.", bg="#0B1F44", sub="No account and nothing to renew. Questions, drills and exams all work offline, on the job site or in the truck.", nos=["No account", "No ads", "No subscription", "No data collected"])),
+  ("faq", dict(items=faq("tabbed"), after='<p class="fine" style="margin:26px auto 0">Guide: <a href="guide/find-answers-fast-open-book-electrical-exam.html">How to find answers fast in an open-book electrical exam</a></p>')),
+  ("more", C["tabbed"]["more"]),
+ ],
+ finale=("Know where it lives.", "Coming soon to the App Store. Electrician or plumber, free to start, pay once for your Exam Pass."),
+ links=[("Support", "support.html"), ("Privacy", "privacy.html"), ("Open-book guide", "guide/find-answers-fast-open-book-electrical-exam.html")],
+ legal=["Tabbed is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NFPA, IAPMO, the International Code Council (ICC), IBEW, NECA, PSI, Prometric, Pearson VUE, TDLR, or any state licensing board, and not reviewed or approved by them. "
+        "NEC® and National Electrical Code® are registered trademarks of the National Fire Protection Association, Quincy, MA. Uniform Plumbing Code is a trademark of IAPMO, and International Plumbing Code and International Fuel Gas Code are trademarks of the International Code Council, used here only to describe the codes covered. "
+        "No code text or tables are reproduced. Passing your exam depends on your own preparation; no study tool can guarantee a result."],
+)
 
 # ---------------------------------------------------------------- Fantasy Queens
 FQ_CSS = r'''

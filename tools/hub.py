@@ -32,14 +32,12 @@ APPS = [
       line="Tells you exactly what to set aside each payday so the irregular bills stop being a surprise.",
       points=["One number per paycheck that covers every bill", "A ring for each fund, so you see what is on track", "Tick off what you paid and set aside"],
       screens=[("number.jpg", "Your number: the amount to set aside this payday"), ("fund.jpg", "A single fund with progress ring and due date"), ("checklist.jpg", "Payday checklist")]),
- dict(slug="tabbed", name="Tabbed Electrician", g="#0A84FF", ink=WHITE, live=False,
-      line="Exam prep for journeyman electricians. Every answer cites the code section.",
-      points=["Practice questions with the explanation and the NEC reference", "Timed lookup drills for finding the right article fast", "Full timed practice exams with a question navigator"],
-      screens=[("answer.jpg", "A practice answer with explanation and code citation"), ("lookup.jpg", "A timed lookup drill with a countdown"), ("exam.jpg", "A timed practice exam")]),
- dict(slug="tabbed-plumber", name="Tabbed Plumber", g="#1FA2C8", ink=NAVY, live=False,
-      line="Exam prep for journeyman plumbers. Every answer cites the code section.",
-      points=["Practice questions with the explanation and the UPC or IPC reference", "Step-by-step plumbing calcs, from offsets to pressure and head", "Timed practice exams in the format of the exam you pick"],
-      screens=[("answer.jpg", "A practice answer with explanation and code citation"), ("calc.jpg", "A plumbing calculation with every step shown"), ("exam.jpg", "A timed practice exam")]),
+ # One app for two trades: the user picks Electrician or Plumber at setup. Plumber screens live in /tabbed/img/plumber/.
+ dict(slug="tabbed", name="Tabbed", kicker="Electrician or plumber", g="#0A84FF", ink=WHITE, live=False,
+      line="Exam prep for journeyman electricians and plumbers. Every answer cites the code section.",
+      points=["Pick electrician or plumber at setup, each with its own questions and exams", "Practice questions with the explanation and the NEC, UPC or IPC reference", "Timed lookup drills, step-by-step calcs and practice exams in your exam's format"],
+      screens=[("answer.jpg", "An electrician practice answer with explanation and code citation"), ("plumber/answer.jpg", "A plumber practice answer with explanation and code citation"),
+               ("lookup.jpg", "A timed lookup drill with a countdown"), ("plumber/calc.jpg", "A plumbing calculation with every step shown")]),
  dict(slug="fantasyqueens", name="Fantasy Queens", g="#F8218A", ink=WHITE, live=False,
       line="Fantasy leagues for your Drag Race watch party. Pick your queens, vote on the rules, see who leads after every episode.",
       points=["Draft your queens with your watch-party group", "Vote on the rules before the premiere", "A leaderboard that updates after every episode"],
@@ -55,7 +53,9 @@ APPS = [
 ]
 BY = {a["slug"]: a for a in APPS}
 # The three fanned hero phones, each cycling through a few apps.
-COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "tabbed-plumber"]]
+# An entry is an app slug, or (slug, screen, chip label, chip color) to show one app twice, as Tabbed does for its two trades.
+COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"],
+         [("tabbed", "answer.jpg", "Tabbed: Electrician", "#0A84FF"), ("tabbed", "plumber/answer.jpg", "Tabbed: Plumber", "#9A5B26")]]
 
 e = lambda s: html.escape(s, quote=True)
 
@@ -97,11 +97,17 @@ def phone(screens, delay=0, label=None, lazy=True):
     return f'<div class="ph" data-delay="{delay}"{aria}><div class="scr">{imgs}</div></div>'
 
 
-def fan_phone(i, slugs):
-    screens = [(s, BY[s]["screens"][0][0], "") for s in slugs]
-    chips = "".join(f'<span class="chip{" on" if j == 0 else ""}" data-slug="{s}" style="--g:{BY[s]["g"]}"><img src="/{s}/img/icon.png" alt="" width="22" height="22">{e(BY[s]["name"])}</span>' for j, s in enumerate(slugs))
+def fan_phone(i, entries):
+    items = [x if isinstance(x, tuple) else (x, BY[x]["screens"][0][0], BY[x]["name"], BY[x]["g"]) for x in entries]
+    slugs = [x[0] for x in items]
+    screens = [(s, f, "") for s, f, _, _ in items]
+    chips = "".join(f'<span class="chip{" on" if j == 0 else ""}" data-slug="{s}" style="--g:{g}"><img src="/{s}/img/icon.png" alt="" width="22" height="22">{e(n)}</span>' for j, (s, _, n, g) in enumerate(items))
     return (f'<a class="fp f{i}" href="#{slugs[0]}" tabindex="-1" data-speed="{(".03", "-.04", ".06")[i]}"><div class="rise">'
             f'<div class="chips">{chips}</div>{phone(screens, delay=i * 1100, lazy=False)}</div></a>')
+
+
+def kick(a):
+    return f'<span class="kick">{e(a["kicker"])}</span>' if a.get("kicker") else ""
 
 
 def section(a, flip):
@@ -115,7 +121,7 @@ def section(a, flip):
     return f'''
     <section class="app{" flip" if flip else ""}" id="{s}" data-tint="{_mix(a["g"], "#EEF1FB", .84)}" style="--g:{a["g"]};--gf:{fill(a["g"], a["ink"])};--gi:{a["ink"]}" aria-labelledby="{s}-h">
       <div class="info">
-        <div class="head"><img src="/{s}/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="{s}-h">{e(a["name"])}</h2>{tag}</div></div>
+        <div class="head"><img src="/{s}/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="{s}-h">{e(a["name"])}</h2>{tag}{kick(a)}</div></div>
         <p class="line">{e(a["line"])}</p>
         <ul>{pts}</ul>
         <a class="go" href="/{s}/">See {e(a["name"])}</a>
@@ -215,6 +221,7 @@ main{position:relative}
 h2{font:800 clamp(1.9rem,3.6vw,2.7rem)/1.02 var(--disp);letter-spacing:-.04em;margin:0 0 8px}
 .tag{display:inline-block;font-size:.78rem;font-weight:700;padding:4px 11px;border-radius:99px;background:var(--mist);color:var(--ink)}
 .tag.live{background:var(--gf);color:var(--gi)}
+.kick{display:inline-block;margin-left:8px;font-size:.85rem;font-weight:700;color:var(--soft)}
 .line{font-size:1.22rem;line-height:1.45;margin:24px 0 18px;max-width:28em}
 .info ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:10px;max-width:30em}
 .info li{position:relative;padding-left:28px;color:var(--soft)}

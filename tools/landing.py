@@ -59,8 +59,7 @@ APPS = {  # for "more apps" tiles
  "tanklog": ("TankLog: Aquascape", "A free, offline journal for planted tanks and shrimp"),
  "mackro": ("Mackro", "A macro tracker with a squirrel in it"),
  "stashday": ("Stashday", "One number to set aside each payday"),
- "tabbed": ("Tabbed Electrician", "Journeyman electrician exam prep"),
- "tabbed-plumber": ("Tabbed Plumber", "Journeyman plumber exam prep"),
+ "tabbed": ("Tabbed", "Journeyman exam prep for electricians and plumbers"),
  "fantasyqueens": ("Fantasy Queens", "Fantasy houses for drag watch parties"),
  "sitout": ("Sitout", "Fair pickleball round robins"),
  "statecount": ("Statecount", "A private 183-day residency tracker"),
@@ -119,49 +118,29 @@ C["stashday"] = dict(
  more=["statecount", "mackro", "sitout", "tanklog"],
 )
 
+# One app, two trades (merged 2026-10-20, plan in the vault: tabbed-merge-plan-2026-10-20).
+# The user picks Electrician or Plumber at setup. Each trade has its own questions, exams and Exam Pass.
 C["tabbed"] = dict(
- name="Tabbed: Journeyman Electrician", short="Tabbed Electrician", category="EducationalApplication", sub="Exam prep", live=False, os="iOS",
- title="Tabbed: Journeyman Electrician Exam Prep for iPhone",
- desc="Practice questions that cite the code section, timed lookup drills for your tabbed code book, step-by-step calcs and exams in your state's format. Pay once.",
- og_title="Tabbed Electrician: know the answer, know where it lives",
- anchor='<section class="pay">',
- vars="--lp-ink:var(--ink);--lp-muted:var(--muted);--lp-card:var(--card);--lp-line:var(--rule);--lp-accent:var(--blue);--lp-accent-ink:#fff;--lp-font:var(--font);--lp-display:var(--font);--lp-paper:var(--page)",
+ name="Tabbed: Electrician & Plumber", short="Tabbed", category="EducationalApplication", sub="Exam prep", live=False, os="iOS",
+ title="Tabbed: Electrician and Plumber Exam Prep for iPhone",
+ desc="Journeyman exam prep for electricians and plumbers. Every answer cites the code section. Lookup drills, step-by-step calcs and exams in your format. Pay once.",
+ og_title="Tabbed: know the answer, know where it lives",
  trust=[("book", "Every answer cites the code section"), ("shield", "A separate blind check on every answer"), ("offline", "Works offline"), ("check", "Pay once, no subscription")],
- who=[("Apprentices with a test date", "3rd to 5th year apprentices getting ready for the journeyman exam, studying on breaks and at night."),
-      ("Texas candidates", "Practice exams in Texas's real format, run as two separately scored parts."),
+ who=[("Apprentices with a test date", "Electrical and plumbing apprentices getting ready for the journeyman exam, studying on breaks and at night."),
+      ("Texas electricians", "Practice exams in Texas's real format, run as two separately scored parts."),
+      ("UPC and IPC plumbers", "Choose the Uniform Plumbing Code or the International Plumbing Code, whichever your board uses."),
       ("Instructors", "Point your class at questions they can check against the book.")],
  guide=("guide/find-answers-fast-open-book-electrical-exam.html", "How to find answers fast in an open-book electrical exam"),
- faq=[("Which code editions does Tabbed Electrician cover?", "The 2023 and 2026 editions of the National Electrical Code. Your state licensing board tells you which edition your exam uses."),
-      ("Does it match my state's exam?", "You set up Tabbed Electrician for your state, and practice exams run in that state's format. Texas, for example, runs as two separately scored parts."),
-      ("How do you know the answers are right?", "Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates and the release notes list them."),
-      ("Do I need my own code book?", "Yes. Most journeyman exams are open book, and Tabbed Electrician's lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn't reproduce code text."),
-      ("Does Tabbed Electrician work offline?", "Yes. Everything works without a connection, on the job site or in the truck."),
-      ("How much is it?", "Free to start: 10 questions a day with explanations, key drills, a 25-question diagnostic and a 10-question sample exam. The Exam Pass is $29.99, a one-time purchase per code edition. No subscription."),
-      ("Can Tabbed Electrician guarantee I pass?", "No study tool can. Passing depends on your own preparation. Tabbed Electrician shows a readiness estimate so you can see where to focus."),
-      ("Is Tabbed Electrician affiliated with NFPA?", "No. Tabbed Electrician is an independent study aid, not affiliated with or approved by NFPA or any licensing board.")],
- more=["stashday", "sitout", "statecount"],
-)
-
-C["tabbed-plumber"] = dict(
- name="Tabbed: Journeyman Plumber", short="Tabbed Plumber", category="EducationalApplication", sub="Exam prep", live=False, os="iOS",
- title="Tabbed: Journeyman Plumber Exam Prep for iPhone",
- desc="Practice questions that cite the UPC or IPC section, timed lookup drills for your tabbed code book, step-by-step plumbing calcs and exams in your state's format. Pay once.",
- og_title="Tabbed Plumber: know the answer, know where it lives",
- anchor='<section class="pay">',
- vars="--lp-ink:var(--ink);--lp-muted:var(--muted);--lp-card:var(--card);--lp-line:var(--rule);--lp-accent:var(--blue);--lp-accent-ink:#fff;--lp-font:var(--font);--lp-display:var(--font);--lp-paper:var(--page)",
- trust=[("book", "Every answer cites the code section"), ("shield", "A separate blind check on every answer"), ("offline", "Works offline"), ("check", "Pay once, no subscription")],
- who=[("Apprentices with a test date", "Plumbing apprentices getting ready for the journeyman exam, studying on breaks and at night."),
-      ("UPC and IPC states", "Choose the Uniform Plumbing Code or the International Plumbing Code, and the edition your board uses."),
-      ("Instructors", "Point your class at questions they can check against the book.")],
- faq=[("Which codes does Tabbed Plumber cover?", "The Uniform Plumbing Code (2021) and the International Plumbing Code (2018), with fuel gas questions from the International Fuel Gas Code. Your licensing board tells you which code and edition your exam uses."),
-      ("Does it match my exam's format?", "You pick the exam you are taking, and practice exams run in that format: the ICC national exams, Kansas, Maryland, Montana, Nebraska, Washington and a UPC exam in the IAPMO format."),
+ faq=[("Is Tabbed for electricians or plumbers?", "Both. When you first open Tabbed, you pick Electrician or Plumber. Each trade has its own questions, practice exams, progress and Exam Pass. You can switch trades later in About."),
+      ("Which codes does Tabbed cover?", "For electricians, the 2023 and 2026 editions of the National Electrical Code. For plumbers, the Uniform Plumbing Code (2021) and the International Plumbing Code (2018), with fuel gas questions from the International Fuel Gas Code. Your licensing board tells you which code and edition your exam uses."),
+      ("Does it match my exam's format?", "You pick the exam you are taking, and practice exams run in that format. Electricians set up Tabbed for their state. Texas, for example, runs as two separately scored parts. Plumbers can pick the ICC national exams, Kansas, Maryland, Montana, Nebraska, Washington or a UPC exam in the IAPMO format."),
       ("How do you know the answers are right?", "Every answer cites the code section it comes from and passes a separate blind check before it ships. If you spot a problem, tap Report a problem under the explanation. Fixes ship in updates."),
-      ("Do I need my own code book?", "Yes. Most journeyman exams are open book, and Tabbed Plumber's lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn't reproduce code text or tables."),
-      ("Does it work offline?", "Yes. Everything works without a connection, on the job site or in the truck. Nothing leaves your phone."),
-      ("How much is it?", "Free to start: 10 questions a day with explanations, plus free calc practice. The Exam Pass is $24.99, a one-time purchase that unlocks everything for both codes. No subscription."),
-      ("Can it guarantee I pass?", "No study tool can. Passing depends on your own preparation. Tabbed Plumber shows a readiness estimate so you can see where to focus."),
-      ("Is it affiliated with IAPMO or ICC?", "No. Tabbed Plumber is an independent study aid, not affiliated with or approved by IAPMO, the International Code Council, PSI, Prometric, Pearson VUE or any licensing board.")],
- more=["tabbed", "stashday", "sitout"],
+      ("Do I need my own code book?", "Yes. Most journeyman exams are open book, and Tabbed's lookup drills train you to find things fast in your own tabbed book. The app cites sections but doesn't reproduce code text or tables."),
+      ("Does Tabbed work offline?", "Yes. Everything works without a connection, on the job site or in the truck. Nothing leaves your phone."),
+      ("How much is it?", "Free to start, for both trades: 10 questions a day with explanations, the drills, a 25-question diagnostic and a 10-question sample exam. Each Exam Pass is $29.99, a one-time purchase. Electricians buy one per code edition (2023 or 2026). One Plumber Exam Pass covers both the UPC and the IPC. No subscription."),
+      ("Can Tabbed guarantee I pass?", "No study tool can. Passing depends on your own preparation. Tabbed shows a readiness estimate so you can see where to focus."),
+      ("Is Tabbed affiliated with NFPA, IAPMO or ICC?", "No. Tabbed is an independent study aid, not affiliated with or approved by NFPA, IAPMO, the International Code Council, PSI, Prometric, Pearson VUE or any licensing board.")],
+ more=["stashday", "sitout", "statecount"],
 )
 
 C["fantasyqueens"] = dict(
@@ -257,14 +236,14 @@ C["mvn"] = dict(
 C[""] = dict(
  name="Couch Co-Op Studios", hub=True,
  title="Couch Co-Op Studios: Small, Fair iPhone Apps",
- desc="Nine iPhone apps: Music Video Night, Mackro, TankLog, Stashday, Tabbed Electrician, Tabbed Plumber, Fantasy Queens, Sitout and Statecount. Small apps, no ads.",
+ desc="Eight iPhone apps: Music Video Night, Mackro, TankLog, Stashday, Tabbed, Fantasy Queens, Sitout and Statecount. Small apps, no ads.",
  og_title="Couch Co-Op Studios",
  og_image="https://couchcoopstudios.com/img/og-hub.jpg",
  anchor="<footer",
  vars="--lp-ink:#F2F2F7;--lp-muted:#A1A1A6;--lp-card:rgba(255,255,255,.06);--lp-line:rgba(255,255,255,.12);--lp-accent:#9867FF;--lp-accent-ink:#fff;--lp-font:var(--font);--lp-display:var(--round)",
  faq=[("Who makes these apps?", "Couch Co-Op Studios, a small independent iPhone app studio. TankLog was built by an aquascaper and is published here too. Each app does one job and has its own support and privacy page."),
       ("Do the apps have ads?", "No. None of the apps show ads."),
-      ("What data do the apps collect?", "Each app's privacy page says exactly. Stashday, Statecount, Sitout, Tabbed Electrician, Tabbed Plumber and TankLog collect no data. Music Video Night has no accounts, analytics or servers. Mackro uses anonymous analytics and sends only what you submit for AI logging. Fantasy Queens collects only what a house needs to work."),
+      ("What data do the apps collect?", "Each app's privacy page says exactly. Stashday, Statecount, Sitout, Tabbed and TankLog collect no data. Music Video Night has no accounts, analytics or servers. Mackro uses anonymous analytics and sends only what you submit for AI logging. Fantasy Queens collects only what a house needs to work."),
       ("How much do they cost?", "Every app is free to download. Some offer an optional upgrade, one-time or yearly, with the price shown in the app before you buy."),
       ("Are the apps on Android?", "Not yet. They're made for iPhone, and some also run on iPad."),
       ("How do I get help?", "Email support@couchcoopstudios.com, or open the Support page for the app you're using.")],
@@ -279,7 +258,7 @@ def jsonld(slug, c):
     url = f"{SITE}/{slug}/" if slug else f"{SITE}/"
     out = []
     if c.get("hub"):
-        items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s}/", "name": APPS[s][0]} for i, s in enumerate(["mvn", "mackro", "tanklog", "stashday", "tabbed", "tabbed-plumber", "fantasyqueens", "sitout", "statecount"])]
+        items = [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s}/", "name": APPS[s][0]} for i, s in enumerate(["mvn", "mackro", "tanklog", "stashday", "tabbed", "fantasyqueens", "sitout", "statecount"])]
         out.append({"@context": "https://schema.org", "@type": "WebSite", "name": "Couch Co-Op Studios", "url": url, "publisher": PUBLISHER})
         out.append({"@context": "https://schema.org", "@type": "ItemList", "name": "iPhone apps from Couch Co-Op Studios", "itemListElement": items})
         out.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -400,7 +379,7 @@ def patch(slug, c):
     print("patched", slug)
 
 
-REBUILT = {"mvn", "mackro", "stashday", "statecount", "tabbed", "tabbed-plumber", "fantasyqueens", "sitout"}
+REBUILT = {"mvn", "mackro", "stashday", "statecount", "tabbed", "fantasyqueens", "sitout"}
 
 
 if __name__ == "__main__":
