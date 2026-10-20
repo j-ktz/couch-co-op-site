@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF1FB">
+<title>Become a tester: Couch Co-Op Studios</title>
+<meta name="description" content="Try Couch Co-Op Studios iPhone apps before they reach the App Store and tell us what to fix. Free, through Apple&#x27;s TestFlight.">
+<link rel="canonical" href="https://couchcoopstudios.com/testers/">
+<link rel="icon" type="image/png" href="/assets/brand/couch-co-op-studios-mark-600.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Couch Co-Op Studios">
+<meta property="og:title" content="Become a tester: Couch Co-Op Studios"><meta property="og:description" content="Try Couch Co-Op Studios iPhone apps before they reach the App Store and tell us what to fix. Free, through Apple&#x27;s TestFlight.">
+<meta property="og:url" content="https://couchcoopstudios.com/testers/"><meta property="og:image" content="https://couchcoopstudios.com/assets/brand/couch-co-op-studios-primary.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://couchcoopstudios.com/assets/brand/couch-co-op-studios-primary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Become a tester", "url": "https://couchcoopstudios.com/testers/", "description": "Try Couch Co-Op Studios iPhone apps before they reach the App Store and tell us what to fix. Free, through Apple's TestFlight.", "publisher": {"@type": "Organization", "name": "Couch Co-Op Studios", "url": "https://couchcoopstudios.com/"}}</script>
+<style>
+@font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/manrope-latin-wght-normal.woff2) format("woff2-variations"),url(/fonts/manrope-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{--paper:#EEF1FB;--ink:#0B1A4A;--soft:#3D4A75;--cobalt:#1857E1;--deep:#0F3BB0;--mist:#DCE4FB;--coral:#FF7A59;--mint:#3DDBB0;--sun:#FFC83D;--lav:#A98BFF;--pink:#FF6FB5;--line:rgba(11,26,74,.12);
+  --body:"DM Sans",system-ui,-apple-system,sans-serif;--disp:"Manrope",system-ui,-apple-system,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--tint,var(--paper));transition:background-color .9s ease;color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+img{max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:12px;z-index:30;background:#fff;padding:8px 14px;border-radius:10px}
+
+/* top bar: one centered pill that stays put */
+.top{position:sticky;top:12px;z-index:20;display:flex;justify-content:center;padding:16px 16px 0;pointer-events:none}
+.bar{pointer-events:auto;display:inline-flex;align-items:center;gap:2px;padding:5px;border-radius:99px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);box-shadow:0 0 0 1px var(--line),0 14px 34px -20px rgba(11,26,74,.55)}
+.bar a{white-space:nowrap;text-decoration:none;font-weight:700;font-size:.93rem;padding:9px 17px;border-radius:99px;color:var(--ink);transition:background .2s}
+.bar a:hover{background:var(--mist)}
+.bar a.c{background:var(--cobalt);color:#fff}
+.bar a.c:hover{background:var(--deep)}
+
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:center;padding:36px 0 40px}
+.logo{display:block;width:min(340px,78%);height:auto;margin:0 0 30px}
+h1{font:800 clamp(2.6rem,5.4vw,4.6rem)/.98 var(--disp);letter-spacing:-.045em;margin:0 0 20px;text-wrap:balance}
+.lede{font-size:1.2rem;color:var(--soft);max-width:28em;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 24px;border-radius:99px;background:var(--cobalt);color:#fff;box-shadow:0 12px 24px -12px rgba(24,87,225,.8);transition:transform .2s,background .2s}
+.btn:hover{background:var(--deep);transform:translateY(-1px)}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px rgba(11,26,74,.22)}
+.btn.alt:hover{background:var(--mist)}
+
+/* three phones, fanned at different depths */
+.fan{position:relative;height:640px;margin-top:20px;transform:perspective(1400px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.fan:before{content:"";position:absolute;left:12%;right:12%;bottom:4%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,26,74,.22),transparent);filter:blur(6px)}
+.fp{position:absolute;display:block;text-decoration:none;will-change:translate}
+.fp.f0{left:4%;top:92px;width:30%;rotate:-9deg;z-index:1}
+.fp.f1{left:33%;top:24px;width:34%;z-index:3}
+.fp.f2{right:3%;top:104px;width:30%;rotate:8deg;z-index:2}
+.fp .ph{animation:bob 7s ease-in-out infinite}
+.fp.f0 .ph{animation-delay:-2.5s}.fp.f2 .ph{animation-delay:-5s}
+.rise{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.f0 .rise{animation-delay:.15s}.f1 .rise{animation-delay:.3s}.f2 .rise{animation-delay:.45s}
+@keyframes rise{0%{transform:translateY(80px) scale(.94);opacity:0}100%{transform:none;opacity:1}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.fp:hover .ph{animation-play-state:paused}
+.chips{position:absolute;left:50%;top:-14px;translate:-50% -100%;height:34px;width:0;z-index:5}
+.f1 .chips{top:-18px}
+.chip{position:absolute;left:50%;top:0;translate:-50% 0;width:max-content;display:flex;align-items:center;gap:7px;white-space:nowrap;padding:5px 13px 5px 6px;border-radius:99px;background:#fff;color:var(--ink);font:700 .8rem var(--body);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--g) 70%,transparent),0 10px 22px -12px var(--g);opacity:0;transition:opacity .6s}
+.chip.on{opacity:1}
+.chip img{width:22px;height:22px;border-radius:6px}
+
+/* the sky: colored shapes at different depths behind the hero */
+main{position:relative}
+.sky{position:absolute;left:0;right:0;top:-120px;height:1100px;overflow:hidden;pointer-events:none;z-index:0}
+.sky:before{content:"";position:absolute;inset:0;background:radial-gradient(30% 32% at 12% 72%,rgba(255,122,89,.20),transparent 70%),radial-gradient(28% 30% at 88% 18%,rgba(61,219,176,.22),transparent 70%),radial-gradient(34% 36% at 62% 70%,rgba(169,139,255,.22),transparent 70%),radial-gradient(22% 24% at 40% 8%,rgba(255,200,61,.20),transparent 70%)}
+.sh{position:absolute;will-change:transform}
+.sh svg{display:block;width:100%;height:100%;animation:float 9s ease-in-out infinite}
+.sh:nth-child(2n) svg{animation-duration:11s;animation-direction:reverse}
+.sh:nth-child(3n) svg{animation-duration:13s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(8deg)}}
+.hero,.pick,.rows{position:relative;z-index:1}
+.shots{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.shots .ph{will-change:translate}
+
+/* iPhone */
+.ph{position:relative;padding:3.6%;border-radius:17% / 7.8%;background:linear-gradient(150deg,#3a4152,#11141c 42%,#2a2f3b);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22),0 0 0 1px rgba(11,26,74,.35),0 34px 60px -26px rgba(11,26,74,.65)}
+.ph:before{content:"";position:absolute;right:-1.4%;top:20%;width:1.6%;height:11%;border-radius:0 3px 3px 0;background:#2a2f3b}
+.ph:after{content:"";position:absolute;top:5.2%;left:50%;width:30%;height:3.4%;translate:-50% 0;border-radius:99px;background:#000;z-index:2}
+.scr{position:relative;aspect-ratio:640/1390;border-radius:13.5% / 6.2%;overflow:hidden;background:#000;isolation:isolate}
+.scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
+.scr img.on{opacity:1}
+
+/* picker */
+.pick{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:30px 0 56px;border-bottom:1px solid var(--line)}
+.pick a{display:flex;flex-direction:column;align-items:center;gap:8px;width:104px;padding:12px 6px;border-radius:22px;text-decoration:none;font-weight:700;font-size:.82rem;line-height:1.2;text-align:center;color:var(--ink);transition:transform .3s cubic-bezier(.3,1.5,.4,1),background .25s}
+.pick img{width:68px;height:68px;border-radius:16px;box-shadow:0 10px 22px -12px rgba(11,26,74,.6);transition:transform .35s cubic-bezier(.3,1.6,.4,1)}
+.pick a:hover,.pick a:focus-visible{transform:translateY(-4px);background:#fff}
+.pick a:hover img{transform:rotate(-5deg) scale(1.06)}
+
+/* app rows */
+.app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;padding:84px 0;border-bottom:1px solid var(--line)}
+.app:last-child{border-bottom:0}
+.app.flip .info{order:2}
+.head{display:flex;align-items:center;gap:18px}
+.head img{width:72px;height:72px;border-radius:17px;box-shadow:0 14px 30px -14px var(--g)}
+h2{font:800 clamp(1.9rem,3.6vw,2.7rem)/1.02 var(--disp);letter-spacing:-.04em;margin:0 0 8px}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;padding:4px 11px;border-radius:99px;background:var(--mist);color:var(--ink)}
+.tag.live{background:var(--gf);color:var(--gi)}
+.line{font-size:1.22rem;line-height:1.45;margin:24px 0 18px;max-width:28em}
+.info ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:10px;max-width:30em}
+.info li{position:relative;padding-left:28px;color:var(--soft)}
+.info li:before{content:"";position:absolute;left:0;top:.42em;width:14px;height:14px;border-radius:5px;background:var(--g);box-shadow:inset 0 0 0 1px rgba(11,26,74,.2)}
+.go{display:inline-block;font-weight:700;text-decoration:none;color:var(--gi);background:var(--gf);padding:13px 24px;border-radius:99px;box-shadow:0 12px 24px -14px var(--g),inset 0 0 0 1px rgba(11,26,74,.12);transition:transform .2s,filter .2s}
+.go:hover{transform:translateY(-1px);filter:saturate(1.1)}
+.shots{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:22px}
+.shots:before{content:"";position:absolute;inset:10% 4% 6%;border-radius:50%;background:var(--g);filter:blur(70px);opacity:.32;z-index:0}
+.shots .ph{position:relative;z-index:1;flex:0 1 250px}
+.shots .ph+.ph{margin-top:56px}
+.app .shots .ph{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.js .app:not(.in) .shots .ph{transform:translateY(40px) rotate(3deg);opacity:0}
+.js .app:not(.in) .shots .ph+.ph{transform:translateY(70px) rotate(-3deg)}
+.app.in .shots .ph+.ph{transition-delay:.12s}
+
+/* studio band */
+.studio{background:var(--cobalt);color:#fff;padding:110px 0;position:relative;overflow:hidden;isolation:isolate}
+.studio .wrap{position:relative;z-index:1}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;will-change:translate}
+.blob.b1{width:420px;height:420px;background:var(--coral);left:-120px;bottom:-160px}
+.blob.b2{width:360px;height:360px;background:var(--mint);right:8%;top:-160px;opacity:.4}
+.blob.b3{width:300px;height:300px;background:var(--lav);right:-80px;bottom:-120px;opacity:.6}
+.studio:before{content:"";position:absolute;right:-12%;top:-30%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.14),transparent);pointer-events:none}
+.studio h2{font-size:clamp(2.4rem,5.4vw,4.4rem);line-height:.98;letter-spacing:-.045em;max-width:12em;margin:0 0 48px;text-wrap:balance}
+.say{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.say p{font-size:1.18rem;line-height:1.6;margin:0;color:#fff}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
+.fact{display:flex;flex-direction:column;border-radius:30px;padding:26px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.24);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.fact .fv{height:150px;display:grid;place-items:center;margin-bottom:14px;border-radius:22px;background:rgba(11,26,74,.22)}
+.fnum{font:800 4.2rem/1 var(--disp);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.fact:nth-child(1) .fnum{color:#FFD45E}.fact:nth-child(2) .fnum{color:#8FF0D2}.fact:nth-child(3) .fnum{color:#FFC6E2}
+.fact p{margin:6px 0 0;font-size:1.06rem;color:#fff}
+.fact small{display:block;margin-top:auto;padding-top:14px;font-size:.9rem;color:#fff}
+.fact small a{color:#fff;font-weight:700}
+.igrid{display:grid;grid-template-columns:repeat(3,40px);gap:10px}
+.igrid i{position:relative;display:block}
+.igrid img{display:block;width:40px;height:40px;border-radius:10px;box-shadow:0 8px 16px -8px rgba(0,0,0,.55);transform:scale(.3);opacity:0;transition:transform .55s cubic-bezier(.3,1.6,.4,1),opacity .4s;transition-delay:calc(var(--i) * 70ms)}
+.igrid i.soon:after{content:"";position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:#FFD45E;box-shadow:0 0 0 2px #1857E1;opacity:0;transition:opacity .3s .8s}
+.in .igrid img{transform:none;opacity:1}.in .igrid i.soon img{opacity:.62;filter:saturate(.6)}.in .igrid i.soon:after{opacity:1}
+.noad svg,.inbox svg{width:150px;height:auto;overflow:visible}
+.noad .slash{stroke-dasharray:170;stroke-dashoffset:170;transition:stroke-dashoffset .7s cubic-bezier(.6,0,.2,1) .35s}
+.noad .badge{transform-origin:80px 55px;transition:transform .5s cubic-bezier(.3,1.6,.4,1) .9s}
+.in .noad .slash{stroke-dashoffset:0}.in .noad .badge{transform:rotate(-4deg) scale(.96)}
+.inbox .env{animation:hover 5s ease-in-out infinite}
+.inbox .tick{transform-origin:126px 26px;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.4,1) .5s}
+.in .inbox .tick{transform:none}
+@keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* house rules: three cushions */
+.rules{padding:96px 0 40px;text-align:center}
+.rules h2{margin-bottom:12px}
+.rules>p{color:var(--soft);font-size:1.15rem;max-width:32em;margin:0 auto 40px}
+.cush{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:980px;margin:0 auto;padding:12px;border-radius:44px;background:var(--cobalt)}
+.cush div{background:var(--mist);border-radius:34px;padding:34px 28px 30px;text-align:left;transition:transform .35s cubic-bezier(.3,1.5,.4,1)}
+.cush div:nth-child(1){background:#FFE3D9}.cush div:nth-child(2){background:#D4F7EC}.cush div:nth-child(3){background:#ECE5FF}
+.cush div:hover{transform:translateY(-6px) scale(1.01)}
+.cush h3{font:800 1.35rem/1.15 var(--disp);letter-spacing:-.03em;margin:0 0 8px}
+.cush p{margin:0;color:var(--soft)}
+.help+.help{margin-top:16px}
+.help{text-align:left;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;max-width:980px;margin:56px auto 0;padding:34px 36px;border-radius:30px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.help h3{font:800 1.5rem/1.1 var(--disp);letter-spacing:-.03em;margin:0 0 6px}
+.help p{margin:0;color:var(--soft)}
+footer{padding:64px 0 56px;color:var(--soft);font-size:.92rem;text-align:center}
+footer p{margin:6px 0}
+footer nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;margin-bottom:14px}
+footer nav a{font-weight:700;text-decoration:none;color:var(--ink)}
+footer nav a:hover{color:var(--cobalt)}
+.fine{font-size:.8rem;max-width:46em;margin:14px auto 0}
+
+@media(max-width:960px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:8px;text-align:center;padding-top:28px}
+  .hero .logo{margin:0 auto 26px;width:min(300px,76%)}
+  .lede{margin-left:auto;margin-right:auto}
+  .cta{justify-content:center}
+  .fan{width:100%;max-width:560px;height:560px;margin:56px auto 0}
+  .app{grid-template-columns:minmax(0,1fr);gap:40px;padding:64px 0}
+  .app.flip .info{order:0}
+  .cush{grid-template-columns:minmax(0,1fr);border-radius:36px}
+  .help{grid-template-columns:minmax(0,1fr)}
+  .say{grid-template-columns:minmax(0,1fr);gap:16px}
+  .facts{grid-template-columns:minmax(0,1fr);margin-top:40px}
+  .studio{padding:80px 0}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .top{top:8px;padding:10px 10px 0}
+  .bar a{font-size:.86rem;padding:8px 12px}
+  h1{font-size:2.5rem}
+  .lede{font-size:1.08rem}
+  .chip{font-size:.7rem;padding:4px 10px 4px 5px;gap:5px}.chip img{width:18px;height:18px}
+  .chips{top:-8px}.f1 .chips{top:-10px}
+  .f0 .chip{translate:-30% 0}.f2 .chip{translate:-74% 0}
+  .fan{height:min(110vw,470px);margin-top:48px}
+  .pick a{width:84px;font-size:.76rem}.pick img{width:58px;height:58px}
+  .shots{gap:14px}.shots .ph+.ph{margin-top:36px}
+  .sh{display:none}
+  .sky{height:900px}
+  .fnum{font-size:3.4rem}.fact .fv{height:130px}
+  .help{padding:28px 24px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise,.fp .ph,.sh svg,.inbox .env{animation:none}
+  .igrid img,.noad .slash,.noad .badge,.inbox .tick{transition:none}
+  .fan{transform:none}
+  .shots{transform:none}
+  .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph{transform:none;opacity:1}
+  .scr img,.chip,.pick a,.pick img{transition:none}
+}
+
+.thero{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:40px 0 24px;text-align:center}
+.thero .logo{margin:0 auto 26px;width:min(260px,70%)}
+.thero .lede{margin-left:auto;margin-right:auto}
+.thero .cta{justify-content:center}
+.cards{position:relative;z-index:1;display:grid;gap:28px;padding:40px 0 24px}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:48px;align-items:center;padding:40px 48px;border-radius:36px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 60px -44px var(--g);overflow:hidden;position:relative;isolation:isolate}
+.card:before{content:"";position:absolute;right:-60px;top:-60px;width:420px;height:420px;border-radius:50%;background:var(--g);filter:blur(80px);opacity:.22;z-index:-1}
+.card .head{margin-bottom:22px}
+.card h2{font-size:clamp(1.7rem,3vw,2.2rem)}
+.tag.open{background:var(--gf);color:var(--gi)}
+.card dl{margin:0;display:grid;gap:16px}
+.card dt{font:800 .78rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:0 0 6px}
+.card dd{margin:0}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.card li{position:relative;padding-left:26px;color:var(--soft)}
+.card li:before{content:"";position:absolute;left:0;top:.42em;width:13px;height:13px;border-radius:4px;background:var(--g);box-shadow:inset 0 0 0 1px rgba(11,26,74,.2)}
+.join{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:28px}
+.join .go{margin:0}
+.join .soon{display:inline-block;font-weight:700;padding:13px 22px;border-radius:99px;background:var(--mist);color:var(--ink)}
+.join .more{font-weight:700;color:var(--ink)}
+.card .ph{width:100%;max-width:220px;justify-self:center}
+.steps{counter-reset:s}
+.steps h3:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:var(--cobalt);color:#fff;font:800 1.1rem var(--disp)}
+.steps a{font-weight:700}
+.know{max-width:980px;margin:56px auto 0;text-align:left;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px}
+.know p{margin:0;color:var(--soft)}
+.know strong{color:var(--ink)}
+@media(max-width:960px){
+  .card{grid-template-columns:minmax(0,1fr);gap:32px;padding:32px 28px}
+  .card .ph{max-width:200px}
+  .know{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:560px){
+  .thero{padding-top:28px}
+  .card{padding:28px 22px;border-radius:30px}
+  .card .ph{max-width:170px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#apps">Skip to the apps</a>
+<header class="top"><nav class="bar" aria-label="Site"><a href="/">All apps</a><a href="#how">How it works</a><a class="c" href="mailto:hello@couchcoopstudios.com">Contact</a></nav></header>
+<main>
+<div class="sky" aria-hidden="true"><div class="sh " style="right:3%;top:190px;width:150px;height:58px"><svg viewBox="0 0 150 58"><rect width="150" height="58" rx="29" fill="#3DDBB0" transform="rotate(-18 75 29)"/></svg></div><div class="sh m-hide" style="right:31%;top:120px;width:22px;height:22px"><svg viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#FFC83D"/></svg></div></div>
+<div class="wrap">
+  <section class="thero" aria-labelledby="hero-h">
+    <a href="/"><img class="logo" src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="607" height="380"></a>
+    <h1 id="hero-h">Help us test our apps.</h1>
+    <p class="lede">We're looking for people who will use one of our iPhone apps for real, before it reaches the App Store, and tell us what's confusing, broken or missing. It's free, you can stop any time, and our team reads every note.</p>
+    <div class="cta"><a class="btn" href="#apps">Pick an app</a><a class="btn alt" href="#how">How testing works</a></div>
+  </section>
+  <div class="cards" id="apps">
+    <article class="card" id="sitout" style="--g:#E2FB2C;--gf:#E2FB2C;--gi:#0B1A4A" aria-labelledby="sitout-h">
+      <div>
+        <div class="head"><img src="/sitout/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="sitout-h">Sitout</h2><span class="tag">Link coming soon</span></div></div>
+        <dl>
+          <div><dt>What it is</dt><dd>Runs a pickleball round robin from one phone: fair sit-outs, rotating partners, two-tap scoring and standings at the end of the night.</dd></div>
+          <div><dt>Who we're looking for</dt><dd>Whoever organizes open play, a ladder or a weekly round robin. Players never need the app; only the organizer holds the phone.</dd></div>
+          <div><dt>What we'd love to hear</dt><dd><ul><li>Did the sit-outs feel fair to your group?</li><li>Was scoring quick enough between games?</li><li>What happened when someone arrived late or left early?</li></ul></dd></div>
+        </dl>
+        <div class="join"><span class="soon">TestFlight link coming soon</span><a class="more" href="mailto:hello@couchcoopstudios.com?subject=Tell%20me%20when%20the%20Sitout%20beta%20opens">Email us to hear when it opens</a></div>
+      </div>
+      <div class="ph" data-delay="0" role="img" aria-label="Sitout screen"><div class="scr"><img class="on" src="/sitout/img/live.jpg" alt="A live round: who sits out, then each court with its teams and scores" width="640" height="1390" loading="lazy" decoding="async"></div></div>
+    </article>
+    <article class="card" id="stashday" style="--g:#34C79A;--gf:#34C79A;--gi:#0B1A4A" aria-labelledby="stashday-h">
+      <div>
+        <div class="head"><img src="/stashday/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="stashday-h">Stashday</h2><span class="tag">Link coming soon</span></div></div>
+        <dl>
+          <div><dt>What it is</dt><dd>Turns the bills you pay once in a while (insurance, gifts, car registration, annual subscriptions) into one amount to set aside each payday.</dd></div>
+          <div><dt>Who we're looking for</dt><dd>Anyone who budgets by paycheck and keeps getting surprised by the bills that don&#x27;t come every month.</dd></div>
+          <div><dt>What we'd love to hear</dt><dd><ul><li>Did the per-paycheck amount make sense for your real bills?</li><li>Was any step of setup confusing?</li><li>Which fund or bill type was missing?</li></ul></dd></div>
+        </dl>
+        <div class="join"><span class="soon">TestFlight link coming soon</span><a class="more" href="mailto:hello@couchcoopstudios.com?subject=Tell%20me%20when%20the%20Stashday%20beta%20opens">Email us to hear when it opens</a></div>
+      </div>
+      <div class="ph" data-delay="0" role="img" aria-label="Stashday screen"><div class="scr"><img class="on" src="/stashday/img/number.jpg" alt="Your number: the amount to set aside this payday" width="640" height="1390" loading="lazy" decoding="async"></div></div>
+    </article>
+    <article class="card" id="statecount" style="--g:#4A8FD6;--gf:#4A8FD6;--gi:#0B1A4A" aria-labelledby="statecount-h">
+      <div>
+        <div class="head"><img src="/statecount/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="statecount-h">Statecount</h2><span class="tag">Link coming soon</span></div></div>
+        <dl>
+          <div><dt>What it is</dt><dd>Keeps a day-by-day record of which state or country you&#x27;re in and warns you before a limit you set, like 183 days. Your location never leaves your phone.</dd></div>
+          <div><dt>Who we're looking for</dt><dd>Snowbirds, remote workers and second-home owners who split the year between places and need to count the days.</dd></div>
+          <div><dt>What we'd love to hear</dt><dd><ul><li>Did it log the right place each day?</li><li>Did battery use look normal over a week?</li><li>Was anything about permissions, limits or the report unclear?</li></ul></dd></div>
+        </dl>
+        <div class="join"><span class="soon">TestFlight link coming soon</span><a class="more" href="mailto:hello@couchcoopstudios.com?subject=Tell%20me%20when%20the%20Statecount%20beta%20opens">Email us to hear when it opens</a></div>
+      </div>
+      <div class="ph" data-delay="0" role="img" aria-label="Statecount screen"><div class="scr"><img class="on" src="/statecount/img/home.jpg" alt="Days used and days left for New York and Florida (example data)" width="640" height="1390" loading="lazy" decoding="async"></div></div>
+    </article>
+    <article class="card" id="tabbed" style="--g:#0A84FF;--gf:#0A73E2;--gi:#FFFFFF" aria-labelledby="tabbed-h">
+      <div>
+        <div class="head"><img src="/tabbed/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="tabbed-h">Tabbed Electrician</h2><span class="tag">Link coming soon</span></div></div>
+        <dl>
+          <div><dt>What it is</dt><dd>Exam prep for the journeyman electrician license: daily questions with explanations, calculation and code lookup drills, and timed practice exams.</dd></div>
+          <div><dt>Who we're looking for</dt><dd>Apprentices getting ready for the journeyman exam, and the journeymen and instructors who help them.</dd></div>
+          <div><dt>What we'd love to hear</dt><dd><ul><li>Any answer you think is wrong (tell us the code section)</li><li>Any explanation that didn&#x27;t help</li><li>Anything that slowed your studying down</li></ul></dd></div>
+        </dl>
+        <div class="join"><span class="soon">TestFlight link coming soon</span><a class="more" href="mailto:hello@couchcoopstudios.com?subject=Tell%20me%20when%20the%20Tabbed%20Electrician%20beta%20opens">Email us to hear when it opens</a></div>
+      </div>
+      <div class="ph" data-delay="0" role="img" aria-label="Tabbed Electrician screen"><div class="scr"><img class="on" src="/tabbed/img/answer.jpg" alt="A practice answer with explanation and code citation" width="640" height="1390" loading="lazy" decoding="async"></div></div>
+    </article>
+    <article class="card" id="fantasyqueens" style="--g:#F8218A;--gf:#D72081;--gi:#FFFFFF" aria-labelledby="fantasyqueens-h">
+      <div>
+        <div class="head"><img src="/fantasyqueens/img/icon.png" alt="" width="72" height="72" loading="lazy"><div><h2 id="fantasyqueens-h">Fantasy Queens</h2><span class="tag open">Open now</span></div></div>
+        <dl>
+          <div><dt>What it is</dt><dd>Fantasy leagues for a Drag Race watch party: pick your queens, vote on the rules, call the lip sync and see who leads after every episode.</dd></div>
+          <div><dt>Who we're looking for</dt><dd>Watch-party groups of three or more friends who already gather for each episode.</dd></div>
+          <div><dt>What we'd love to hear</dt><dd><ul><li>What made episode night more fun?</li><li>What slowed the group down or needed explaining?</li><li>Did the TV view work on your setup?</li></ul></dd></div>
+        </dl>
+        <div class="join"><a class="go" href="https://testflight.apple.com/join/YkyW74g7">Join the Fantasy Queens beta</a><a class="more" href="/fantasyqueens/">About Fantasy Queens</a></div>
+      </div>
+      <div class="ph" data-delay="0" role="img" aria-label="Fantasy Queens screen"><div class="scr"><img class="on" src="/fantasyqueens/img/shot2.jpg" alt="Rules vote screen" width="640" height="1390" loading="lazy" decoding="async"></div></div>
+    </article>
+  </div>
+  <section class="rules" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">How testing works</h2>
+    <p>Testing runs through TestFlight, Apple's free app for trying apps before they launch.</p>
+    <div class="cush steps">
+      <div><h3>Get TestFlight</h3><p>Install <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store on your iPhone.</p></div>
+      <div><h3>Open the link</h3><p>Tap an app's TestFlight link on your iPhone, then Accept and Install.</p></div>
+      <div><h3>Use it, then tell us</h3><p>Use it the way you normally would. Take a screenshot in the app to send feedback, or email us.</p></div>
+    </div>
+    <div class="know">
+      <p><strong>It's free.</strong> Purchases inside a test version are test purchases, and you're never charged for them.</p>
+      <p><strong>Leave any time.</strong> Delete the app, or open TestFlight and tap Stop Testing.</p>
+      <p><strong>What we see.</strong> TestFlight sends us crash reports and any feedback you choose to send. Each app's privacy page covers the rest.</p>
+      <p><strong>What we do with it.</strong> We fix what you find, and we keep a dated log of what testers told us and what changed.</p>
+    </div>
+    <div class="help">
+      <div><h3>Questions about testing?</h3><p>Tell us which app you'd like to try and we'll help you get set up.</p></div>
+      <a class="btn" href="mailto:hello@couchcoopstudios.com">Email hello@couchcoopstudios.com</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <nav aria-label="Apps"><a href="/mvn/">Music Video Night</a><a href="/mackro/">Mackro</a><a href="/tanklog/">TankLog</a><a href="/stashday/">Stashday</a><a href="/tabbed/">Tabbed Electrician</a><a href="/tabbed-plumber/">Tabbed Plumber</a><a href="/fantasyqueens/">Fantasy Queens</a><a href="/sitout/">Sitout</a><a href="/statecount/">Statecount</a></nav>
+    <p>&copy; 2026 Couch Co-Op Studios. <a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a></p>
+    <p class="fine">Apple, the Apple logo, iPhone and TestFlight are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p>
+  </div>
+</footer>
+</body>
+</html>
