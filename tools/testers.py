@@ -60,6 +60,9 @@ CSS = r'''
 .join{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:28px}
 .join .go{margin:0}
 .join .more{font-weight:700;color:var(--ink)}
+.join .alt{flex-basis:100%;margin:0;font-size:.92rem;color:var(--soft)}
+.join .alt b{color:var(--ink)}
+.copy{font:700 .85rem/1 var(--body);border:0;border-radius:99px;padding:7px 14px;margin-left:6px;background:var(--ink);color:var(--bg);cursor:pointer}
 .card .ph{width:100%;max-width:220px;justify-self:center}
 .steps{counter-reset:s}
 .steps h3:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:var(--cobalt);color:#fff;font:800 1.1rem var(--disp)}
@@ -91,7 +94,9 @@ def card(t):
         tag = '<span class="tag">Invite only</span>'
         subject = f"Invite me to test {a['name']}"
         join = (f'<a class="go" href="mailto:{HELLO}?subject={urllib.parse.quote(subject)}">Ask for a {e(a["name"])} invite</a>'
-                f'<a class="more" href="/{s}/">About {e(a["name"])}</a>')
+                f'<a class="more" href="/{s}/">About {e(a["name"])}</a>'
+                f'<p class="alt">No email app? Write to <b>{HELLO}</b> and say which app. '
+                f'<button type="button" class="copy" data-copy="{HELLO}">Copy address</button></p>')
     ask = "".join(f"<li>{e(x)}</li>" for x in t["ask"])
     shot = phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen")
     return f'''
@@ -175,6 +180,17 @@ def build():
     <p class="fine">Apple, the Apple logo, iPhone and TestFlight are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p>
   </div>
 </footer>
+<script>
+// Some browsers have no mail app set up, so a mailto link opens a blank window. The copy button gives them the address instead.
+document.querySelectorAll('.copy').forEach(function (b) {{
+  b.addEventListener('click', function () {{
+    var text = b.getAttribute('data-copy');
+    function done() {{ b.textContent = 'Copied'; setTimeout(function () {{ b.textContent = 'Copy address'; }}, 2000); }}
+    if (navigator.clipboard) {{ navigator.clipboard.writeText(text).then(done, function () {{ window.prompt('Copy this address:', text); }}); }}
+    else {{ window.prompt('Copy this address:', text); }}
+  }});
+}});
+</script>
 </body>
 </html>
 '''
