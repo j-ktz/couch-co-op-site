@@ -38,6 +38,18 @@ TESTERS = [
       what="Fantasy leagues for a Drag Race watch party: pick your queens, vote on the rules, call the lip sync and see who leads after every episode.",
       who="Watch-party groups of three or more friends who already gather for each episode.",
       ask=["What made episode night more fun?", "What slowed the group down or needed explaining?", "Did the TV view work on your setup?"]),
+ dict(slug="mvn", link=None,
+      what="A party game for friends in the same room: everyone secretly picks a music video for the night's theme, the room watches together, rates and ranks, and a blind vote crowns the winner. This beta is the 2.0 update.",
+      who="Friends who host nights in. Bring at least one other phone; a TV or an iPad makes it better.",
+      ask=["Did everyone get in and lock in without help?", "Did the TV or AirPlay view work for your room?", "Which themes did your group want that aren't there?"]),
+ dict(slug="mackro", link=None,
+      what="A macro tracker with a squirrel coach. Log food by photo, description, barcode or search, and see protein, carbs, fat and fiber add up. This beta is the 2.2 update.",
+      who="Anyone who already counts macros or calories, or wants to start, and would log for at least a week.",
+      ask=["Which way of logging did you use most, and was it fast?", "Did any food come back with the wrong numbers?", "Did the widgets and reminders help or get in the way?"]),
+ dict(slug="pocketarr", link=None,
+      what="Lock Screen and Home Screen widgets for the Sonarr, Radarr, Lidarr and Plex servers you already run: what's airing, how the queue is moving, and whether a server needs attention.",
+      who="People who run their own media server at home and check on it from their phone. You need your own server (there's also a demo mode).",
+      ask=["Did it find and connect to your servers easily?", "Did the widgets stay current through the day?", "What would you check that it doesn't show yet?"]),
 ]
 
 CSS = r'''
