@@ -14,7 +14,7 @@ import html, json, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 import landing  # noqa: E402  (icons, more-apps names)
-from hub import contrast, _mix  # noqa: E402
+from hub import contrast, _mix, preview  # noqa: E402
 
 LEGACY = ROOT / "tools" / "app-legacy.json"
 NAVY, WHITE = "#0B1A4A", "#FFFFFF"
@@ -198,6 +198,10 @@ def page(slug, s):
     h1 = "".join(f"<span>{e(x)}</span>" for x in s["h1"])
     status = f'<span class="status">{e(s["status"])}</span>' if s.get("status") else ""
     body = "".join(block(slug, b, s) for b in s["blocks"])
+    pv = s.get("preview")
+    watch = (f'<section class="sec watch" id="preview" aria-labelledby="pv-h"><div class="wrap"><div class="story">'
+             f'<div class="txt"><h2 id="pv-h">{e(s["name"])} in {pv[0]} seconds</h2><p>{e(pv[1])}</p></div>'
+             f'<div class="vis">{preview(slug, s["name"], frame="iph")}</div></div></div></section>') if pv else ""
     trust = '<ul class="trust" aria-label="At a glance">' + "".join(f"<li>{e(t)}</li>" for t in s["trust"]) + "</ul>" if s.get("trust") else ""
     links = "".join(f'<a href="{h}">{e(t)}</a>' for t, h in s["links"])
     legal = "".join(f"<p>{x}</p>" for x in s.get("legal", []))
@@ -215,7 +219,7 @@ def page(slug, s):
 {meta}
 <link rel="icon" type="image/png" href="/{slug}/img/icon.png">
 <link rel="apple-touch-icon" href="/{slug}/img/icon.png">
-<link rel="stylesheet" href="/assets/app.css?v={ver("assets/app.css")}">
+<link rel="stylesheet" href="/assets/app.css?v={ver("assets/app.css")}">{f'<link rel="stylesheet" href="/assets/preview.css?v={ver("assets/preview.css")}">' if pv else ""}
 <style>:root{{{vars_}}}{s.get("css", "")}</style>
 {(f"<!--gen:jsonld-->{''.join(L['ld'])}<!--/gen:jsonld-->" if s.get("ld_marker") else "".join(L["ld"]))}
 <script>document.documentElement.classList.add('js')</script>
@@ -240,7 +244,7 @@ def page(slug, s):
   </section>
   {trust}
 </div>
-{body}
+{watch}{body}
 <section class="finale">
   <div class="wrap">
     <img class="hicon" src="/{slug}/img/icon.png" alt="" width="110" height="110" loading="lazy">
@@ -259,7 +263,7 @@ def page(slug, s):
     <div class="legal">{legal}<p>&copy; 2026 Couch Co-Op Studios. {e(landing.HOUSE_LINE)}</p><p>{e(landing.APPLE_CREDIT)}</p></div>
   </div>
 </footer>
-<script src="/assets/app.js?v={ver("assets/app.js")}" defer></script>
+<script src="/assets/app.js?v={ver("assets/app.js")}" defer></script>{f'<script src="/assets/preview.js?v={ver("assets/preview.js")}" defer></script>' if pv else ""}
 {js}
 </body>
 </html>
@@ -268,6 +272,8 @@ def page(slug, s):
 
 if __name__ == "__main__":
     import appspecs
+    for k, v in appspecs.PREVIEWS.items():
+        appspecs.SPECS[k]["preview"] = v
     want = sys.argv[1:] or list(appspecs.SPECS)
     for slug in want:
         if slug == "tanklog":

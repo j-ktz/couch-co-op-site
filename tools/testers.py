@@ -12,7 +12,7 @@ import json, pathlib, sys, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 import hub  # noqa: E402
-from hub import BY, SITE, SUPPORT, e, fill, kick, phone  # noqa: E402
+from hub import BY, SITE, SUPPORT, e, fill, kick, phone, preview  # noqa: E402
 
 HELLO = "hello@couchcoopstudios.com"
 TESTFLIGHT_APP = "https://apps.apple.com/app/testflight/id899247664"
@@ -74,8 +74,9 @@ CSS = r'''
 .join .more{font-weight:700;color:var(--ink)}
 .join .alt{flex-basis:100%;margin:0;font-size:.92rem;color:var(--soft)}
 .join .alt b{color:var(--ink)}
-.copy{font:700 .85rem/1 var(--body);border:0;border-radius:99px;padding:7px 14px;margin-left:6px;background:var(--ink);color:var(--bg);cursor:pointer}
+.copy{font:700 .85rem/1 var(--body);border:0;border-radius:99px;padding:7px 14px;margin-left:6px;background:var(--ink);color:var(--paper);cursor:pointer}
 .card .ph{width:100%;max-width:220px;justify-self:center}
+.card .pvw{justify-self:center}
 .steps{counter-reset:s}
 .steps h3:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:var(--cobalt);color:#fff;font:800 1.1rem var(--disp)}
 .steps a{font-weight:700}
@@ -95,6 +96,11 @@ CSS = r'''
 '''
 
 
+def hub_ver(p):
+    import hashlib
+    return hashlib.sha1((ROOT / p).read_bytes()).hexdigest()[:8]
+
+
 def card(t):
     a = BY[t["slug"]]
     s = a["slug"]
@@ -110,7 +116,9 @@ def card(t):
                 f'<p class="alt">No email app? Write to <b>{HELLO}</b> and say which app. '
                 f'<button type="button" class="copy" data-copy="{HELLO}">Copy address</button></p>')
     ask = "".join(f"<li>{e(x)}</li>" for x in t["ask"])
-    shot = phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen")
+    # The app's App Store preview when there is one (tap to play, so eight cards don't all load video), else a screen.
+    shot = (preview(s, a["name"], auto=False) if (ROOT / s / "img" / "preview.mp4").exists()
+            else phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen"))
     return f'''
     <article class="card" id="{s}" style="--g:{a["g"]};--gf:{fill(a["g"], a["ink"])};--gi:{a["ink"]}" aria-labelledby="{s}-h">
       <div>
@@ -148,6 +156,7 @@ def build():
 <meta property="og:url" content="{SITE}/testers/"><meta property="og:image" content="{og}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{og}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<link rel="stylesheet" href="/assets/preview.css?v={hub_ver("assets/preview.css")}">
 <style>{hub.CSS}{CSS}</style>
 </head>
 <body>
@@ -203,6 +212,7 @@ document.querySelectorAll('.copy').forEach(function (b) {{
   }});
 }});
 </script>
+<script src="/assets/preview.js?v={hub_ver("assets/preview.js")}" defer></script>
 </body>
 </html>
 '''

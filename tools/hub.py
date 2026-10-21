@@ -101,6 +101,22 @@ def phone(screens, delay=0, label=None, lazy=True):
     return f'<div class="ph" data-delay="{delay}"{aria}><div class="scr">{imgs}</div></div>'
 
 
+_PLAY = '<svg class="i-play" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.5v13L13 8z" fill="currentColor"/></svg>'
+_PAUSE = '<svg class="i-pause" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1h4v14H1zM9 1h4v14H9z" fill="currentColor"/></svg>'
+
+
+def preview(slug, name, frame="ph", auto=True):
+    """The app's App Store preview (/<slug>/img/preview.mp4 + .jpg poster) as a silent loop in a phone frame,
+    with a Play/Pause button. auto plays it while on screen; otherwise it waits for a tap.
+    The page needs /assets/preview.css and /assets/preview.js."""
+    big = '<span class="pv-big" aria-hidden="true"><svg viewBox="0 0 14 16"><path d="M1 1.5v13L13 8z" fill="currentColor"/></svg></span>'
+    return (f'<figure class="pvw" data-name="{e(name)}"{" data-auto" if auto else ""}>'
+            f'<div class="{frame} pv idle"><div class="scr"><video src="/{slug}/img/preview.mp4" poster="/{slug}/img/preview.jpg" '
+            f'muted loop playsinline controls preload="{"metadata" if auto else "none"}" width="592" height="1282" '
+            f'aria-label="{e(name)} App Store preview, silent, with captions on screen"></video></div>{big}</div>'
+            f'<button type="button" class="pv-btn" hidden>{_PLAY}{_PAUSE}<span>Play</span></button></figure>')
+
+
 def fan_phone(i, entries):
     items = [x if isinstance(x, tuple) else (x, BY[x]["screens"][0][0], BY[x]["name"], BY[x]["g"]) for x in entries]
     slugs = [x[0] for x in items]

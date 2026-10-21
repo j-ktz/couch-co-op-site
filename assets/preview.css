@@ -1,0 +1,19 @@
+/* App preview loops (the App Store preview videos, silent). Used on app pages and the testers page.
+   The video already shows its own status bar and Dynamic Island, so the phone frame's drawn island is hidden. */
+.pvw{margin:0;display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.pvw .iph,.pvw .ph{width:min(300px,78%)}
+.pv:after{display:none}
+.pv .scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
+.pv-big{position:absolute;z-index:3;inset:0;margin:auto;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;
+  background:rgba(11,26,74,.72);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 12px 30px -10px rgba(0,0,0,.6);pointer-events:none;
+  transition:opacity .3s ease}
+.pv-big svg{width:28px;height:28px;margin-left:4px}
+.pv:not(.idle) .pv-big{opacity:0}
+.pv-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px 0 16px;border:0;border-radius:99px;
+  background:var(--ink);color:var(--bg,#fff);font:700 .95rem/1 var(--body);cursor:pointer}
+.pv-btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.pv-btn svg{width:14px;height:14px}
+.pv-btn .i-pause,.pv.playing~.pv-btn .i-play{display:none}
+.pv.playing~.pv-btn .i-pause{display:block}
+.pv-btn[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.pvw .iph,.pvw .ph{animation:none}}

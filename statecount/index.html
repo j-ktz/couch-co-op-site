@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="A private, day-by-day record of which state or country you were in, with alerts before a day limit like 183 days. Your location never leaves your phone.">
 <link rel="icon" type="image/png" href="/statecount/img/icon.png">
 <link rel="apple-touch-icon" href="/statecount/img/icon.png">
-<link rel="stylesheet" href="/assets/app.css?v=9c8ec2f6">
+<link rel="stylesheet" href="/assets/app.css?v=9c8ec2f6"><link rel="stylesheet" href="/assets/preview.css?v=5a1fb548">
 <style>:root{--bg:#EEF3FB;--bg2:#E1E9F7;--a:#4A8FD6;--af:#4A8FD6;--ai:#0B1A4A;--a2:#F08A3C;--a3:#3BB273;--band:#0D2A4F;}
 .scplay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .limits{background:#fff;border-radius:32px;padding:28px;box-shadow:0 0 0 1px var(--line),0 50px 90px -46px rgba(13,42,79,.5)}
@@ -60,7 +60,7 @@
   </section>
   <ul class="trust" aria-label="At a glance"><li>Your location never leaves your phone</li><li>Data Not Collected</li><li>Alerts at 30, 14 and 7 days left</li><li>A PDF and CSV report</li></ul>
 </div>
-<section class="sec demo" id="limits"><div class="wrap"><div class="scplay">
+<section class="sec watch" id="preview" aria-labelledby="pv-h"><div class="wrap"><div class="story"><div class="txt"><h2 id="pv-h">Statecount in 18 seconds</h2><p>A day logged to the right place, where every record came from, and the count against your limit.</p></div><div class="vis"><figure class="pvw" data-name="Statecount" data-auto><div class="iph pv idle"><div class="scr"><video src="/statecount/img/preview.mp4" poster="/statecount/img/preview.jpg" muted loop playsinline controls preload="metadata" width="592" height="1282" aria-label="Statecount App Store preview, silent, with captions on screen"></video></div><span class="pv-big" aria-hidden="true"><svg viewBox="0 0 14 16"><path d="M1 1.5v13L13 8z" fill="currentColor"/></svg></span></div><button type="button" class="pv-btn" hidden><svg class="i-play" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1.5v13L13 8z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1h4v14H1zM9 1h4v14H9z" fill="currentColor"/></svg><span>Play</span></button></figure></div></div></div></section><section class="sec demo" id="limits"><div class="wrap"><div class="scplay">
 <div><h2>Know how many days you have left.</h2><p class="sub">Set a limit, like 183 days in New York. Statecount counts days used and days left, and gives you a heads-up at 30, 14 and 7 days left.</p></div>
 <div class="limits" id="lims" aria-label="Example limits: New York 165 of 183 days, Florida 121 of 183 days">
   <h3>This year</h3>
@@ -87,7 +87,7 @@
     <div class="legal"><p>Statecount keeps records. It is not tax or legal advice.</p><p>&copy; 2026 Couch Co-Op Studios. Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div>
   </div>
 </footer>
-<script src="/assets/app.js?v=6dd4a508" defer></script>
+<script src="/assets/app.js?v=6dd4a508" defer></script><script src="/assets/preview.js?v=56deb69c" defer></script>
 <script>
 (function(){var c=document.getElementById('lims');if(!c)return;var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function go(){c.querySelectorAll('u[data-w]').forEach(function(u){u.style.width=u.dataset.w+'%'});

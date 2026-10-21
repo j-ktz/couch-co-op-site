@@ -383,3 +383,15 @@ STATECOUNT = dict(
 
 SPECS = {"mvn": MVN, "mackro": MACKRO, "stashday": STASHDAY, "statecount": STATECOUNT,
          "tabbed": TABBED, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT, "pocketarr": POCKETARR}
+
+# App Store preview loops shown under each page's hero (tools/apppage.py): slug -> (seconds, what it shows).
+# Files: /<slug>/img/preview.mp4 (silent web copy) and preview.jpg (the 0:05 poster frame).
+# MVN is left out until 2.0 is live: its preview shows 2.0, and the page describes the live 1.1.
+PREVIEWS = {
+    "fantasyqueens": (20, "Track records, the lip sync call and the house judges scoring the runway, on a watch-party night."),
+    "statecount": (18, "A day logged to the right place, where every record came from, and the count against your limit."),
+    "pocketarr": (16, "The dashboard, what's playing on Plex and the week ahead, shown in the app's demo mode with sample servers."),
+    "sitout": (18, "A fair round with sit-outs, scores in two taps, the court board and the standings at the end."),
+    "stashday": (18, "One number every payday, the heavy months in the year view, and a paid bill rolling to next year."),
+    "tabbed": (18, "An electrician question with its NEC section, a switch to plumbing, a UPC answer and an offset worked step by step."),
+}
