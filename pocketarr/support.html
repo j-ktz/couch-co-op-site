@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF0FA">
+<title>Pocketarr Support | Couch Co-Op Studios</title>
+<meta name="description" content="Help with Pocketarr: adding Sonarr, Radarr, Lidarr and Plex servers, connection problems, widgets, Pro and restoring purchases.">
+<link rel="canonical" href="https://couchcoopstudios.com/pocketarr/support.html">
+<link rel="icon" type="image/png" href="/pocketarr/img/icon.png">
+<link rel="stylesheet" href="/assets/app.css?v=9c8ec2f6">
+<link rel="stylesheet" href="/assets/doc.css?v=d1c45c10">
+<style>:root{--bg:#EEF0FA;--bg2:#E2E5F6;--a:#2DD4BF;--af:#2DD4BF;--ai:#0B1A4A;--a2:#2E2A8A;--a3:#7C6CF0;}</style>
+</head>
+<body>
+<a class="skip" href="#doc">Skip to content</a>
+<header class="top"><nav class="bar" aria-label="Pocketarr"><a class="home" href="/pocketarr/"><img src="/pocketarr/img/icon.png" alt="" width="30" height="30">Pocketarr</a><a class="hide-s" href="/pocketarr/privacy.html">Privacy</a><a class="c" href="/pocketarr/">See the app</a></nav></header>
+<main id="doc">
+<div class="sky" aria-hidden="true"></div>
+<header class="dhead"><div class="wrap">
+  <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Couch Co-Op Studios</a></li><li><a href="/pocketarr/">Pocketarr</a></li><li aria-current="page">Support</li></ol>
+  <img class="dicon" src="/pocketarr/img/icon.png" alt="" width="72" height="72">
+  <h1 id="dh1">Pocketarr support</h1>
+</div></header>
+<div class="doc"><div class="wrap"><article class="prose"><!--cc:content-->
+<p class="lede">Email <a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a>. A real person reads every message. In the app, Settings, Send feedback opens an email with your app and iOS versions filled in.</p>
+
+<h2>Where do I find my API key?</h2>
+<p>In Sonarr, Radarr or Lidarr, open Settings, then General, and look for API Key. Copy it into Pocketarr when you add the server. On many servers you can tap <strong>Find key</strong> instead, and Pocketarr asks the server for the key its own web page already shows. The key is stored in your iPhone's Keychain and is sent only in a request header to your own server.</p>
+
+<h2>How do I add Plex?</h2>
+<p>Tap Add Plex Server and choose Sign in with Plex. The sign-in happens on Plex's own page, and Pocketarr never sees your Plex password. Pocketarr then shows what's playing and what was recently added on your own Plex server.</p>
+
+<h2>Can Pocketarr find my servers for me?</h2>
+<p>Yes. Find Servers on My Network checks your home network for apps answering on their usual ports, shows one row per machine, and Set Up All adds what it finds. It sends no keys or passwords, and the results aren't saved.</p>
+
+<h2>Pocketarr can't reach my server</h2>
+<p>Check the address first: include http or https and the port, for example http://192.0.2.10:8989. If your server runs on your home network, allow Local Network access when iOS asks (Settings, Pocketarr, Local Network). Away from home you need a way in, such as Tailscale or another VPN, or a reverse proxy.</p>
+
+<h2>My server uses a self-signed certificate</h2>
+<p>You can trust the certificate for that one server in its settings. It doesn't trust certificates for any other server.</p>
+
+<h2>I use Cloudflare Access or a reverse proxy</h2>
+<p>Add the custom headers it needs when you set up the server. Header values are stored in the Keychain, like the API key.</p>
+
+<h2>My widgets say "Open Pocketarr" or look old</h2>
+<p>Widgets show what the app last saved, and they say how old it is. Open the app once to refresh. Background App Refresh (iOS Settings, General) lets Pocketarr update the summary while the app is closed, but iOS decides when it runs.</p>
+
+<h2>Can Pocketarr notify me when something finishes?</h2>
+<p>Pocketarr has no server of its own, so it can't send notifications while it's closed. Settings has a step-by-step guide to the notifications Sonarr and Radarr can send you themselves, through ntfy or Pushover.</p>
+
+<h2>Can I try it before adding my own server?</h2>
+<p>Yes. Tap Try the Demo on the first screen to look around with sample servers and invented shows. Turn the demo off in Settings.</p>
+
+<h2>What is free and what is Pro?</h2>
+<p>Free covers one Sonarr server and one Radarr server, the dashboard, calendar and queue, and the small Up Next widget. Pro is a one-time $14.99, with a 7-day free trial and no subscription. It adds every other widget and size (including all the Lock Screen widgets), more servers, and your download client's queue. Family Sharing is included.</p>
+
+<h2>Restoring Pro</h2>
+<p>On a new phone, open Settings in Pocketarr and tap Restore Purchases. Pro follows your Apple Account.</p>
+
+<h2>Does it get shows or movies for me?</h2>
+<p>No. Pocketarr is a window onto the Sonarr, Radarr, Lidarr and Plex servers you already run. Your servers do the work, and anything that changes a server asks you first. Pocketarr doesn't provide any shows, movies, music or files.</p>
+
+<h2>Deleting a server</h2>
+<p>Open the server in Settings and delete it. Its entry, API key or Plex token, header values and cached posters are removed from your iPhone. Nothing changes on the server itself.</p>
+
+<p class="note">Sonarr, Radarr and Lidarr are independent open-source projects, and Plex is a trademark of Plex, Inc. Pocketarr isn't affiliated with or endorsed by any of them.</p>
+<!--/cc:content--></article></div></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="studio" href="/"><img src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="54" height="34"></a>
+      <nav aria-label="Pages"><a href="/pocketarr/">Pocketarr</a><a href="/pocketarr/support.html">Support</a><a href="/pocketarr/privacy.html">Privacy</a><a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a><a href="/">All apps</a></nav>
+    </div>
+    <div class="legal"><p>Sonarr, Radarr and Lidarr are independent open-source projects, and Plex is a trademark of Plex, Inc. Pocketarr isn't affiliated with or endorsed by any of them.</p><p>&copy; 2026 Couch Co-Op Studios. Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div>
+  </div>
+</footer>
+</body>
+</html>

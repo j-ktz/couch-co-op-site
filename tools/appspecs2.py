@@ -441,3 +441,44 @@ SITOUT = dict(
  links=[("Support", "support.html"), ("Privacy", "privacy.html"), ("Guides", "/sitout/how-to/")],
  legal=["DUPR is a trademark of its owner. Sitout is not affiliated with or endorsed by DUPR."],
 )
+
+
+POCKETARR = dict(
+ name="Pocketarr", live=False, soon="Coming soon on the App Store",
+ bg="#EEF0FA", bg2="#E2E5F6", a="#2DD4BF", ink=NAVY, a2="#2E2A8A", a3="#7C6CF0", band="#0F1020",
+ nav=[("What it shows", "#what"), ("Pricing", "#pricing")],
+ status="Home media widgets",
+ h1=["Your server,", "at a glance."],
+ lede="Pocketarr puts the Sonarr, Radarr, Lidarr and Plex servers you already run on your iPhone's Lock Screen and Home Screen: what airs tonight, how the queue is moving, and whether a server needs attention.",
+ note="iPhone and iPad. No account. Pay once.",
+ screens=["dashboard.jpg", "calendar.jpg", "playing.jpg"],
+ trust=["Talks only to your own servers", "No account", "No analytics", "Pay once"],
+ blocks=[
+  ("who", dict(h="Who it's for", items=[("Self-hosters", "Who run Sonarr and Radarr at home and check on them from their phone."), ("Plex hosts", "Who want to see what's playing and what just arrived."),
+                                          ("Homelab tinkerers", "Behind Tailscale, a VPN, a reverse proxy or Cloudflare Access."), ("Anyone curious", "Try the demo with sample servers before adding your own.")])),
+  ("stories", dict(id="what", items=[
+   dict(h="Everything that needs you, first.", p=["The dashboard leads with what needs attention, like a drive running out of space, then what's playing on Plex, the queue and the week ahead."], screens=["dashboard.jpg"], alt="Dashboard: two servers need attention, low disk space, then what's playing (demo data)"),
+   dict(h="Sonarr and Radarr, one calendar.", p=["Episodes and movie releases together, opening on today, up to 90 days ahead. Filter by server and hide what you already have."], screens=["calendar.jpg"], alt="Calendar: today, tomorrow and the days ahead, with episodes and movies (demo data)"),
+  ])),
+  ("feats", dict(alt=True, h="Built for real home setups.", items=[
+   ("bell", "Widgets that tell the truth", "Up Next, Downloads and Server Health for the Home Screen and Lock Screen. Every widget says how old its data is and never pretends stale data is live."),
+   ("pin", "Finds your servers", "Find Servers on My Network shows one row per machine, and Set Up All adds what it finds."),
+   ("lock", "Your keys stay on your phone", "API keys and Plex sign-ins live in the iPhone's Keychain and travel only in request headers to your own servers."),
+   ("repeat", "Works the way you connect", "http or https, custom ports and URL bases, Tailscale or a VPN, a reverse proxy, Cloudflare Access headers, and a self-signed certificate for one server.")])),
+  ("plans", dict(id="pricing", h="Free to look around. Pay once for the rest.", items=[
+   ("Free", "$0", "Try it with the demo or your own server", ["One Sonarr and one Radarr server", "Dashboard, calendar and queue", "The small Up Next widget", "Demo mode with sample servers"], False),
+   ("Pocketarr Pro", "$14.99", "One-time purchase, 7-day free trial", ["Every widget and size, including the Lock Screen", "More servers", "Your download client's queue", "Pick the servers and days each widget shows", "Family Sharing included"], True)],
+   fine="Pro is a one-time purchase, not a subscription. The 7-day trial ends on its own and never turns into a charge. Prices in US dollars.")),
+  ("band", dict(h="No account. No analytics. No server of our own.", bg="#0F1020", sub="Pocketarr talks to the servers you add, to your home network when you ask it to search, and to plex.tv only when you tap Sign in with Plex. Nothing is sent to us. There's nowhere to send it.",
+   html='<p style="margin-top:18px"><a href="privacy.html">Read exactly what it stores and sends</a></p>', nos=["No account", "No analytics", "No ads", "Data Not Collected"])),
+  ("faq", dict(h="Frequently asked questions", items=[
+   ("Does Pocketarr get shows or movies for me?", "No. It's a window onto the Sonarr, Radarr, Lidarr and Plex servers you already run. Your servers do the work, and anything that changes a server asks you first."),
+   ("Do I need my own server?", "To see your own media, yes: a Sonarr or Radarr server your iPhone can reach. To look around first, tap Try the Demo."),
+   ("Can it notify me?", "Pocketarr has no server of its own, so it can't notify you while it's closed. Settings has a step-by-step guide to the notifications Sonarr and Radarr can send you themselves."),
+   ("Is it a subscription?", "No. Pro is a one-time $14.99 with a 7-day free trial, and Family Sharing is included."),
+  ])),
+ ],
+ finale=("Your server, at a glance.", "Coming soon on the App Store. Screenshots show the demo mode's sample servers."),
+ links=[("Support", "support.html"), ("Privacy", "privacy.html")],
+ legal=["Sonarr, Radarr and Lidarr are independent open-source projects, and Plex is a trademark of Plex, Inc. Pocketarr isn't affiliated with or endorsed by any of them."],
+)

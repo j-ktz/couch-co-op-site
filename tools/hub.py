@@ -50,6 +50,10 @@ APPS = [
       line="For snowbirds, remote workers and second-home owners who need to know, and be able to show, how many days they spent where. Your location never leaves your phone.",
       points=["Any part of a day counts; travel days count for both places", "Every day shows where its record came from", "Day-by-day PDF and CSV report"],
       screens=[("home.jpg", "Days used and days left for New York and Florida (example data)"), ("calendar.jpg", "Calendar month colored by state (example data)")]),
+ dict(slug="pocketarr", name="Pocketarr", g="#2DD4BF", ink=NAVY, live=False,
+      line="For people who run their own media server. Your Sonarr, Radarr, Lidarr and Plex servers on your Lock Screen and Home Screen. No account. Pay once.",
+      points=["Widgets for what's airing, the queue and server health", "Talks only to the servers you add", "One-time purchase, no subscription"],
+      screens=[("dashboard.jpg", "Dashboard with server warnings and what's playing (demo data)"), ("calendar.jpg", "Calendar of upcoming episodes and movies (demo data)")]),
 ]
 BY = {a["slug"]: a for a in APPS}
 # The three fanned hero phones, each cycling through a few apps.

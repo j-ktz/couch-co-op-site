@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF0FA">
+<title>Pocketarr Privacy Policy | Couch Co-Op Studios</title>
+<meta name="description" content="What Pocketarr stores on your iPhone and what it sends: no account, no analytics, and nothing sent to the developer.">
+<link rel="canonical" href="https://couchcoopstudios.com/pocketarr/privacy.html">
+<link rel="icon" type="image/png" href="/pocketarr/img/icon.png">
+<link rel="stylesheet" href="/assets/app.css?v=9c8ec2f6">
+<link rel="stylesheet" href="/assets/doc.css?v=d1c45c10">
+<style>:root{--bg:#EEF0FA;--bg2:#E2E5F6;--a:#2DD4BF;--af:#2DD4BF;--ai:#0B1A4A;--a2:#2E2A8A;--a3:#7C6CF0;}</style>
+</head>
+<body>
+<a class="skip" href="#doc">Skip to content</a>
+<header class="top"><nav class="bar" aria-label="Pocketarr"><a class="home" href="/pocketarr/"><img src="/pocketarr/img/icon.png" alt="" width="30" height="30">Pocketarr</a><a class="hide-s" href="/pocketarr/support.html">Support</a><a class="c" href="/pocketarr/">See the app</a></nav></header>
+<main id="doc">
+<div class="sky" aria-hidden="true"></div>
+<header class="dhead"><div class="wrap">
+  <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Couch Co-Op Studios</a></li><li><a href="/pocketarr/">Pocketarr</a></li><li aria-current="page">Privacy</li></ol>
+  <img class="dicon" src="/pocketarr/img/icon.png" alt="" width="72" height="72">
+  <h1 id="dh1">Pocketarr privacy policy</h1>
+</div></header>
+<div class="doc"><div class="wrap"><article class="prose"><!--cc:content-->
+<p class="updated">Last updated October 21, 2026. This matches the privacy page inside the app (Settings, What Pocketarr Stores and Sends).</p>
+<h2>The Short Version</h2>
+<ul>
+<li>Pocketarr has no account, no sign-up, and no server of its own.</li>
+<li>It talks to the servers you add (Sonarr, Radarr, Lidarr, Plex, and your download client), to your home network when you search it, and to plex.tv only when you tap Sign in with Plex.</li>
+<li>There is no analytics code, no crash reporting code, no advertising, and no third-party code in the app at all.</li>
+</ul>
+<h2>What&#x27;s Kept on Your iPhone</h2>
+<ul>
+<li>Your server list (the name, the address, whether a self-signed certificate is allowed, and the names of any custom headers) is saved in the app's own storage.</li>
+<li>Every secret is saved in the iPhone's Keychain instead: API keys, and the values of any custom headers you add for something like Cloudflare Access.</li>
+<li>Those Keychain items are marked "after first unlock", so a widget can still read them while the phone is locked. They are not set to sync to iCloud.</li>
+<li>A setup you haven't saved yet follows the same rule. The key you have typed so far goes to the Keychain; only the name, address, and header names go to app storage.</li>
+<li>Plex servers are kept the same way: the name and address in the app's own storage, and the Plex token in the Keychain on this iPhone.</li>
+<li>Sign in with Plex uses one random identifier made for this install, kept in the app's own storage.</li>
+<li>Posters are cached on this iPhone, up to about 40 MB. The least recently used ones are deleted when a new poster takes the cache over that.</li>
+<li>The last answer from each server (what's coming up, what's downloading, disk space, and health) is cached on this iPhone so a screen or a widget has something to show right away.</li>
+</ul>
+<h2>What Leaves Your iPhone</h2>
+<ul>
+<li>Requests to the servers you added, and to your home network when you search it. The one exception is Sign in with Plex, below.</li>
+<li>Find Servers on This Network asks the addresses on your home network which app answers on the usual ports. It sends no keys or passwords, and the results aren't saved.</li>
+<li>Your API key travels in a request header, never in the address, so it stays out of server logs that record URLs.</li>
+<li>Your Plex token travels in a request header, never in the address, and Plex posters come from your own Plex server.</li>
+<li>When you change a poster, Pocketarr sends the image you picked only to your own Plex server. Nothing goes to plex.tv or anywhere else.</li>
+<li>Posters are loaded from your own server. Sonarr and Radarr also report an address for the same image at TheTVDB or TMDB, and Pocketarr ignores it, so those services never see your address or what you watch.</li>
+<li>Purchases go through the App Store. Pocketarr never sees your payment details, and nothing about a purchase is sent anywhere else.</li>
+<li>Nothing is sent to the developer. There is no endpoint to send it to.</li>
+<li>Send feedback opens an email draft that you read and send yourself.</li>
+<li>The draft adds the app and iOS versions, device model, language, region, Pro and TestFlight status, and how many servers you've added, never their names or addresses.</li>
+</ul>
+<h2>Sign In with Plex</h2>
+<ul>
+<li>Pocketarr talks only to your own servers, with one exception that happens only when you tap Sign in with Plex.</li>
+<li>Then Pocketarr contacts plex.tv, Plex's own service, to start the sign-in and to list the servers on your Plex account.</li>
+<li>plex.tv receives the app's name and version, a random identifier made for this install, the labels "iOS" and "iPhone", and your internet address, as with any request.</li>
+<li>The sign-in happens on Plex's own page; Pocketarr never sees your Plex password.</li>
+<li>The sign-in is saved only on this iPhone, in the Keychain, and is sent only to plex.tv and to your own Plex server.</li>
+</ul>
+<h2>Find Key and Set Up All</h2>
+<ul>
+<li>When you tap Find key, or Set Up All, Pocketarr asks your server for the API key its own web page already shows.</li>
+<li>The request carries no sign-in, goes only to the address you chose, and nothing is sent to anyone else.</li>
+<li>Pocketarr also reads your Sonarr or Radarr's list of download clients, only to suggest addresses. The server hides their passwords, and Pocketarr keeps none of it.</li>
+<li>When a server wants you to sign in first, its settings page opens in Safari inside Pocketarr. Pocketarr can't see what you type there or what the page shows.</li>
+</ul>
+<h2>What the Widgets Read</h2>
+<ul>
+<li>Widgets read the summary Pocketarr saved on this iPhone: what's coming up, the download queue, disk space and server health, what's playing on Plex, and whether Pro is unlocked.</li>
+<li>A widget says how old that summary is rather than passing it off as live.</li>
+<li>When a widget refreshes, it asks the same servers you added, using the same stored key. It has no account and nowhere else to report to.</li>
+</ul>
+<h2>The App Store Privacy Label</h2>
+<ul>
+<li>It says Data Not Collected.</li>
+<li>"Collected" means sent off the device to the developer or to the developer's partners. Nothing is.</li>
+<li>Sign in with Plex sends what's listed above to Plex, only when you ask, and Plex isn't a partner of the developer.</li>
+<li>The app's privacy manifest declares no collected data types, no tracking domains, and says the app does not track you.</li>
+</ul>
+<h2>What Pocketarr Asks iOS For</h2>
+<ul>
+<li>Local Network. Your servers usually run on your own network, and iOS asks before the first connection to it. Pocketarr uses it only to reach your servers and to search for them when you ask.</li>
+<li>Background App Refresh. It lets Pocketarr update the saved summary while the app is closed, so your widgets aren't stuck on whatever you last looked at. iOS decides when it runs, and how often.</li>
+<li>Nothing else. No location, no contacts, no notifications, no microphone, no camera, and no access to your photo library. When you pick a poster from Photos, iOS shares only that one picture.</li>
+</ul>
+<h2>When You Delete a Server</h2>
+<ul>
+<li>Its entry is removed and its API key or Plex token, and any header values, are deleted from the Keychain.</li>
+<li>The cached posters are cleared at the same time.</li>
+<li>Nothing changes on the server itself. Deleting it here only removes it from this iPhone.</li>
+</ul>
+<h2>Questions</h2>
+<p>Email <a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a>. If this policy changes, the date at the top changes with it.</p>
+<!--/cc:content--></article></div></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="studio" href="/"><img src="/assets/brand/couch-co-op-studios-mark-600.png" alt="Couch Co-Op Studios" width="54" height="34"></a>
+      <nav aria-label="Pages"><a href="/pocketarr/">Pocketarr</a><a href="/pocketarr/support.html">Support</a><a href="/pocketarr/privacy.html">Privacy</a><a href="mailto:support@couchcoopstudios.com">support@couchcoopstudios.com</a><a href="/">All apps</a></nav>
+    </div>
+    <div class="legal"><p>Sonarr, Radarr and Lidarr are independent open-source projects, and Plex is a trademark of Plex, Inc. Pocketarr isn't affiliated with or endorsed by any of them.</p><p>&copy; 2026 Couch Co-Op Studios. Small apps that each do one job well. No ads, fair prices, and only the data the app needs.</p><p>Apple, the Apple logo and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</p></div>
+  </div>
+</footer>
+</body>
+</html>
