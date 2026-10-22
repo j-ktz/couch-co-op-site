@@ -78,7 +78,7 @@ CSS = r'''
 .card .ph{width:100%;max-width:220px;justify-self:center}
 .card .pvw{justify-self:center}
 .steps{counter-reset:s}
-.steps h3:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:var(--cobalt);color:#fff;font:800 1.1rem var(--disp)}
+.steps h3:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:#fff;color:var(--cobalt);font:800 1.1rem var(--disp)}
 .steps a{font-weight:700}
 .know{max-width:980px;margin:56px auto 0;text-align:left;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px}
 .know p{margin:0;color:var(--soft)}
