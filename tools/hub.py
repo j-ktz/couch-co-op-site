@@ -15,6 +15,7 @@ NAVY, WHITE = "#0B1A4A", "#FFFFFF"
 # ink = text color on the app's accent (white on dark accents, navy on light ones).
 APPS = [
  dict(slug="mvn", name="Music Video Night", g="#9867FF", ink=WHITE, live=True,
+      devices=[("reg", "home/themes.webp", "Music Video Night: picking a theme for the Night on iPhone"), ("reg", "home/voting.webp", "Blind voting on the videos")],
       line="A party game. Everyone picks a music video, everyone votes blind, one person wins the Night.",
       points=["Names stay hidden until the votes are in", "Pick a theme, queue the videos, play them on the big screen", "Results reveal who chose the winner"],
       screens=[("screen-themes.webp", "Host a Night screen with themes to pick from"), ("screen-voting.webp", "Blind voting on the videos"),
@@ -57,6 +58,7 @@ APPS = [
       points=["Any part of a day counts; travel days count for both places", "Every day shows where its record came from", "Day-by-day PDF and CSV report"],
       screens=[("home.jpg", "Days used and days left for New York and Florida (example data)"), ("calendar.jpg", "Calendar month colored by state (example data)")]),
  dict(slug="pocketarr", name="Pocketarr", g="#2DD4BF", ink=NAVY, live=False,
+      fan="home/dashboard.jpg", devices=[("reg", "home/lock-screen.webp", "Pocketarr widgets on the iPhone Lock Screen (demo data)"), ("reg", "home/dashboard.webp", "Pocketarr dashboard with server warnings and what's playing (demo data)")],
       line="For people who run their own media server. Your Sonarr, Radarr, Lidarr and Plex servers on your Lock Screen and Home Screen. No account. Pay once.",
       points=["Widgets for what's airing, the queue and server health", "Talks only to the servers you add", "One-time purchase, no subscription"],
       screens=[("dashboard.jpg", "Dashboard with server warnings and what's playing (demo data)"), ("calendar.jpg", "Calendar of upcoming episodes and movies (demo data)")]),
