@@ -88,25 +88,20 @@ main{position:relative}
 .scr{position:relative;aspect-ratio:640/1390;border-radius:13.5% / 6.2%;overflow:hidden;background:#000;isolation:isolate}
 .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
 .scr img.on{opacity:1}
-/* other devices (the .ph base above is an iPhone) */
-.shots .ph.dv{min-width:0}
-.shots .ph.max{flex-basis:268px}
-.shots .ph.reg{flex-basis:226px}
-.ph.pad{padding:2.4%;border-radius:6.4% / 4.8%}
-.ph.pad:before{right:16%;top:-.9%;width:10%;height:.9%;border-radius:3px 3px 0 0}
-.ph.pad:after{display:none}
-.ph.pad .scr{aspect-ratio:3/4;border-radius:4.2% / 3.2%}
-.shots .ph.pad{flex-basis:380px}
-.ph.duo{padding:2.2%;border-radius:8.4% / 5.8%}
-.ph.duo:after{top:2.2%;bottom:2.2%;height:auto;width:2px;translate:-1px 0;border-radius:0;background:linear-gradient(transparent,rgba(255,255,255,.22) 6%,rgba(0,0,0,.22) 50%,rgba(255,255,255,.22) 94%,transparent)}
-.ph.duo .scr{aspect-ratio:1398/2034;border-radius:6.2% / 4.3%}
-.shots .ph.duo{flex-basis:350px}
-.ph.watch{padding:6%;border-radius:32% / 26%}
-.ph.watch:before{right:-5.5%;top:22%;width:6%;height:19%;border-radius:0 7px 7px 0;background:linear-gradient(90deg,#2a2f3b,#5a6170)}
-.ph.watch:after{top:-24%;bottom:-24%;left:17%;right:17%;width:auto;height:auto;translate:none;border-radius:22px;background:linear-gradient(#3a4152,#2a2f3b 50%,#3a4152);z-index:-1}
-.ph.watch .scr{aspect-ratio:422/514;border-radius:26% / 21%}
-.shots .ph.watch{flex-basis:190px;align-self:center;margin-right:8px}
-.shots .ph.watch+.ph,.shots .ph+.ph.watch{margin-top:0}
+/* real iPhone frame (Apple's bezel image) over the screen */
+.ph.real{padding:0;background:none;box-shadow:none;border-radius:0;aspect-ratio:1311/2708;filter:drop-shadow(0 30px 34px rgba(11,26,74,.38))}
+.ph.real:before,.ph.real:after{display:none}
+.ph.real .scr{position:absolute;left:3.814%;top:1.477%;width:92.449%;height:97.046%;aspect-ratio:auto;border-radius:15.7% / 7.2%}
+.ph.real .bz{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+/* app rows: each device is one image, the capture already inside Apple's bezel */
+.shots .dvi{position:relative;z-index:1;min-width:0;filter:drop-shadow(0 30px 34px rgba(11,26,74,.33))}
+.shots .dvi img{display:block;width:100%;height:auto}
+.shots .dvi.max{flex:0 1 270px}.shots .dvi.reg{flex:0 1 232px}.shots .dvi.pad{flex:0 1 390px}.shots .dvi.duo{flex:0 1 350px}.shots .dvi.watch{flex:0 1 180px;align-self:center}
+.shots .dvi+.dvi{margin-top:56px}
+.shots .dvi.watch,.shots .dvi+.dvi.watch{margin-top:0}
+.app .shots .dvi{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.js .app:not(.in) .shots .dvi{transform:translateY(40px) rotate(3deg);opacity:0}
+.js .app:not(.in) .shots .dvi+.dvi{transform:translateY(70px) rotate(-3deg)}
 
 /* picker */
 .pick{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:30px 0 56px;border-bottom:1px solid var(--line)}
@@ -219,7 +214,7 @@ footer nav a:hover{color:var(--cobalt)}
   .f0 .chip{translate:-30% 0}.f2 .chip{translate:-74% 0}
   .fan{height:min(110vw,470px);margin-top:48px}
   .pick a{width:84px;font-size:.76rem}.pick img{width:58px;height:58px}
-  .shots{gap:14px}.shots .ph+.ph{margin-top:36px}
+  .shots{gap:14px}.shots .ph+.ph,.shots .dvi+.dvi{margin-top:36px}.shots .dvi+.dvi.watch{margin-top:0}
   .sh{display:none}
   .sky{height:900px}
   .fnum{font-size:3.4rem}.fact .fv{height:130px}
@@ -231,7 +226,7 @@ footer nav a:hover{color:var(--cobalt)}
   .igrid img,.noad .slash,.noad .badge,.inbox .tick{transition:none}
   .fan{transform:none}
   .shots{transform:none}
-  .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph{transform:none;opacity:1}
+  .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph,.js .app:not(.in) .shots .dvi,.js .app:not(.in) .shots .dvi+.dvi{transform:none;opacity:1}
   .scr img,.chip,.pick a,.pick img{transition:none}
 }
 </style>
@@ -250,7 +245,7 @@ footer nav a:hover{color:var(--cobalt)}
       <p class="lede">We're an independent iPhone studio. Our team designs, builds and supports small apps for game night, everyday life and the oddly specific problem you wish somebody would just solve.</p>
       <div class="cta"><a class="btn" href="#apps">See our apps</a><a class="btn alt" href="mailto:hello@couchcoopstudios.com">Say hello</a></div>
     </div>
-    <div class="fan" aria-hidden="true"><a class="fp f0" href="#mackro" tabindex="-1" data-speed=".03"><div class="rise"><div class="chips"><span class="chip on" data-slug="mackro" style="--g:#F5B82A"><img src="/mackro/img/icon.png" alt="" width="22" height="22">Mackro</span><span class="chip" data-slug="stashday" style="--g:#34C79A"><img src="/stashday/img/icon.png" alt="" width="22" height="22">Stashday</span><span class="chip" data-slug="statecount" style="--g:#4A8FD6"><img src="/statecount/img/icon.png" alt="" width="22" height="22">Statecount</span></div><div class="ph" data-delay="0"><div class="scr"><img class="on" src="/mackro/img/home/today.jpg" alt="" width="640" height="1390"><img src="/stashday/img/home/fund.jpg" alt="" width="640" height="1390"><img src="/statecount/img/home/home.jpg" alt="" width="640" height="1390"></div></div></div></a><a class="fp f1" href="#mvn" tabindex="-1" data-speed="-.04"><div class="rise"><div class="chips"><span class="chip on" data-slug="mvn" style="--g:#9867FF"><img src="/mvn/img/icon.png" alt="" width="22" height="22">Music Video Night</span><span class="chip" data-slug="fantasyqueens" style="--g:#F8218A"><img src="/fantasyqueens/img/icon.png" alt="" width="22" height="22">Fantasy Queens</span><span class="chip" data-slug="sitout" style="--g:#E2FB2C"><img src="/sitout/img/icon.png" alt="" width="22" height="22">Sitout</span></div><div class="ph" data-delay="1100"><div class="scr"><img class="on" src="/mvn/img/screen-themes.webp" alt="" width="640" height="1390"><img src="/fantasyqueens/img/home/vote.jpg" alt="" width="640" height="1390"><img src="/sitout/img/home/live.jpg" alt="" width="640" height="1390"></div></div></div></a><a class="fp f2" href="#tabbed" tabindex="-1" data-speed=".06"><div class="rise"><div class="chips"><span class="chip on" data-slug="tabbed" style="--g:#0A84FF"><img src="/tabbed/img/icon.png" alt="" width="22" height="22">Tabbed</span><span class="chip" data-slug="pocketarr" style="--g:#2DD4BF"><img src="/pocketarr/img/icon.png" alt="" width="22" height="22">Pocketarr</span></div><div class="ph" data-delay="2200"><div class="scr"><img class="on" src="/tabbed/img/home/plumber-answer.jpg" alt="" width="640" height="1390"><img src="/pocketarr/img/dashboard.jpg" alt="" width="640" height="1390"></div></div></div></a></div>
+    <div class="fan" aria-hidden="true"><a class="fp f0" href="#mackro" tabindex="-1" data-speed=".03"><div class="rise"><div class="chips"><span class="chip on" data-slug="mackro" style="--g:#F5B82A"><img src="/mackro/img/icon.png" alt="" width="22" height="22">Mackro</span><span class="chip" data-slug="stashday" style="--g:#34C79A"><img src="/stashday/img/icon.png" alt="" width="22" height="22">Stashday</span><span class="chip" data-slug="statecount" style="--g:#4A8FD6"><img src="/statecount/img/icon.png" alt="" width="22" height="22">Statecount</span></div><div class="ph real" data-delay="0"><div class="scr"><img class="on" src="/mackro/img/home/today.jpg" alt="" width="640" height="1390"><img src="/stashday/img/home/fund.jpg" alt="" width="640" height="1390"><img src="/statecount/img/home/home.jpg" alt="" width="640" height="1390"></div><img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"></div></div></a><a class="fp f1" href="#mvn" tabindex="-1" data-speed="-.04"><div class="rise"><div class="chips"><span class="chip on" data-slug="mvn" style="--g:#9867FF"><img src="/mvn/img/icon.png" alt="" width="22" height="22">Music Video Night</span><span class="chip" data-slug="fantasyqueens" style="--g:#F8218A"><img src="/fantasyqueens/img/icon.png" alt="" width="22" height="22">Fantasy Queens</span><span class="chip" data-slug="sitout" style="--g:#E2FB2C"><img src="/sitout/img/icon.png" alt="" width="22" height="22">Sitout</span></div><div class="ph real" data-delay="1100"><div class="scr"><img class="on" src="/mvn/img/screen-themes.webp" alt="" width="640" height="1390"><img src="/fantasyqueens/img/home/vote.jpg" alt="" width="640" height="1390"><img src="/sitout/img/home/live.jpg" alt="" width="640" height="1390"></div><img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"></div></div></a><a class="fp f2" href="#tabbed" tabindex="-1" data-speed=".06"><div class="rise"><div class="chips"><span class="chip on" data-slug="tabbed" style="--g:#0A84FF"><img src="/tabbed/img/icon.png" alt="" width="22" height="22">Tabbed</span><span class="chip" data-slug="pocketarr" style="--g:#2DD4BF"><img src="/pocketarr/img/icon.png" alt="" width="22" height="22">Pocketarr</span></div><div class="ph real" data-delay="2200"><div class="scr"><img class="on" src="/tabbed/img/home/plumber-answer.jpg" alt="" width="640" height="1390"><img src="/pocketarr/img/dashboard.jpg" alt="" width="640" height="1390"></div><img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"></div></div></a></div>
   </section>
   <nav class="pick" id="apps" aria-label="Jump to an app"><a href="#mvn"><img src="/mvn/img/icon.png" alt="" width="68" height="68">Music Video Night</a><a href="#mackro"><img src="/mackro/img/icon.png" alt="" width="68" height="68">Mackro</a><a href="#tanklog"><img src="/tanklog/img/icon.png" alt="" width="68" height="68">TankLog</a><a href="#stashday"><img src="/stashday/img/icon.png" alt="" width="68" height="68">Stashday</a><a href="#tabbed"><img src="/tabbed/img/icon.png" alt="" width="68" height="68">Tabbed</a><a href="#fantasyqueens"><img src="/fantasyqueens/img/icon.png" alt="" width="68" height="68">Fantasy Queens</a><a href="#sitout"><img src="/sitout/img/icon.png" alt="" width="68" height="68">Sitout</a><a href="#statecount"><img src="/statecount/img/icon.png" alt="" width="68" height="68">Statecount</a><a href="#pocketarr"><img src="/pocketarr/img/icon.png" alt="" width="68" height="68">Pocketarr</a></nav>
   <div class="rows">
@@ -270,7 +265,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>Log a meal by describing it or snapping a photo</li><li>Calories and macros at a glance, with a nudge from Mack</li><li>Trends over 7, 30 or 90 days, plus widgets</li></ul>
         <a class="go" href="/mackro/">See Mackro</a>
       </div>
-      <div class="shots"><div class="ph dv max" role="img" aria-label="Mackro Today screen on iPhone 17 Pro Max" data-speed="-.045"><div class="scr"><img class="on" src="/mackro/img/home/today.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div><div class="ph dv watch" role="img" aria-label="Mackro on Apple Watch with Log meal" data-speed=".06"><div class="scr"><img class="on" src="/mackro/img/home/watch.jpg" alt="" width="422" height="514" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi max" data-speed="-.045"><img src="/mackro/img/home/today.webp" alt="Mackro Today screen on iPhone 17 Pro Max" width="540" height="1119" loading="lazy" decoding="async"></div><div class="dvi watch" data-speed=".06"><img src="/mackro/img/home/watch.webp" alt="Mackro on Apple Watch with Log meal" width="360" height="587" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app" id="tanklog" data-tint="#CFEFF0" style="--g:#2EE6B6;--gf:#2EE6B6;--gi:#0B1A4A" aria-labelledby="tanklog-h">
       <div class="info">
@@ -288,7 +283,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>One number per paycheck that covers every bill</li><li>A ring for each fund, so you see what is on track</li><li>Tick off what you paid and set aside</li></ul>
         <a class="go" href="/stashday/">See Stashday</a>
       </div>
-      <div class="shots"><div class="ph dv pad" role="img" aria-label="Stashday on iPad: the payday number beside a bill" data-speed="-.045"><div class="scr"><img class="on" src="/stashday/img/home/ipad-home.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async"></div></div><div class="ph dv reg" role="img" aria-label="A fund with its progress ring on iPhone" data-speed=".06"><div class="scr"><img class="on" src="/stashday/img/home/fund.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi pad" data-speed="-.045"><img src="/stashday/img/home/ipad-home.webp" alt="Stashday on iPad: the payday number beside a bill" width="760" height="992" loading="lazy" decoding="async"></div><div class="dvi reg" data-speed=".06"><img src="/stashday/img/home/fund.webp" alt="A fund with its progress ring on iPhone" width="460" height="950" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app" id="tabbed" data-tint="#CAE0FC" style="--g:#0A84FF;--gf:#0A73E2;--gi:#FFFFFF" aria-labelledby="tabbed-h">
       <div class="info">
@@ -297,7 +292,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>Pick electrician or plumber at setup, each with its own questions and exams</li><li>Practice questions with the explanation and the NEC, UPC or IPC reference</li><li>Timed lookup drills, step-by-step calcs and practice exams in your exam&#x27;s format</li></ul>
         <a class="go" href="/tabbed/">See Tabbed</a>
       </div>
-      <div class="shots"><div class="ph dv pad" role="img" aria-label="An electrician answer on iPad with its NEC reference" data-speed="-.045"><div class="scr"><img class="on" src="/tabbed/img/home/ipad-answer.jpg" alt="" width="900" height="1200" loading="lazy" decoding="async"></div></div><div class="ph dv reg" role="img" aria-label="A plumber answer on iPhone with its UPC reference" data-speed=".06"><div class="scr"><img class="on" src="/tabbed/img/home/plumber-answer.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi pad" data-speed="-.045"><img src="/tabbed/img/home/ipad-answer.webp" alt="An electrician answer on iPad with its NEC reference" width="760" height="992" loading="lazy" decoding="async"></div><div class="dvi reg" data-speed=".06"><img src="/tabbed/img/home/plumber-answer.webp" alt="A plumber answer on iPhone with its UPC reference" width="460" height="950" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app flip" id="fantasyqueens" data-tint="#F0D0E9" style="--g:#F8218A;--gf:#D72081;--gi:#FFFFFF" aria-labelledby="fantasyqueens-h">
       <div class="info">
@@ -306,7 +301,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>Draft your queens with your watch-party group</li><li>Vote on the rules before the premiere</li><li>A leaderboard that updates after every episode</li></ul>
         <a class="go" href="/fantasyqueens/">See Fantasy Queens</a>
       </div>
-      <div class="shots"><div class="ph dv duo" role="img" aria-label="Fantasy Queens on the unfolded iPhone Duo" data-speed="-.045"><div class="scr"><img class="on" src="/fantasyqueens/img/home/duo-home.jpg" alt="" width="760" height="1106" loading="lazy" decoding="async"></div></div><div class="ph dv reg" role="img" aria-label="The rules vote on iPhone" data-speed=".06"><div class="scr"><img class="on" src="/fantasyqueens/img/home/vote.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi duo" data-speed="-.045"><img src="/fantasyqueens/img/home/duo-home.webp" alt="Fantasy Queens on the unfolded iPhone Duo" width="700" height="977" loading="lazy" decoding="async"></div><div class="dvi reg" data-speed=".06"><img src="/fantasyqueens/img/home/vote.webp" alt="The rules vote on iPhone" width="460" height="950" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app" id="sitout" data-tint="#ECF3DA" style="--g:#E2FB2C;--gf:#E2FB2C;--gi:#0B1A4A" aria-labelledby="sitout-h">
       <div class="info">
@@ -315,7 +310,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>Sit-outs shared evenly, every round</li><li>Scores in two taps, late arrivals without lost scores</li><li>Players never pay and never need the app</li></ul>
         <a class="go" href="/sitout/">See Sitout</a>
       </div>
-      <div class="shots"><div class="ph dv max" role="img" aria-label="A live round with scores on iPhone 17 Pro Max" data-speed="-.045"><div class="scr"><img class="on" src="/sitout/img/home/live.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div><div class="ph dv reg" role="img" aria-label="Night complete: the winner and standings" data-speed=".06"><div class="scr"><img class="on" src="/sitout/img/home/summary.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi max" data-speed="-.045"><img src="/sitout/img/home/live.webp" alt="A live round with scores on iPhone 17 Pro Max" width="540" height="1119" loading="lazy" decoding="async"></div><div class="dvi reg" data-speed=".06"><img src="/sitout/img/home/summary.webp" alt="Night complete: the winner and standings" width="460" height="950" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app flip" id="statecount" data-tint="#D4E1F5" style="--g:#4A8FD6;--gf:#4A8FD6;--gi:#0B1A4A" aria-labelledby="statecount-h">
       <div class="info">
@@ -324,7 +319,7 @@ footer nav a:hover{color:var(--cobalt)}
         <ul><li>Any part of a day counts; travel days count for both places</li><li>Every day shows where its record came from</li><li>Day-by-day PDF and CSV report</li></ul>
         <a class="go" href="/statecount/">See Statecount</a>
       </div>
-      <div class="shots"><div class="ph dv max" role="img" aria-label="Days left for New York and Florida on iPhone 17 Pro Max (example data)" data-speed="-.045"><div class="scr"><img class="on" src="/statecount/img/home/home.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div><div class="ph dv reg" role="img" aria-label="A calendar month colored by place (example data)" data-speed=".06"><div class="scr"><img class="on" src="/statecount/img/home/calendar.jpg" alt="" width="640" height="1390" loading="lazy" decoding="async"></div></div></div>
+      <div class="shots"><div class="dvi max" data-speed="-.045"><img src="/statecount/img/home/home.webp" alt="Days left for New York and Florida on iPhone 17 Pro Max (example data)" width="540" height="1119" loading="lazy" decoding="async"></div><div class="dvi reg" data-speed=".06"><img src="/statecount/img/home/calendar.webp" alt="A calendar month colored by place (example data)" width="460" height="950" loading="lazy" decoding="async"></div></div>
     </section>
     <section class="app" id="pocketarr" data-tint="#CFECF1" style="--g:#2DD4BF;--gf:#2DD4BF;--gi:#0B1A4A" aria-labelledby="pocketarr-h">
       <div class="info">

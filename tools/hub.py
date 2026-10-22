@@ -20,7 +20,7 @@ APPS = [
       screens=[("screen-themes.webp", "Host a Night screen with themes to pick from"), ("screen-voting.webp", "Blind voting on the videos"),
                ("screen-playback.webp", "A video playing during the Night"), ("screen-results.webp", "Results revealing who chose the winner")]),
  dict(slug="mackro", name="Mackro", g="#F5B82A", ink=NAVY, live=True,
-      fan="home/today.jpg", devices=[("max", "home/today.jpg", "Mackro Today screen on iPhone 17 Pro Max"), ("watch", "home/watch.jpg", "Mackro on Apple Watch with Log meal")],
+      fan="home/today.jpg", devices=[("max", "home/today.webp", "Mackro Today screen on iPhone 17 Pro Max"), ("watch", "home/watch.webp", "Mackro on Apple Watch with Log meal")],
       line="A macro tracker with a squirrel named Mack who keeps score and never judges.",
       points=["Log a meal by describing it or snapping a photo", "Calories and macros at a glance, with a nudge from Mack", "Trends over 7, 30 or 90 days, plus widgets"],
       screens=[("today.jpg", "Today screen with calories, macros and Mack"), ("describe.jpg", "Logging a meal by describing it"),
@@ -30,29 +30,29 @@ APPS = [
       points=["pH, KH, GH, nitrate and more, graded against your own ranges", "Care schedules and dosing with reminders", "No login, no ads. Your data stays on your device"],
       screens=[("shot1.jpg", "CO₂ estimate and a pH trend chart"), ("shot2.jpg", "Water test and care schedule screens"), ("shot3.jpg", "TankLog tank overview")]),
  dict(slug="stashday", name="Stashday", g="#34C79A", ink=NAVY, live=False,
-      fan="home/fund.jpg", devices=[("pad", "home/ipad-home.jpg", "Stashday on iPad: the payday number beside a bill"), ("reg", "home/fund.jpg", "A fund with its progress ring on iPhone")],
+      fan="home/fund.jpg", devices=[("pad", "home/ipad-home.webp", "Stashday on iPad: the payday number beside a bill"), ("reg", "home/fund.webp", "A fund with its progress ring on iPhone")],
       line="Tells you exactly what to set aside each payday so the irregular bills stop being a surprise.",
       points=["One number per paycheck that covers every bill", "A ring for each fund, so you see what is on track", "Tick off what you paid and set aside"],
       screens=[("number.jpg", "Your number: the amount to set aside this payday"), ("fund.jpg", "A single fund with progress ring and due date"), ("checklist.jpg", "Payday checklist")]),
  # One app for two trades: the user picks Electrician or Plumber at setup. Plumber screens live in /tabbed/img/plumber/.
  dict(slug="tabbed", name="Tabbed", kicker="Electrician or plumber", g="#0A84FF", ink=WHITE, live=False,
-      fan="home/plumber-answer.jpg", devices=[("pad", "home/ipad-answer.jpg", "An electrician answer on iPad with its NEC reference"), ("reg", "home/plumber-answer.jpg", "A plumber answer on iPhone with its UPC reference")],
+      fan="home/plumber-answer.jpg", devices=[("pad", "home/ipad-answer.webp", "An electrician answer on iPad with its NEC reference"), ("reg", "home/plumber-answer.webp", "A plumber answer on iPhone with its UPC reference")],
       line="Exam prep for journeyman electricians and plumbers. Every answer cites the code section.",
       points=["Pick electrician or plumber at setup, each with its own questions and exams", "Practice questions with the explanation and the NEC, UPC or IPC reference", "Timed lookup drills, step-by-step calcs and practice exams in your exam's format"],
       screens=[("answer.jpg", "An electrician practice answer with explanation and code citation"), ("plumber/answer.jpg", "A plumber practice answer with explanation and code citation"),
                ("lookup.jpg", "A timed lookup drill with a countdown"), ("plumber/calc.jpg", "A plumbing calculation with every step shown")]),
  dict(slug="fantasyqueens", name="Fantasy Queens", g="#F8218A", ink=WHITE, live=False,
-      fan="home/vote.jpg", devices=[("duo", "home/duo-home.jpg", "Fantasy Queens on the unfolded iPhone Duo"), ("reg", "home/vote.jpg", "The rules vote on iPhone")],
+      fan="home/vote.jpg", devices=[("duo", "home/duo-home.webp", "Fantasy Queens on the unfolded iPhone Duo"), ("reg", "home/vote.webp", "The rules vote on iPhone")],
       line="Fantasy leagues for your Drag Race watch party. Pick your queens, vote on the rules, see who leads after every episode.",
       points=["Draft your queens with your watch-party group", "Vote on the rules before the premiere", "A leaderboard that updates after every episode"],
       screens=[("shot2.jpg", "Rules vote screen"), ("shot3.jpg", "Leaderboard after an episode"), ("shot4.jpg", "A house's queens")]),
  dict(slug="sitout", name="Sitout", g="#E2FB2C", ink=NAVY, live=False,
-      fan="home/live.jpg", devices=[("max", "home/live.jpg", "A live round with scores on iPhone 17 Pro Max"), ("reg", "home/summary.jpg", "Night complete: the winner and standings")],
+      fan="home/live.jpg", devices=[("max", "home/live.webp", "A live round with scores on iPhone 17 Pro Max"), ("reg", "home/summary.webp", "Night complete: the winner and standings")],
       line="Runs a pickleball round robin from one phone. Fair sit-outs, rotating partners, standings at the end of the night.",
       points=["Sit-outs shared evenly, every round", "Scores in two taps, late arrivals without lost scores", "Players never pay and never need the app"],
       screens=[("live.jpg", "A live round: who sits out, then each court with its teams and scores"), ("score.jpg", "Entering a score"), ("standings.jpg", "End-of-night standings ranked by win rate")]),
  dict(slug="statecount", name="Statecount", g="#4A8FD6", ink=NAVY, live=False,
-      fan="home/home.jpg", devices=[("max", "home/home.jpg", "Days left for New York and Florida on iPhone 17 Pro Max (example data)"), ("reg", "home/calendar.jpg", "A calendar month colored by place (example data)")],
+      fan="home/home.jpg", devices=[("max", "home/home.webp", "Days left for New York and Florida on iPhone 17 Pro Max (example data)"), ("reg", "home/calendar.webp", "A calendar month colored by place (example data)")],
       line="For snowbirds, remote workers and second-home owners who need to know, and be able to show, how many days they spent where. Your location never leaves your phone.",
       points=["Any part of a day counts; travel days count for both places", "Every day shows where its record came from", "Day-by-day PDF and CSV report"],
       screens=[("home.jpg", "Days used and days left for New York and Florida (example data)"), ("calendar.jpg", "Calendar month colored by state (example data)")]),
@@ -99,10 +99,14 @@ def img(slug, f, alt="", cls="", lazy=True):
     return f'<img{c} src="/{slug}/img/{f}" alt="{e(alt)}" width="640" height="1390"{a}>'
 
 
-def phone(screens, delay=0, label=None, lazy=True):
-    """screens: list of (slug, file, alt). The first one shows without JavaScript."""
+def phone(screens, delay=0, label=None, lazy=True, real=False):
+    """screens: list of (slug, file, alt). The first one shows without JavaScript.
+    real puts Apple's iPhone 17 bezel over the screen instead of the drawn CSS frame."""
     imgs = "".join(img(s, f, alt, "on" if i == 0 else "", lazy) for i, (s, f, alt) in enumerate(screens))
     aria = f' role="img" aria-label="{e(label)}"' if label else ""
+    if real:
+        return (f'<div class="ph real" data-delay="{delay}"{aria}><div class="scr">{imgs}</div>'
+                '<img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"></div>')
     return f'<div class="ph" data-delay="{delay}"{aria}><div class="scr">{imgs}</div></div>'
 
 
@@ -123,14 +127,15 @@ def preview(slug, name, frame="ph", auto=True):
 
 
 # Each app row can show a mix of devices instead of two iPhones: (kind, file, alt) where kind is
-# max (iPhone Pro Max), reg (iPhone), pad (iPad, portrait), duo (iPhone Duo, unfolded) or watch (Apple Watch).
-DEVICE_PX = {"max": (640, 1390), "reg": (640, 1390), "pad": (900, 1200), "duo": (760, 1106), "watch": (422, 514)}
+# max (iPhone 17 Pro Max), reg (iPhone 17), pad (iPad Pro 13", portrait), duo (iPhone Duo, unfolded) or watch (Apple Watch).
+# Each file is the app capture already placed in Apple's official product bezel (Apple Design Resources), saved as WebP.
+DEVICE_PX = {"max": (540, 1119), "reg": (460, 950), "pad": (760, 992), "duo": (700, 977), "watch": (360, 587)}
 
 
 def device(slug, kind, f, alt, speed):
     w, h = DEVICE_PX[kind]
-    return (f'<div class="ph dv {kind}" role="img" aria-label="{e(alt)}" data-speed="{speed}"><div class="scr">'
-            f'<img class="on" src="/{slug}/img/{f}" alt="" width="{w}" height="{h}" loading="lazy" decoding="async"></div></div>')
+    return (f'<div class="dvi {kind}" data-speed="{speed}">'
+            f'<img src="/{slug}/img/{f}" alt="{e(alt)}" width="{w}" height="{h}" loading="lazy" decoding="async"></div>')
 
 
 def fan_phone(i, entries):
@@ -139,7 +144,7 @@ def fan_phone(i, entries):
     screens = [(s, f, "") for s, f, _, _ in items]
     chips = "".join(f'<span class="chip{" on" if j == 0 else ""}" data-slug="{s}" style="--g:{g}"><img src="/{s}/img/icon.png" alt="" width="22" height="22">{e(n)}</span>' for j, (s, _, n, g) in enumerate(items))
     return (f'<a class="fp f{i}" href="#{slugs[0]}" tabindex="-1" data-speed="{(".03", "-.04", ".06")[i]}"><div class="rise">'
-            f'<div class="chips">{chips}</div>{phone(screens, delay=i * 1100, lazy=False)}</div></a>')
+            f'<div class="chips">{chips}</div>{phone(screens, delay=i * 1100, lazy=False, real=True)}</div></a>')
 
 
 def kick(a):
@@ -242,25 +247,20 @@ main{position:relative}
 .scr{position:relative;aspect-ratio:640/1390;border-radius:13.5% / 6.2%;overflow:hidden;background:#000;isolation:isolate}
 .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
 .scr img.on{opacity:1}
-/* other devices (the .ph base above is an iPhone) */
-.shots .ph.dv{min-width:0}
-.shots .ph.max{flex-basis:268px}
-.shots .ph.reg{flex-basis:226px}
-.ph.pad{padding:2.4%;border-radius:6.4% / 4.8%}
-.ph.pad:before{right:16%;top:-.9%;width:10%;height:.9%;border-radius:3px 3px 0 0}
-.ph.pad:after{display:none}
-.ph.pad .scr{aspect-ratio:3/4;border-radius:4.2% / 3.2%}
-.shots .ph.pad{flex-basis:380px}
-.ph.duo{padding:2.2%;border-radius:8.4% / 5.8%}
-.ph.duo:after{top:2.2%;bottom:2.2%;height:auto;width:2px;translate:-1px 0;border-radius:0;background:linear-gradient(transparent,rgba(255,255,255,.22) 6%,rgba(0,0,0,.22) 50%,rgba(255,255,255,.22) 94%,transparent)}
-.ph.duo .scr{aspect-ratio:1398/2034;border-radius:6.2% / 4.3%}
-.shots .ph.duo{flex-basis:350px}
-.ph.watch{padding:6%;border-radius:32% / 26%}
-.ph.watch:before{right:-5.5%;top:22%;width:6%;height:19%;border-radius:0 7px 7px 0;background:linear-gradient(90deg,#2a2f3b,#5a6170)}
-.ph.watch:after{top:-24%;bottom:-24%;left:17%;right:17%;width:auto;height:auto;translate:none;border-radius:22px;background:linear-gradient(#3a4152,#2a2f3b 50%,#3a4152);z-index:-1}
-.ph.watch .scr{aspect-ratio:422/514;border-radius:26% / 21%}
-.shots .ph.watch{flex-basis:190px;align-self:center;margin-right:8px}
-.shots .ph.watch+.ph,.shots .ph+.ph.watch{margin-top:0}
+/* real iPhone frame (Apple's bezel image) over the screen */
+.ph.real{padding:0;background:none;box-shadow:none;border-radius:0;aspect-ratio:1311/2708;filter:drop-shadow(0 30px 34px rgba(11,26,74,.38))}
+.ph.real:before,.ph.real:after{display:none}
+.ph.real .scr{position:absolute;left:3.814%;top:1.477%;width:92.449%;height:97.046%;aspect-ratio:auto;border-radius:15.7% / 7.2%}
+.ph.real .bz{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+/* app rows: each device is one image, the capture already inside Apple's bezel */
+.shots .dvi{position:relative;z-index:1;min-width:0;filter:drop-shadow(0 30px 34px rgba(11,26,74,.33))}
+.shots .dvi img{display:block;width:100%;height:auto}
+.shots .dvi.max{flex:0 1 270px}.shots .dvi.reg{flex:0 1 232px}.shots .dvi.pad{flex:0 1 390px}.shots .dvi.duo{flex:0 1 350px}.shots .dvi.watch{flex:0 1 180px;align-self:center}
+.shots .dvi+.dvi{margin-top:56px}
+.shots .dvi.watch,.shots .dvi+.dvi.watch{margin-top:0}
+.app .shots .dvi{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.js .app:not(.in) .shots .dvi{transform:translateY(40px) rotate(3deg);opacity:0}
+.js .app:not(.in) .shots .dvi+.dvi{transform:translateY(70px) rotate(-3deg)}
 
 /* picker */
 .pick{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:30px 0 56px;border-bottom:1px solid var(--line)}
@@ -373,7 +373,7 @@ footer nav a:hover{color:var(--cobalt)}
   .f0 .chip{translate:-30% 0}.f2 .chip{translate:-74% 0}
   .fan{height:min(110vw,470px);margin-top:48px}
   .pick a{width:84px;font-size:.76rem}.pick img{width:58px;height:58px}
-  .shots{gap:14px}.shots .ph+.ph{margin-top:36px}
+  .shots{gap:14px}.shots .ph+.ph,.shots .dvi+.dvi{margin-top:36px}.shots .dvi+.dvi.watch{margin-top:0}
   .sh{display:none}
   .sky{height:900px}
   .fnum{font-size:3.4rem}.fact .fv{height:130px}
@@ -385,7 +385,7 @@ footer nav a:hover{color:var(--cobalt)}
   .igrid img,.noad .slash,.noad .badge,.inbox .tick{transition:none}
   .fan{transform:none}
   .shots{transform:none}
-  .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph{transform:none;opacity:1}
+  .js .app:not(.in) .shots .ph,.js .app:not(.in) .shots .ph+.ph,.js .app:not(.in) .shots .dvi,.js .app:not(.in) .shots .dvi+.dvi{transform:none;opacity:1}
   .scr img,.chip,.pick a,.pick img{transition:none}
 }
 '''
