@@ -392,6 +392,6 @@ PREVIEWS = {
     "statecount": (18, "A day logged to the right place, where every record came from, and the count against your limit."),
     "pocketarr": (16, "The dashboard, what's playing on Plex and the week ahead, shown in the app's demo mode with sample servers."),
     "sitout": (18, "A fair round with sit-outs, scores in two taps, the court board and the standings at the end."),
-    "stashday": (18, "One number every payday, the heavy months in the year view, and a paid bill rolling to next year."),
+    "stashday": (19, "One number every payday, the heavy months in the year view, and a paid bill rolling to next year."),
     "tabbed": (18, "An electrician question with its NEC section, a switch to plumbing, a UPC answer and an offset worked step by step."),
 }
