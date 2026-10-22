@@ -20,6 +20,7 @@ APPS = [
       screens=[("screen-themes.webp", "Host a Night screen with themes to pick from"), ("screen-voting.webp", "Blind voting on the videos"),
                ("screen-playback.webp", "A video playing during the Night"), ("screen-results.webp", "Results revealing who chose the winner")]),
  dict(slug="mackro", name="Mackro", g="#F5B82A", ink=NAVY, live=True,
+      fan="home/today.jpg", devices=[("max", "home/today.jpg", "Mackro Today screen on iPhone 17 Pro Max"), ("watch", "home/watch.jpg", "Mackro on Apple Watch with Log meal")],
       line="A macro tracker with a squirrel named Mack who keeps score and never judges.",
       points=["Log a meal by describing it or snapping a photo", "Calories and macros at a glance, with a nudge from Mack", "Trends over 7, 30 or 90 days, plus widgets"],
       screens=[("today.jpg", "Today screen with calories, macros and Mack"), ("describe.jpg", "Logging a meal by describing it"),
@@ -29,24 +30,29 @@ APPS = [
       points=["pH, KH, GH, nitrate and more, graded against your own ranges", "Care schedules and dosing with reminders", "No login, no ads. Your data stays on your device"],
       screens=[("shot1.jpg", "CO₂ estimate and a pH trend chart"), ("shot2.jpg", "Water test and care schedule screens"), ("shot3.jpg", "TankLog tank overview")]),
  dict(slug="stashday", name="Stashday", g="#34C79A", ink=NAVY, live=False,
+      fan="home/fund.jpg", devices=[("pad", "home/ipad-home.jpg", "Stashday on iPad: the payday number beside a bill"), ("reg", "home/fund.jpg", "A fund with its progress ring on iPhone")],
       line="Tells you exactly what to set aside each payday so the irregular bills stop being a surprise.",
       points=["One number per paycheck that covers every bill", "A ring for each fund, so you see what is on track", "Tick off what you paid and set aside"],
       screens=[("number.jpg", "Your number: the amount to set aside this payday"), ("fund.jpg", "A single fund with progress ring and due date"), ("checklist.jpg", "Payday checklist")]),
  # One app for two trades: the user picks Electrician or Plumber at setup. Plumber screens live in /tabbed/img/plumber/.
  dict(slug="tabbed", name="Tabbed", kicker="Electrician or plumber", g="#0A84FF", ink=WHITE, live=False,
+      fan="home/plumber-answer.jpg", devices=[("pad", "home/ipad-answer.jpg", "An electrician answer on iPad with its NEC reference"), ("reg", "home/plumber-answer.jpg", "A plumber answer on iPhone with its UPC reference")],
       line="Exam prep for journeyman electricians and plumbers. Every answer cites the code section.",
       points=["Pick electrician or plumber at setup, each with its own questions and exams", "Practice questions with the explanation and the NEC, UPC or IPC reference", "Timed lookup drills, step-by-step calcs and practice exams in your exam's format"],
       screens=[("answer.jpg", "An electrician practice answer with explanation and code citation"), ("plumber/answer.jpg", "A plumber practice answer with explanation and code citation"),
                ("lookup.jpg", "A timed lookup drill with a countdown"), ("plumber/calc.jpg", "A plumbing calculation with every step shown")]),
  dict(slug="fantasyqueens", name="Fantasy Queens", g="#F8218A", ink=WHITE, live=False,
+      fan="home/vote.jpg", devices=[("duo", "home/duo-home.jpg", "Fantasy Queens on the unfolded iPhone Duo"), ("reg", "home/vote.jpg", "The rules vote on iPhone")],
       line="Fantasy leagues for your Drag Race watch party. Pick your queens, vote on the rules, see who leads after every episode.",
       points=["Draft your queens with your watch-party group", "Vote on the rules before the premiere", "A leaderboard that updates after every episode"],
       screens=[("shot2.jpg", "Rules vote screen"), ("shot3.jpg", "Leaderboard after an episode"), ("shot4.jpg", "A house's queens")]),
  dict(slug="sitout", name="Sitout", g="#E2FB2C", ink=NAVY, live=False,
+      fan="home/live.jpg", devices=[("max", "home/live.jpg", "A live round with scores on iPhone 17 Pro Max"), ("reg", "home/summary.jpg", "Night complete: the winner and standings")],
       line="Runs a pickleball round robin from one phone. Fair sit-outs, rotating partners, standings at the end of the night.",
       points=["Sit-outs shared evenly, every round", "Scores in two taps, late arrivals without lost scores", "Players never pay and never need the app"],
       screens=[("live.jpg", "A live round: who sits out, then each court with its teams and scores"), ("score.jpg", "Entering a score"), ("standings.jpg", "End-of-night standings ranked by win rate")]),
  dict(slug="statecount", name="Statecount", g="#4A8FD6", ink=NAVY, live=False,
+      fan="home/home.jpg", devices=[("max", "home/home.jpg", "Days left for New York and Florida on iPhone 17 Pro Max (example data)"), ("reg", "home/calendar.jpg", "A calendar month colored by place (example data)")],
       line="For snowbirds, remote workers and second-home owners who need to know, and be able to show, how many days they spent where. Your location never leaves your phone.",
       points=["Any part of a day counts; travel days count for both places", "Every day shows where its record came from", "Day-by-day PDF and CSV report"],
       screens=[("home.jpg", "Days used and days left for New York and Florida (example data)"), ("calendar.jpg", "Calendar month colored by state (example data)")]),
@@ -57,9 +63,8 @@ APPS = [
 ]
 BY = {a["slug"]: a for a in APPS}
 # The three fanned hero phones, each cycling through a few apps.
-# An entry is an app slug, or (slug, screen, chip label, chip color) to show one app twice, as Tabbed does for its two trades.
-COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"],
-         [("tabbed", "answer.jpg", "Tabbed: Electrician", "#0A84FF"), ("tabbed", "plumber/answer.jpg", "Tabbed: Plumber", "#9A5B26")]]
+# An entry is an app slug (its "fan" screen, else its first screen), or (slug, screen, chip label, chip color).
+COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "pocketarr"]]
 
 e = lambda s: html.escape(s, quote=True)
 
@@ -117,8 +122,19 @@ def preview(slug, name, frame="ph", auto=True):
             f'<button type="button" class="pv-btn" hidden>{_PLAY}{_PAUSE}<span>Play</span></button></figure>')
 
 
+# Each app row can show a mix of devices instead of two iPhones: (kind, file, alt) where kind is
+# max (iPhone Pro Max), reg (iPhone), pad (iPad, portrait), duo (iPhone Duo, unfolded) or watch (Apple Watch).
+DEVICE_PX = {"max": (640, 1390), "reg": (640, 1390), "pad": (900, 1200), "duo": (760, 1106), "watch": (422, 514)}
+
+
+def device(slug, kind, f, alt, speed):
+    w, h = DEVICE_PX[kind]
+    return (f'<div class="ph dv {kind}" role="img" aria-label="{e(alt)}" data-speed="{speed}"><div class="scr">'
+            f'<img class="on" src="/{slug}/img/{f}" alt="" width="{w}" height="{h}" loading="lazy" decoding="async"></div></div>')
+
+
 def fan_phone(i, entries):
-    items = [x if isinstance(x, tuple) else (x, BY[x]["screens"][0][0], BY[x]["name"], BY[x]["g"]) for x in entries]
+    items = [x if isinstance(x, tuple) else (x, BY[x].get("fan") or BY[x]["screens"][0][0], BY[x]["name"], BY[x]["g"]) for x in entries]
     slugs = [x[0] for x in items]
     screens = [(s, f, "") for s, f, _, _ in items]
     chips = "".join(f'<span class="chip{" on" if j == 0 else ""}" data-slug="{s}" style="--g:{g}"><img src="/{s}/img/icon.png" alt="" width="22" height="22">{e(n)}</span>' for j, (s, _, n, g) in enumerate(items))
@@ -138,6 +154,8 @@ def section(a, flip):
     one = [(s, f, alt) for f, alt in sc[0::2]]
     two = [(s, f, alt) for f, alt in (sc[1::2] or sc[:1])]
     phones = phone(one, 0, f"{a['name']} screens").replace('class="ph"', 'class="ph" data-speed="-.045"', 1) + phone(two, 1600, f"More {a['name']} screens").replace('class="ph"', 'class="ph" data-speed=".06"', 1)
+    if a.get("devices"):
+        phones = "".join(device(s, k, f, alt, sp) for (k, f, alt), sp in zip(a["devices"], ("-.045", ".06")))
     return f'''
     <section class="app{" flip" if flip else ""}" id="{s}" data-tint="{_mix(a["g"], "#EEF1FB", .84)}" style="--g:{a["g"]};--gf:{fill(a["g"], a["ink"])};--gi:{a["ink"]}" aria-labelledby="{s}-h">
       <div class="info">
@@ -224,6 +242,25 @@ main{position:relative}
 .scr{position:relative;aspect-ratio:640/1390;border-radius:13.5% / 6.2%;overflow:hidden;background:#000;isolation:isolate}
 .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
 .scr img.on{opacity:1}
+/* other devices (the .ph base above is an iPhone) */
+.shots .ph.dv{min-width:0}
+.shots .ph.max{flex-basis:268px}
+.shots .ph.reg{flex-basis:226px}
+.ph.pad{padding:2.4%;border-radius:6.4% / 4.8%}
+.ph.pad:before{right:16%;top:-.9%;width:10%;height:.9%;border-radius:3px 3px 0 0}
+.ph.pad:after{display:none}
+.ph.pad .scr{aspect-ratio:3/4;border-radius:4.2% / 3.2%}
+.shots .ph.pad{flex-basis:380px}
+.ph.duo{padding:2.2%;border-radius:8.4% / 5.8%}
+.ph.duo:after{top:2.2%;bottom:2.2%;height:auto;width:2px;translate:-1px 0;border-radius:0;background:linear-gradient(transparent,rgba(255,255,255,.22) 6%,rgba(0,0,0,.22) 50%,rgba(255,255,255,.22) 94%,transparent)}
+.ph.duo .scr{aspect-ratio:1398/2034;border-radius:6.2% / 4.3%}
+.shots .ph.duo{flex-basis:350px}
+.ph.watch{padding:6%;border-radius:32% / 26%}
+.ph.watch:before{right:-5.5%;top:22%;width:6%;height:19%;border-radius:0 7px 7px 0;background:linear-gradient(90deg,#2a2f3b,#5a6170)}
+.ph.watch:after{top:-24%;bottom:-24%;left:17%;right:17%;width:auto;height:auto;translate:none;border-radius:22px;background:linear-gradient(#3a4152,#2a2f3b 50%,#3a4152);z-index:-1}
+.ph.watch .scr{aspect-ratio:422/514;border-radius:26% / 21%}
+.shots .ph.watch{flex-basis:190px;align-self:center;margin-right:8px}
+.shots .ph.watch+.ph,.shots .ph+.ph.watch{margin-top:0}
 
 /* picker */
 .pick{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:30px 0 56px;border-bottom:1px solid var(--line)}
