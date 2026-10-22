@@ -101,14 +101,19 @@ def img(slug, f, alt="", cls="", lazy=True):
     return f'<img{c} src="/{slug}/img/{f}" alt="{e(alt)}" width="640" height="1390"{a}>'
 
 
+# Apple's iPhone 17 bezel (Apple Design Resources), laid over a screen by phone(), preview() and the app pages' iph().
+def bezel(lazy=False):
+    a = ' loading="lazy" decoding="async"' if lazy else ""
+    return f'<img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"{a}>'
+
+
 def phone(screens, delay=0, label=None, lazy=True, real=False):
     """screens: list of (slug, file, alt). The first one shows without JavaScript.
     real puts Apple's iPhone 17 bezel over the screen instead of the drawn CSS frame."""
     imgs = "".join(img(s, f, alt, "on" if i == 0 else "", lazy) for i, (s, f, alt) in enumerate(screens))
     aria = f' role="img" aria-label="{e(label)}"' if label else ""
     if real:
-        return (f'<div class="ph real" data-delay="{delay}"{aria}><div class="scr">{imgs}</div>'
-                '<img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"></div>')
+        return f'<div class="ph real" data-delay="{delay}"{aria}><div class="scr">{imgs}</div>{bezel(lazy)}</div>'
     return f'<div class="ph" data-delay="{delay}"{aria}><div class="scr">{imgs}</div></div>'
 
 
@@ -116,15 +121,17 @@ _PLAY = '<svg class="i-play" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 
 _PAUSE = '<svg class="i-pause" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 1h4v14H1zM9 1h4v14H9z" fill="currentColor"/></svg>'
 
 
-def preview(slug, name, frame="ph", auto=True):
+def preview(slug, name, frame="ph", auto=True, real=False):
     """The app's App Store preview (/<slug>/img/preview.mp4 + .jpg poster) as a silent loop in a phone frame,
     with a Play/Pause button. auto plays it while on screen; otherwise it waits for a tap.
+    real puts Apple's iPhone 17 bezel over the video instead of the drawn CSS frame.
     The page needs /assets/preview.css and /assets/preview.js."""
     big = '<span class="pv-big" aria-hidden="true"><svg viewBox="0 0 14 16"><path d="M1 1.5v13L13 8z" fill="currentColor"/></svg></span>'
     return (f'<figure class="pvw" data-name="{e(name)}"{" data-auto" if auto else ""}>'
-            f'<div class="{frame} pv idle"><div class="scr"><video src="/{slug}/img/preview.mp4" poster="/{slug}/img/preview.jpg" '
+            f'<div class="{frame}{" real" if real else ""} pv idle"><div class="scr"><video src="/{slug}/img/preview.mp4" poster="/{slug}/img/preview.jpg" '
             f'muted loop playsinline controls preload="{"metadata" if auto else "none"}" width="592" height="1282" '
-            f'aria-label="{e(name)} App Store preview, silent, with captions on screen"></video></div>{big}</div>'
+            f'aria-label="{e(name)} App Store preview, silent, with captions on screen"></video></div>'
+            f'{bezel(lazy=True) if real else ""}{big}</div>'
             f'<button type="button" class="pv-btn" hidden>{_PLAY}{_PAUSE}<span>Play</span></button></figure>')
 
 

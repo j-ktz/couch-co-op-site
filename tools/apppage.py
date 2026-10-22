@@ -14,7 +14,7 @@ import html, json, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 import landing  # noqa: E402  (icons, more-apps names)
-from hub import contrast, _mix, preview  # noqa: E402
+from hub import bezel, contrast, _mix, preview  # noqa: E402
 
 LEGACY = ROOT / "tools" / "app-legacy.json"
 NAVY, WHITE = "#0B1A4A", "#FFFFFF"
@@ -63,7 +63,8 @@ def iph(slug, files, delay=0, label=None, lazy=True, attrs=""):
     imgs = "".join(f'<img{" class=\"on\"" if i == 0 else ""} src="/{slug}/img/{f}" alt="" width="640" height="1390"'
                    f'{" loading=\"lazy\" decoding=\"async\"" if lazy and i else ""}>' for i, f in enumerate(files))
     aria = f' role="img" aria-label="{e(label)}"' if label else ' aria-hidden="true"'
-    return f'<div class="iph" data-delay="{delay}"{aria}{attrs}><div class="scr">{imgs}</div></div>'
+    # Apple's iPhone 17 bezel over the screen, the same frame as the home page.
+    return f'<div class="iph real" data-delay="{delay}"{aria}{attrs}><div class="scr">{imgs}</div>{bezel(lazy)}</div>'
 
 
 SHAPES = (
@@ -201,7 +202,7 @@ def page(slug, s):
     pv = s.get("preview")
     watch = (f'<section class="sec watch" id="preview" aria-labelledby="pv-h"><div class="wrap"><div class="story">'
              f'<div class="txt"><h2 id="pv-h">{e(s["name"])} in {pv[0]} seconds</h2><p>{e(pv[1])}</p></div>'
-             f'<div class="vis">{preview(slug, s["name"], frame="iph")}</div></div></div></section>') if pv else ""
+             f'<div class="vis">{preview(slug, s["name"], frame="iph", real=True)}</div></div></div></section>') if pv else ""
     trust = '<ul class="trust" aria-label="At a glance">' + "".join(f"<li>{e(t)}</li>" for t in s["trust"]) + "</ul>" if s.get("trust") else ""
     links = "".join(f'<a href="{h}">{e(t)}</a>' for t, h in s["links"])
     legal = "".join(f"<p>{x}</p>" for x in s.get("legal", []))

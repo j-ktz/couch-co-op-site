@@ -177,7 +177,7 @@ MACKRO_PLAY = '''<section class="sec demo" id="try"><div class="wrap"><div class
 </div></div></div></section>'''
 
 MACKRO_STAGE = ('<div class="vis" id="stage">'
- '<div class="iph" role="img" aria-label="Mackro\'s Add food screen: a meal described in plain English and the macros Mack estimates" data-speed="-.04"><div class="scr"><img class="on" src="/mackro/img/describe.jpg" alt="" width="640" height="1390" loading="lazy"></div></div>'
+ '<div class="iph real" role="img" aria-label="Mackro\'s Add food screen: a meal described in plain English and the macros Mack estimates" data-speed="-.04"><div class="scr"><img class="on" src="/mackro/img/describe.jpg" alt="" width="640" height="1390" loading="lazy"></div><img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033" loading="lazy" decoding="async"></div>'
  '<span class="float f1"><i style="background:var(--protein)"></i>16g protein</span><span class="float f2"><i style="background:var(--carbs)"></i>25g carbs</span><span class="float f3"><i style="background:var(--sun)"></i>302 cal</span></div>')
 
 MACKS = [("mack-celebrating", "You hit protein. Mack did a lap."), ("mack-thinking", "Dinner's looking light. No rush."),

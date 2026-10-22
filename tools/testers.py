@@ -117,8 +117,8 @@ def card(t):
                 f'<button type="button" class="copy" data-copy="{HELLO}">Copy address</button></p>')
     ask = "".join(f"<li>{e(x)}</li>" for x in t["ask"])
     # The app's App Store preview when there is one (tap to play, so eight cards don't all load video), else a screen.
-    shot = (preview(s, a["name"], auto=False) if (ROOT / s / "img" / "preview.mp4").exists()
-            else phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen"))
+    shot = (preview(s, a["name"], auto=False, real=True) if (ROOT / s / "img" / "preview.mp4").exists()
+            else phone([(s, f, alt) for f, alt in a["screens"][:1]], label=f"{a['name']} screen", real=True))
     return f'''
     <article class="card" id="{s}" style="--g:{a["g"]};--gf:{fill(a["g"], a["ink"])};--gi:{a["ink"]}" aria-labelledby="{s}-h">
       <div>
