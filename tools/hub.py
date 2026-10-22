@@ -102,9 +102,11 @@ def img(slug, f, alt="", cls="", lazy=True):
 
 
 # Apple's iPhone 17 bezel (Apple Design Resources), laid over a screen by phone(), preview() and the app pages' iph().
-def bezel(lazy=False):
+# Videos use a copy without the Dynamic Island: App Store previews are made full screen and put captions at the top.
+def bezel(lazy=False, island=True):
     a = ' loading="lazy" decoding="async"' if lazy else ""
-    return f'<img class="bz" src="/assets/devices/iphone-17-black.webp" alt="" width="500" height="1033"{a}>'
+    f = "iphone-17-black.webp" if island else "iphone-17-black-video.webp"
+    return f'<img class="bz" src="/assets/devices/{f}" alt="" width="500" height="1033"{a}>'
 
 
 def phone(screens, delay=0, label=None, lazy=True, real=False):
@@ -131,7 +133,7 @@ def preview(slug, name, frame="ph", auto=True, real=False):
             f'<div class="{frame}{" real" if real else ""} pv idle"><div class="scr"><video src="/{slug}/img/preview.mp4" poster="/{slug}/img/preview.jpg" '
             f'muted loop playsinline controls preload="{"metadata" if auto else "none"}" width="592" height="1282" '
             f'aria-label="{e(name)} App Store preview, silent, with captions on screen"></video></div>'
-            f'{bezel(lazy=True) if real else ""}{big}</div>'
+            f'{bezel(lazy=True, island=False) if real else ""}{big}</div>'
             f'<button type="button" class="pv-btn" hidden>{_PLAY}{_PAUSE}<span>Play</span></button></figure>')
 
 
