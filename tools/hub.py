@@ -15,7 +15,7 @@ NAVY, WHITE = "#0B1A4A", "#FFFFFF"
 # ink = text color on the app's accent (white on dark accents, navy on light ones).
 APPS = [
  dict(slug="mvn", name="Music Video Night", g="#9867FF", ink=WHITE, live=True,
-      devices=[("reg", "home/themes.webp", "Music Video Night: picking a theme for the Night on iPhone"), ("reg", "home/voting.webp", "Blind voting on the videos")],
+      devices=[("reg", "home/themes.webp", "Music Video Night: picking a theme for the Night on iPhone"), ("reg", "home/results.webp", "Results: who won the Night and the final standings")],
       line="A party game. Everyone picks a music video, everyone votes blind, one person wins the Night.",
       points=["Names stay hidden until the votes are in", "Pick a theme, queue the videos, play them on the big screen", "Results reveal who chose the winner"],
       screens=[("screen-themes.webp", "Host a Night screen with themes to pick from"), ("screen-voting.webp", "Blind voting on the videos"),
