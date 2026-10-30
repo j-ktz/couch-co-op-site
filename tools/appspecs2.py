@@ -482,3 +482,48 @@ POCKETARR = dict(
  links=[("Support", "support.html"), ("Privacy", "privacy.html")],
  legal=["Sonarr, Radarr and Lidarr are independent open-source projects, and Plex is a trademark of Plex, Inc. Pocketarr isn't affiliated with or endorsed by any of them."],
 )
+
+
+SHEDDAY = dict(
+ name="Shedday", live=False, soon="Coming soon on the App Store",
+ bg="#E9F4F4", bg2="#D6EBEB", a="#19B5B0", ink="#06282B", a2="#B85F0C", a3="#F2B84B", band="#0C2F33",
+ nav=[("What it does", "#what"), ("Pricing", "#pricing")],
+ status="A care log for reptile keepers",
+ h1=["Who ate,", "who shed,", "who's due."],
+ lede="Shedday is a simple care log for snakes, geckos, bearded dragons, turtles and the rest. Log a feeding in one tap, see each animal's last 28 days at a glance, and know what is due today.",
+ note="iPhone. No ads. No account.",
+ screens=["home.jpg", "weight.jpg", "care.jpg"],
+ trust=["No ads", "No account", "Nothing leaves your iPhone", "Free for 2 animals"],
+ blocks=[
+  ("who", dict(h="Who it's for", items=[("First-time keepers", "One gecko or one corn snake, and a wish to remember when it last ate."),
+                                         ("Small collections", "Several animals, each on its own schedule, without a spreadsheet."),
+                                         ("Breeders and rack keepers", "Tub by tub: feeding, weights and sheds, then export it all to CSV."),
+                                         ("Anyone who shares care", "Open the app and see who was fed, with no group text to scroll.")])),
+  ("stories", dict(id="what", items=[
+   dict(h="One tap to log a meal.", p=["Tap Ate or Refused on the animal's card. Shedday fills in the same prey as last time, and a short Undo covers a slip. Need a different day or prey? Tap Details."], screens=["home.jpg"], alt="Home with a card for each animal, a strip of its last 28 days and Ate and Refused buttons (example data)"),
+   dict(h="The last 28 days, drawn like belly plates.", p=["Each animal's strip is a row of plates, like the scales under a snake. A filled plate means it ate, an outline means it refused, a notch means it regurgitated and a pale stripe marks a shed day."], screens=["sheds.jpg"], alt="An animal's sheds with its 28-day plate strip (example data)"),
+   dict(h="Weights as a chart.", p=["Log grams, see the line. Weights and lengths are free to log; the charts come with Pro. Switch between grams and ounces any time."], screens=["weight.jpg"], alt="A weight chart for one animal in grams (example data)"),
+   dict(h="Know what's due.", p=["Set how often each animal needs feeding, a water change or a cleaning. Shedday counts from the last time you did it and sends one reminder when it is due."], screens=["care.jpg"], alt="Care schedules showing what is due and what is overdue (example data)"),
+  ])),
+  ("feats", dict(alt=True, h="Facts, not advice.", items=[
+   ("calendar", "Days since fed", "Counted from the last meal the animal actually ate. A refused meal does not reset it, and a run of refusals is shown as a plain count."),
+   ("home", "Enclosures", "Log temperature and humidity for each tub or tank, and note when a UVB bulb was changed."),
+   ("doc", "Your data is yours", "Export every log to one CSV, or a PDF summary for each animal. Import a CSV to bring it back."),
+   ("lock", "Nothing leaves your iPhone", "No account, no analytics and no server. Photos and notes stay on the device.")])),
+  ("plans", dict(id="pricing", h="Free for two animals. Pro for the whole collection.", items=[
+   ("Free", "$0", "No time limit", ["2 animals", "Feeding log and shed log", "Weights, lengths and notes with photos", "No ads"], False),
+   ("Shedday Pro", "$14.99 / year", "7-day free trial, or $24.99 once", ["Unlimited animals", "Reminders when something is due", "Weight and length charts", "Home Screen widgets", "Enclosure log", "CSV export and import, and a PDF for each animal"], True)],
+   fine="The yearly plan renews until you cancel, in Settings under your Apple Account. If Pro ends, every animal stays; the oldest two remain editable and the rest are view only. Nothing is deleted. Prices in US dollars.")),
+  ("band", dict(h="No account. No analytics. No server of our own.", bg="#0C2F33", sub="Shedday keeps your animals, photos and logs on your iPhone. It makes no network requests apart from the App Store, and there is nowhere for us to receive your data.",
+   html='<p style="margin-top:18px"><a href="privacy.html">Read exactly what it stores</a></p>', nos=["No account", "No analytics", "No ads", "Data Not Collected"])),
+  ("faq", dict(h="Frequently asked questions", items=[
+   ("Does Shedday tell me how to care for my animal?", "No. It is a log. It shows facts like days since fed and never says what a number means. For health questions, ask a reptile vet."),
+   ("Which animals can I track?", "Any reptile. The picker has 31 common species, from ball pythons and leopard geckos to tortoises, and you can type your own."),
+   ("Will my data sync to my other devices?", "Not yet. Everything is stored on this iPhone, so you can export a CSV any time with Pro and keep a copy."),
+   ("Is it a subscription?", "You choose. Pro is $14.99 a year with a 7-day free trial, or $24.99 once. The free plan covers two animals with no time limit."),
+  ])),
+ ],
+ finale=("Know who's due.", "Coming soon on the App Store. Screenshots show example animals."),
+ links=[("Support", "support.html"), ("Privacy", "privacy.html"), ("Terms", "terms.html")],
+ legal=["Shedday is a log, not a veterinarian. It never gives care or medical advice."],
+)
