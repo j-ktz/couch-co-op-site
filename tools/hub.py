@@ -62,11 +62,16 @@ APPS = [
       line="For people who run their own media server. Your Sonarr, Radarr, Lidarr and Plex servers on your Lock Screen and Home Screen. No account. Pay once.",
       points=["Widgets for what's airing, the queue and server health", "Talks only to the servers you add", "One-time purchase, no subscription"],
       screens=[("dashboard.jpg", "Dashboard with server warnings and what's playing (demo data)"), ("calendar.jpg", "Calendar of upcoming episodes and movies (demo data)")]),
+ dict(slug="wishmallow", name="Wishmallow", g="#F6A9B8", ink=NAVY, live=False,
+      fan="room.jpg", devices=[("reg", "home/room.webp", "Mochi and Pip eating lunch in Wishmallow on iPhone"), ("reg", "home/wish.webp", "Making a wish in Wishmallow on iPhone")],
+      line="A cozy 3D dollhouse. Build a little house, wish for any piece of furniture, and watch your pals cook, nap and chat in it.",
+      points=["Wish for anything and it appears with a poof", "Pals with moods, likes and a bedtime", "Pay once. No ads, no timers"],
+      screens=[("room.jpg", "Two pals eating lunch at the kitchen table"), ("wish.jpg", "The Make a wish screen")]),
 ]
 BY = {a["slug"]: a for a in APPS}
 # The three fanned hero phones, each cycling through a few apps.
 # An entry is an app slug (its "fan" screen, else its first screen), or (slug, screen, chip label, chip color).
-COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "pocketarr"]]
+COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "pocketarr", "wishmallow"]]
 
 e = lambda s: html.escape(s, quote=True)
 

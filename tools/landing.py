@@ -63,6 +63,7 @@ APPS = {  # for "more apps" tiles
  "fantasyqueens": ("Fantasy Queens", "Fantasy houses for drag watch parties"),
  "sitout": ("Sitout", "Fair pickleball round robins"),
  "statecount": ("Statecount", "A private 183-day residency tracker"),
+ "wishmallow": ("Wishmallow", "A cozy 3D dollhouse that grants wishes"),
 }
 
 # ---------------------------------------------------------------- content

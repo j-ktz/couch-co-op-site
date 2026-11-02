@@ -279,6 +279,7 @@ if __name__ == "__main__":
     for slug in want:
         if slug == "tanklog":
             raise SystemExit("TankLog is not built here.")
-        legacy(slug)  # snapshot head data before the first overwrite
+        if not appspecs.SPECS[slug].get("head"):
+            legacy(slug)  # snapshot head data before the first overwrite (a new app brings its own head)
         (ROOT / slug / "index.html").write_text(page(slug, appspecs.SPECS[slug]))
         print("built", slug)
