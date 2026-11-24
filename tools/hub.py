@@ -67,11 +67,16 @@ APPS = [
       line="A cozy 3D dollhouse. Build a little house, wish for any piece of furniture, and watch your pals cook, nap and chat in it.",
       points=["Wish for anything and it appears with a poof", "Pals with moods, likes and a bedtime", "Pay once. No ads, no timers"],
       screens=[("room.jpg", "Two pals eating lunch at the kitchen table"), ("wish.jpg", "The Make a wish screen")]),
+ dict(slug="terrabook", name="Terrabook", g="#19B5B0", ink="#06282B", live=False,
+      fan="home/home.jpg", devices=[("reg", "home/home.webp", "Terrabook home with a card and a 28-day plate strip for each animal (example data)"), ("reg", "home/care.webp", "Terrabook care schedules showing what is due (example data)")],
+      line="A simple care log for people who keep snakes, geckos, bearded dragons and other reptiles. Log a feeding in one tap and see who is due today. No ads, no account.",
+      points=["Ate or refused in one tap", "A 28-day strip for each animal, drawn like belly plates", "Everything stays on your iPhone"],
+      screens=[("home.jpg", "Home with a card for each animal (example data)"), ("care.jpg", "Care schedules showing what is due (example data)")]),
 ]
 BY = {a["slug"]: a for a in APPS}
 # The three fanned hero phones, each cycling through a few apps.
 # An entry is an app slug (its "fan" screen, else its first screen), or (slug, screen, chip label, chip color).
-COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "pocketarr", "wishmallow"]]
+COUCH = [["mackro", "stashday", "statecount"], ["mvn", "fantasyqueens", "sitout"], ["tabbed", "pocketarr", "wishmallow", "terrabook"]]
 
 e = lambda s: html.escape(s, quote=True)
 

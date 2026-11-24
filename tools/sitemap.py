@@ -5,7 +5,7 @@ and forward-only folders (music-video-night, tabbed-plumber)."""
 import pathlib, datetime
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://couchcoopstudios.com"
-SKIP_DIRS = {"pocketarr", "wishmallow", "join", "_src", "docs", "fonts", "assets", "img", "tools", "music-video-night", "tabbed-plumber", ".git", ".github"}
+SKIP_DIRS = {"pocketarr", "wishmallow", "terrabook", "join", "_src", "docs", "fonts", "assets", "img", "tools", "music-video-night", "tabbed-plumber", ".git", ".github"}
 SKIP_FILES = {"404.html", "mvn/join.html", "og-cover.source.html"}
 # pages other sessions publish separately (listed with their OK)
 EXTRA = ["sitout/how-to/pickleball-round-robin-10-players.html", "sitout/how-to/pickleball-round-robin-12-players.html",

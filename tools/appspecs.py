@@ -1,7 +1,7 @@
 """Per-app content and styling for tools/apppage.py. Copy comes from each app's
 previous page and tools/landing.py, unchanged in substance. No em dashes."""
 import landing
-from appspecs2 import TABBED, FANTASYQUEENS, SITOUT, POCKETARR
+from appspecs2 import TABBED, FANTASYQUEENS, SITOUT, POCKETARR, SHEDDAY
 from appspecs3 import WISHMALLOW
 
 C = landing.C
@@ -384,7 +384,7 @@ STATECOUNT = dict(
 
 SPECS = {"mvn": MVN, "mackro": MACKRO, "stashday": STASHDAY, "statecount": STATECOUNT,
          "tabbed": TABBED, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT, "pocketarr": POCKETARR,
-         "wishmallow": WISHMALLOW}
+         "wishmallow": WISHMALLOW, "terrabook": SHEDDAY}
 
 # App Store preview loops shown under each page's hero (tools/apppage.py): slug -> (seconds, what it shows).
 # Files: /<slug>/img/preview.mp4 (silent web copy) and preview.jpg (the 0:05 poster frame).
