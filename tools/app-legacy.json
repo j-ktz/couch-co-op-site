@@ -210,16 +210,16 @@
   "ld": [],
   "js": []
  },
- "shedday": {
-  "title": "Shedday: Reptile Care Log for Feeding, Sheds and Weights | Couch Co-Op Studios",
+ "terrabook": {
+  "title": "Terrabook: Reptile Care Log for Feeding, Sheds and Weights | Couch Co-Op Studios",
   "meta": [
-   "<meta name=\"description\" content=\"Shedday is a simple care log for snakes, geckos, bearded dragons and other reptiles. Log a feeding in one tap, see the last 28 days at a glance and know what is due. No ads. No account.\">",
-   "<link rel=\"canonical\" href=\"https://couchcoopstudios.com/shedday/\">",
-   "<meta property=\"og:title\" content=\"Shedday: who ate, who shed, who's due\">",
+   "<meta name=\"description\" content=\"Terrabook is a simple care log for snakes, geckos, bearded dragons and other reptiles. Log a feeding in one tap, see the last 28 days at a glance and know what is due. No ads. No account.\">",
+   "<link rel=\"canonical\" href=\"https://couchcoopstudios.com/terrabook/\">",
+   "<meta property=\"og:title\" content=\"Terrabook: who ate, who shed, who's due\">",
    "<meta property=\"og:description\" content=\"A simple reptile care log: one-tap feedings, a 28-day strip for each animal, weights and what is due. No ads. No account.\">",
-   "<meta property=\"og:url\" content=\"https://couchcoopstudios.com/shedday/\">",
+   "<meta property=\"og:url\" content=\"https://couchcoopstudios.com/terrabook/\">",
    "<meta property=\"og:type\" content=\"website\">",
-   "<meta property=\"og:image\" content=\"https://couchcoopstudios.com/shedday/img/icon.png\">",
+   "<meta property=\"og:image\" content=\"https://couchcoopstudios.com/terrabook/img/icon.png\">",
    "<meta name=\"twitter:card\" content=\"summary\">"
   ],
   "ld": [],

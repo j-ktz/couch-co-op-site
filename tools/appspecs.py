@@ -382,7 +382,7 @@ STATECOUNT = dict(
 )
 
 SPECS = {"mvn": MVN, "mackro": MACKRO, "stashday": STASHDAY, "statecount": STATECOUNT,
-         "tabbed": TABBED, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT, "pocketarr": POCKETARR, "shedday": SHEDDAY}
+         "tabbed": TABBED, "fantasyqueens": FANTASYQUEENS, "sitout": SITOUT, "pocketarr": POCKETARR, "terrabook": SHEDDAY}
 
 # App Store preview loops shown under each page's hero (tools/apppage.py): slug -> (seconds, what it shows).
 # Files: /<slug>/img/preview.mp4 (silent web copy) and preview.jpg (the 0:05 poster frame).
