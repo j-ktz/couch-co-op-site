@@ -108,6 +108,10 @@ MVN = dict(
 
 # ---------------------------------------------------------------- Mackro
 MACKRO_CSS = r'''
+.film{max-width:1000px;margin:34px auto 0;border-radius:28px;overflow:hidden;background:#F4E9D5;box-shadow:0 0 0 1px var(--line),0 50px 90px -46px var(--shadow)}
+.film video{display:block;width:100%;height:auto;background:#F4E9D5}
+.film-v{display:none!important}
+@media(max-width:700px){.film{max-width:400px}.film-h{display:none!important}.film-v{display:block!important}}
 :root{--protein:#FF7A59;--carbs:#3FA7F5;--fat:#9B6BFF;--sun:#F5B82A}
 .mfan{position:relative}
 .mackhero{position:absolute;left:-12%;bottom:-6%;width:27%;z-index:5;filter:drop-shadow(0 24px 30px rgba(60,35,5,.35));animation:hover 5.5s ease-in-out infinite}
@@ -189,11 +193,18 @@ MACKRO_MEET = ('<section class="sec alt" id="mack"><div class="wrap center"><h2>
  + "".join(f'<figure><img src="img/3d/{f}.webp" alt="" width="640" height="640" loading="lazy"><figcaption>{t}</figcaption></figure>' for f, t in MACKS)
  + "</div></div></section>")
 
+MACKRO_FILM = ('<section class="sec" id="new"><div class="wrap center"><h2>New in Mackro 2.2.</h2>'
+ '<p class="sub">Star your favorite way to log, see what fits what you have left, and keep an eye on fiber. Mack has more to say, too.</p>'
+ '<div class="film">'
+ '<video class="film-h" controls playsinline preload="none" poster="video/mackro-16x9.jpg" width="1920" height="1080" aria-label="Mackro 2.2 video"><source src="video/mackro-16x9.mp4" type="video/mp4"></video>'
+ '<video class="film-v" controls playsinline preload="none" poster="video/mackro-9x16.jpg" width="720" height="1280" aria-label="Mackro 2.2 video"><source src="video/mackro-9x16.mp4" type="video/mp4"></video>'
+ '</div></div></section>')
+
 MACKRO = dict(
  name="Mackro", live=True, appid="6771991453",
  bg="#FFF7E3", bg2="#FCEFCB", a="#F5B82A", ink="#2A1B0A", a2="#FF8A4C", a3="#7BC96F", band="#2A1B0A",
  vars="--ink:#2A1B0A;--soft:#5C482B;--line:rgba(42,27,10,.13);--shadow:rgba(80,50,5,.5);",
- nav=[("How it works", "#log"), ("Pricing", "#pricing")],
+ nav=[("What's new", "#new"), ("How it works", "#log"), ("Pricing", "#pricing")],
  status="Free on the App Store",
  h1=["Hit your macros.", "Skip the homework."],
  lede="Scan it, search it, log it. Mack keeps score, nudges you when you drift, and never judges a cheat day.",
@@ -202,6 +213,7 @@ MACKRO = dict(
  trust=[t for _, t in C["mackro"]["trust"]],
  css=MACKRO_CSS, keep_js="legacy",
  blocks=[
+  ("raw", MACKRO_FILM),
   ("raw", MACKRO_PLAY),
   ("stories", dict(id="log", h="Log it however you eat it.", sub="Barcodes and search are free. Describe a meal or snap a photo with Pro.", items=[
    dict(h='Scan it or search it.<span class="tag">Free</span>', p=["Point at a barcode and the nutrition fills itself in. Or search a huge food database, plus your own foods in seconds."], screens=["today.jpg"], alt="Mackro's Today screen with calories, macros and Mack"),

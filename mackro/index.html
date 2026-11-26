@@ -21,6 +21,10 @@
 <link rel="apple-touch-icon" href="/mackro/img/icon.png">
 <link rel="stylesheet" href="/assets/app.css?v=f00aee5f">
 <style>:root{--bg:#FFF7E3;--bg2:#FCEFCB;--a:#F5B82A;--af:#F5B82A;--ai:#2A1B0A;--a2:#FF8A4C;--a3:#7BC96F;--band:#2A1B0A;--ink:#2A1B0A;--soft:#5C482B;--line:rgba(42,27,10,.13);--shadow:rgba(80,50,5,.5);}
+.film{max-width:1000px;margin:34px auto 0;border-radius:28px;overflow:hidden;background:#F4E9D5;box-shadow:0 0 0 1px var(--line),0 50px 90px -46px var(--shadow)}
+.film video{display:block;width:100%;height:auto;background:#F4E9D5}
+.film-v{display:none!important}
+@media(max-width:700px){.film{max-width:400px}.film-h{display:none!important}.film-v{display:block!important}}
 :root{--protein:#FF7A59;--carbs:#3FA7F5;--fat:#9B6BFF;--sun:#F5B82A}
 .mfan{position:relative}
 .mackhero{position:absolute;left:-12%;bottom:-6%;width:27%;z-index:5;filter:drop-shadow(0 24px 30px rgba(60,35,5,.35));animation:hover 5.5s ease-in-out infinite}
@@ -69,7 +73,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="top"><nav class="bar" aria-label="Mackro"><a class="home" href="#main"><img src="/mackro/img/icon.png" alt="" width="30" height="30">Mackro</a><a class="hide-s" href="#log">How it works</a><a class="hide-s" href="#pricing">Pricing</a><a class="c" href="https://apps.apple.com/app/id6771991453">Get the app</a></nav></header>
+<header class="top"><nav class="bar" aria-label="Mackro"><a class="home" href="#main"><img src="/mackro/img/icon.png" alt="" width="30" height="30">Mackro</a><a class="hide-s" href="#new">What&#x27;s new</a><a class="hide-s" href="#log">How it works</a><a class="hide-s" href="#pricing">Pricing</a><a class="c" href="https://apps.apple.com/app/id6771991453">Get the app</a></nav></header>
 <main id="main">
 <div class="sky" aria-hidden="true"><div class="sh" data-speed=".35" data-depth="14" style="right:25%;top:200px;width:62px;height:62px"><svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="29" fill="none" stroke="var(--a2)" stroke-width="10"/></svg></div><div class="sh" data-speed="-.18" data-depth="-7" style="left:48%;top:300px;width:84px;height:84px"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="var(--a2)"/></svg></div><div class="sh" data-speed=".3" data-depth="12" style="right:3%;top:250px;width:150px;height:58px"><svg viewBox="0 0 150 58"><rect width="150" height="58" rx="29" fill="var(--a3)" transform="rotate(-18 75 29)"/></svg></div><div class="sh" data-speed=".45" data-depth="18" style="right:38%;top:830px;width:60px;height:60px"><svg viewBox="0 0 70 70"><path d="M35 0C38 22 48 32 70 35C48 38 38 48 35 70C32 48 22 38 0 35C22 32 32 22 35 0Z" fill="var(--a2)"/></svg></div><div class="sh" data-speed=".22" data-depth="9" style="right:6%;top:860px;width:170px;height:50px"><svg viewBox="0 0 170 50"><path d="M6 30C26 4 42 4 58 26S92 48 108 24S144 2 164 22" fill="none" stroke="var(--a)" stroke-width="11" stroke-linecap="round"/></svg></div><div class="sh" data-speed=".4" data-depth="16" style="right:2%;top:560px;width:50px;height:50px"><svg viewBox="0 0 58 58"><rect x="6" y="6" width="46" height="46" rx="12" fill="var(--a3)" transform="rotate(16 29 29)"/></svg></div></div>
 <div class="wrap">
@@ -87,7 +91,7 @@
   </section>
   <ul class="trust" aria-label="At a glance"><li>No ads, ever</li><li>No account</li><li>Barcode and search are free</li><li>Your log stays in your iCloud</li></ul>
 </div>
-<section class="sec demo" id="try"><div class="wrap"><div class="kplay">
+<section class="sec" id="new"><div class="wrap center"><h2>New in Mackro 2.2.</h2><p class="sub">Star your favorite way to log, see what fits what you have left, and keep an eye on fiber. Mack has more to say, too.</p><div class="film"><video class="film-h" controls playsinline preload="none" poster="video/mackro-16x9.jpg" width="1920" height="1080" aria-label="Mackro 2.2 video"><source src="video/mackro-16x9.mp4" type="video/mp4"></video><video class="film-v" controls playsinline preload="none" poster="video/mackro-9x16.jpg" width="720" height="1280" aria-label="Mackro 2.2 video"><source src="video/mackro-9x16.mp4" type="video/mp4"></video></div></div></section><section class="sec demo" id="try"><div class="wrap"><div class="kplay">
 <div><h2>Try it. Tap what you ate.</h2><p class="sub">Mack keeps score, nudges you when you drift, and never judges a cheat day. Tap a few foods and watch.</p></div>
 <div class="kitchen" aria-label="Interactive demo: tap foods to log them">
   <div class="kHead"><span>Today</span><button type="button" id="reset">Clear</button></div>
